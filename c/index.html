@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Catalogue · Talabia</title>
+<meta name="description" content="Catalogue produits — commandez sur WhatsApp.">
+<meta name="theme-color" content="#0f6b4f">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../app/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Manrope:wght@500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* Public product catalogue of one Talabia shop. Customers pick products and send the order on WhatsApp. */
+:root{--bg:#f3f2ee;--surface:#fff;--ink:#1b1d1a;--muted:#64685f;--line:#e2e1da;--accent:#0f6b4f;--accent-soft:#dcefe6;--accent-ink:#fff;
+ --red:#b0351f;--red-soft:#f9e1dc;--wa:#17773f;--wa-soft:#dbf1e3;--gold:#e9a828;
+ --display:"Sora",ui-sans-serif,system-ui,sans-serif;--body:"Manrope",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body);min-height:100vh;padding-bottom:110px}
+body.ar{--body:"Cairo",ui-sans-serif,system-ui,sans-serif;--display:"Cairo",ui-sans-serif,system-ui,sans-serif}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{background:var(--accent);color:var(--accent-ink);padding:22px 0 26px;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;opacity:.1;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0/56px 56px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0/56px 56px}
+header .wrap{position:relative;display:flex;flex-direction:column;gap:6px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.av{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;font:700 22px var(--display)}
+.langs{display:flex;gap:4px}
+.langs button{background:rgba(255,255,255,.14);border:0;border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700;color:inherit;min-height:32px}
+.langs button[aria-pressed="true"]{background:#fff;color:var(--accent)}
+h1{font:700 26px/1.2 var(--display);margin:8px 0 0;letter-spacing:-.01em}
+.sub{opacity:.88;margin:0;font-size:14px}
+.search{margin:16px 0 4px;position:relative}
+.search input{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;min-height:48px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+@media (min-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.ph{aspect-ratio:1;width:100%;object-fit:cover;background:var(--accent-soft);display:grid;place-items:center;font:700 34px var(--display);color:var(--accent)}
+.cb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cb b{font-size:14.5px;line-height:1.3;text-align:start}
+.price{font:700 16px var(--display);color:var(--accent);direction:ltr;text-align:start}
+body.ar .price{text-align:right}
+.out{font-size:12px;font-weight:700;color:var(--red);background:var(--red-soft);border-radius:6px;padding:2px 8px;align-self:flex-start}
+.opts{display:flex;flex-wrap:wrap;gap:5px}
+.opt{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700;min-height:32px}
+.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.opt:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
+.add{margin-top:auto;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:10px;min-height:44px}
+.add:disabled{background:var(--line);color:var(--muted);cursor:not-allowed}
+.qty{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--accent);border-radius:12px;overflow:hidden}
+.qty button{border:0;background:var(--accent-soft);color:var(--accent);font:700 20px var(--display);width:44px;min-height:42px}
+.qty span{font:700 16px var(--display)}
+.empty,.msg{text-align:center;color:var(--muted);padding:40px 10px}
+.msg h2{color:var(--ink);font:700 20px var(--display);margin:0 0 6px}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+.bar .wrap{padding:0;display:flex;gap:10px;align-items:center}
+.bar .sum{flex:1;min-width:0}.bar .sum b{font:700 18px var(--display);display:block;direction:ltr;text-align:start}
+body.ar .bar .sum b{text-align:right}
+.bar .sum span{font-size:13px;color:var(--muted)}
+.wa{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;background:var(--wa);color:#fff;font-weight:700;font-size:15.5px;padding:12px 18px;min-height:50px;text-decoration:none}
+.wa svg{width:22px;height:22px;flex:none}
+.go{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;padding:12px 18px;min-height:52px;width:100%}
+.bar .go{width:auto}.go svg,.walink svg{width:20px;height:20px;flex:none}.go:disabled{opacity:.6;cursor:wait}
+.walink{display:flex;align-items:center;justify-content:center;gap:6px;color:var(--wa);font-weight:700;font-size:14.5px;text-decoration:none;padding:6px;min-height:40px}
+label textarea{border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:16px;font-weight:500;color:var(--ink);background:var(--surface);resize:vertical;font-family:inherit}
+.err{color:var(--red);font-weight:700;font-size:14px;margin:0;background:var(--red-soft);border-radius:10px;padding:8px 10px}
+.done{display:flex;flex-direction:column;gap:10px;text-align:center}.done .ok{width:68px;height:68px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:34px;margin:6px auto 0}
+.done p{margin:0;color:var(--muted)}.done .ref{color:var(--ink)}.done .line{text-align:start}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;z-index:20}
+.sheet .in{background:var(--surface);width:100%;max-width:720px;margin:0 auto;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto;display:flex;flex-direction:column;gap:12px}
+.sheet h2{font:700 19px var(--display);margin:0}
+.line{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+.line:first-of-type{border-top:0}
+.line .n{flex:1;min-width:0}.line .n small{display:block;color:var(--muted);direction:ltr;text-align:start}
+body.ar .line .n small{text-align:right}
+.line .qty{margin:0;width:116px;flex:none}.line .qty button{width:36px;min-height:36px;font-size:17px}
+label{font-size:13px;font-weight:700;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+label input{border:1px solid var(--line);border-radius:12px;padding:11px 12px;min-height:46px;font-size:16px;font-weight:500;color:var(--ink);background:var(--surface)}
+.hint{font-size:12.5px;color:var(--muted);margin:0}
+.ghost{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px;font-weight:700;min-height:44px}
+footer{text-align:center;margin:28px 0 10px;font-size:13px;color:var(--muted)}
+footer a{color:var(--accent);font-weight:700;text-decoration:none}
+footer a i{font-style:normal;color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><div class="av" id="av" aria-hidden="true">·</div>
+  <div class="langs" role="group" aria-label="Langue"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div></div>
+ <h1 id="shop">…</h1>
+ <p class="sub" id="lead"></p>
+</div></header>
+<main class="wrap" id="main"><div class="msg" id="state"></div></main>
+<div class="bar" id="bar" hidden><div class="wrap">
+ <div class="sum"><b id="total"></b><span id="count"></span></div>
+ <button type="button" class="go" id="review"></button>
+</div></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="in" id="sheetIn"></div></div>
+<script>
+"use strict";
+const API="https://ggttwxcwlxjedlphgqvm.supabase.co",KEY="sb_publishable_4h5LHbtPTf8wn3dC1FDcug_tWkvxA3M";
+const PHOTO=API+"/storage/v1/object/public/products/";
+const WA_ICON='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.2-.2-.5-.3z"/></svg>';
+const CART_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg>';
+const TXT={
+ fr:{lead:"Choisissez vos produits, puis passez la commande.",search:"Chercher un produit",add:"Ajouter",out:"Épuisé",from:"à partir de",
+  items:n=>n===1?"1 article":n+" articles",review:"Commander sur WhatsApp",yourOrder:"Votre commande",name:"Votre nom",phone:"Téléphone",city:"Ville",address:"Adresse",
+  optional:"* obligatoire",send:"ou commander sur WhatsApp",order:"Commander",note:"Commentaire pour le vendeur",notePh:"Ex. couleur, heure de livraison, question…",sendOrder:"Envoyer la commande",sending:"Envoi…",
+  doneT:"Commande reçue !",doneP:"Le vendeur va vous contacter pour confirmer votre commande.",ref:"Référence",close:"Fermer",
+  needName:"Écrivez votre nom.",needPhone:"Écrivez un numéro marocain valide, ex. 0612345678.",needCity:"Écrivez votre ville.",tooMany:"Trop de commandes avec ce numéro. Réessayez plus tard, ou écrivez au vendeur sur WhatsApp.",gone:"Ces produits ne sont plus disponibles. Rafraîchissez la page.",failed:"La commande n'est pas partie. Vérifiez votre internet, ou commandez sur WhatsApp.",back:"Continuer mes achats",total:"Total",delivery:"+ livraison",
+  loading:"Chargement…",notFound:"Catalogue introuvable",notFoundSub:"Le lien est peut-être incomplet, ou le vendeur l'a fermé.",offline:"Pas de connexion",offlineSub:"Vérifiez votre internet puis réessayez.",retry:"Réessayer",
+  none:"Aucun produit pour le moment.",noMatch:"Aucun produit trouvé.",made:"Créé avec",
+  msg:(shop,lines,total,n,ph,c,a)=>`Salam 👋 Je voudrais commander chez ${shop} :\n${lines}\nTotal : ${total} DH (+ livraison)\n\nNom : ${n}\nTéléphone : ${ph}\nVille : ${c}\nAdresse : ${a}\n\n(Commande envoyée depuis le catalogue Talabia)`},
+ ar:{lead:"اختار المنتجات ديالك، ومن بعد دوز الطلبية.",search:"قلب على منتج",add:"زيد",out:"سالا",from:"ابتداءً من",
+  items:n=>n===1?"منتج واحد":n+" منتجات",review:"اطلب فواتساب",yourOrder:"الطلبية ديالك",name:"سميتك",phone:"الهاتف",city:"المدينة",address:"العنوان",
+  optional:"* ضروري",send:"ولا اطلب فواتساب",order:"اطلب دابا",note:"ملاحظة للبائع",notePh:"مثلاً اللون، وقت التوصيل، سؤال…",sendOrder:"صيفط الطلبية",sending:"كيتصيفط…",
+  doneT:"الطلبية توصلات!",doneP:"البائع غادي يتواصل معاك باش يأكد الطلبية.",ref:"المرجع",close:"سد",
+  needName:"كتب سميتك.",needPhone:"كتب رقم مغربي صحيح، مثلاً 0612345678.",needCity:"كتب المدينة ديالك.",tooMany:"بزاف ديال الطلبيات بهاد الرقم. عاود من بعد، ولا كتب للبائع فواتساب.",gone:"هاد المنتجات ما بقاوش. حدّث الصفحة.",failed:"الطلبية ما تصيفطاتش. تأكد من الأنترنت، ولا اطلب فواتساب.",back:"كمل التسوق",total:"المجموع",delivery:"+ التوصيل",
+  loading:"جارٍ التحميل…",notFound:"الكتالوج ما كاينش",notFoundSub:"يمكن الرابط ناقص، ولا البائع سدّو.",offline:"ما كاينش الأنترنت",offlineSub:"تأكد من الأنترنت وعاود.",retry:"عاود",
+  none:"ما كاين حتى منتج دابا.",noMatch:"ما لقينا حتى منتج.",made:"تصاوب بـ",
+  msg:(shop,lines,total,n,ph,c,a)=>`السلام 👋 بغيت نطلب من ${shop}:\n${lines}\nالمجموع: ${total} درهم (+ التوصيل)\n\nالسمية: ${n}\nالهاتف: ${ph}\nالمدينة: ${c}\nالعنوان: ${a}\n\n(طلبية من كتالوج Talabia)`},
+ en:{lead:"Pick your products, then place your order.",search:"Search a product",add:"Add",out:"Sold out",from:"from",
+  items:n=>n===1?"1 item":n+" items",review:"Order on WhatsApp",yourOrder:"Your order",name:"Your name",phone:"Phone",city:"City",address:"Address",
+  optional:"* required",send:"or order on WhatsApp",order:"Order now",note:"Comment for the seller",notePh:"E.g. colour, delivery time, a question…",sendOrder:"Send the order",sending:"Sending…",
+  doneT:"Order received!",doneP:"The seller will contact you to confirm your order.",ref:"Reference",close:"Close",
+  needName:"Write your name.",needPhone:"Write a valid Moroccan number, e.g. 0612345678.",needCity:"Write your city.",tooMany:"Too many orders with this number. Try again later, or write to the seller on WhatsApp.",gone:"These products are no longer available. Refresh the page.",failed:"The order didn't go through. Check your internet, or order on WhatsApp.",back:"Keep shopping",total:"Total",delivery:"+ delivery",
+  loading:"Loading…",notFound:"Catalogue not found",notFoundSub:"The link may be incomplete, or the seller closed it.",offline:"No connection",offlineSub:"Check your internet and try again.",retry:"Try again",
+  none:"No products yet.",noMatch:"No product found.",made:"Made with",
+  msg:(shop,lines,total,n,ph,c,a)=>`Salam 👋 I'd like to order from ${shop}:\n${lines}\nTotal: ${total} DH (+ delivery)\n\nName: ${n}\nPhone: ${ph}\nCity: ${c}\nAddress: ${a}\n\n(Order sent from the Talabia catalogue)`}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const num=n=>Math.round(+n||0).toLocaleString("fr-FR").replace(/ | /g," ");
+const dh=n=>num(n)+" DH";
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const FROM=(q=>["ig","wa","tt","fb"].includes(q)?q:"")((new URLSearchParams(location.search).get("from")||"").toLowerCase());
+const slug=(new URLSearchParams(location.search).get("s")||location.hash.slice(1)||"").toLowerCase().replace(/[^a-z0-9-]/g,"").slice(0,40);
+let L=(()=>{const q=new URLSearchParams(location.search).get("l"),s=store.get("talabia-cat-lang");if(TXT[q])return q;if(TXT[s])return s;const n=(navigator.language||"").toLowerCase();return n.startsWith("ar")?"ar":n.startsWith("en")?"en":"fr"})();
+let ordBusy=false,ordErr="",CAT=null,entries=[],pick={},cart=store.get("talabia-cart-"+slug)||{},query="";
+const T=()=>TXT[L];
+const safeImg=u=>typeof u==="string"&&u.startsWith(PHOTO)&&!/["'<>\s]/.test(u)?u:"";
+
+// Items come grouped: options of the same product share g (group id) and gn (group name).
+function group(items){const out=[],seen={};
+ for(const it of items){if(!it||!it.id||!(+it.p>=0))continue;
+  if(it.g){if(!seen[it.g]){seen[it.g]={kind:"grp",id:it.g,name:it.gn||it.n,items:[]};out.push(seen[it.g])}seen[it.g].items.push(it)}
+  else out.push({kind:"one",id:it.id,name:it.n,items:[it]})}
+ return out}
+const byId=id=>CAT&&CAT.items.find(i=>i.id===id);
+const cartLines=()=>Object.entries(cart).map(([id,q])=>({it:byId(id),q})).filter(x=>x.it&&!x.it.out&&x.q>0);
+
+function applyLang(){document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";document.body.classList.toggle("ar",L==="ar");
+ document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));$("lead").textContent=T().lead}
+
+function state(title,sub,retry){$("main").innerHTML=`<div class="msg"><h2>${esc(title)}</h2>${sub?`<p>${esc(sub)}</p>`:""}${retry?`<button type="button" class="ghost" id="retry">${esc(T().retry)}</button>`:""}</div>`}
+
+async function load(){
+ applyLang();
+ if(!slug){$("shop").textContent="Talabia";state(T().notFound,T().notFoundSub);return}
+ state(T().loading);
+ try{const r=await fetch(API+"/rest/v1/rpc/get_catalog",{method:"POST",headers:{apikey:KEY,"content-type":"application/json"},body:JSON.stringify({p_slug:slug})});
+  if(!r.ok)throw 0;const rows=await r.json();
+  if(!rows.length){$("shop").textContent="Talabia";state(T().notFound,T().notFoundSub);return}
+  CAT=rows[0];CAT.items=Array.isArray(CAT.items)?CAT.items:[];entries=group(CAT.items);
+  document.title=CAT.shop+" · Catalogue";$("shop").textContent=CAT.shop;$("av").textContent=(CAT.shop.trim()[0]||"·").toUpperCase();
+  for(const id of Object.keys(cart))if(!byId(id))delete cart[id];
+  draw()}
+ catch(e){state(T().offline,T().offlineSub,true)}}
+
+function priceOf(e){const ps=e.items.map(i=>+i.p);const lo=Math.min(...ps),hi=Math.max(...ps);return lo===hi?dh(lo):`${T().from} ${dh(lo)}`}
+function chosen(e){if(e.kind==="one")return e.items[0];const id=pick[e.id];return e.items.find(i=>i.id===id)||null}
+function card(e){const it=chosen(e),allOut=e.items.every(i=>i.out),img=safeImg((it||e.items.find(i=>i.img)||{}).img);
+ const q=it?cart[it.id]||0:0;
+ return `<div class="card" data-e="${esc(e.id)}">${img?`<img class="ph" src="${esc(img)}" alt="" loading="lazy">`:`<div class="ph" aria-hidden="true">${esc((e.name.trim()[0]||"?").toUpperCase())}</div>`}
+ <div class="cb"><b dir="auto">${esc(e.name)}</b><div class="price">${it?dh(it.p):priceOf(e)}</div>
+ ${e.kind==="grp"?`<div class="opts" role="group" aria-label="${esc(e.name)}">${e.items.map(i=>`<button type="button" class="opt" dir="auto" data-pick="${esc(e.id)}" data-id="${esc(i.id)}" aria-pressed="${!!it&&it.id===i.id}" ${i.out?"disabled":""}>${esc(i.o||i.n)}</button>`).join("")}</div>`:""}
+ ${allOut||(it&&it.out)?`<span class="out">${esc(T().out)}</span>`:""}
+ ${q?`<div class="qty"><button type="button" data-dec="${esc(it.id)}" aria-label="−">−</button><span>${q}</span><button type="button" data-inc="${esc(it.id)}" aria-label="+">+</button></div>`
+   :`<button type="button" class="add" data-add="${esc(e.id)}" ${allOut||(it&&it.out)||(e.kind==="grp"&&!it)?"disabled":""}>${esc(e.kind==="grp"&&!it?"↑ "+e.items.map(i=>i.o).filter(Boolean).slice(0,2).join(" / ")+(e.items.length>2?"…":""):T().add)}</button>`}
+ </div></div>`}
+
+function draw(){
+ const q=query.trim().toLowerCase(),list=q?entries.filter(e=>(e.name+" "+e.items.map(i=>i.o||"").join(" ")).toLowerCase().includes(q)):entries;
+ $("main").innerHTML=`${entries.length>6?`<div class="search"><input type="search" id="q" value="${esc(query)}" placeholder="${esc(T().search)}" aria-label="${esc(T().search)}"></div>`:""}
+  ${entries.length?(list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty">${esc(T().noMatch)}</div>`):`<div class="empty">${esc(T().none)}</div>`}
+  <footer>${esc(T().made)} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a></footer>`;
+ drawBar()}
+function redrawCard(eid){const e=entries.find(x=>x.id===eid),el=document.querySelector(`.card[data-e="${CSS.escape(eid)}"]`);if(e&&el)el.outerHTML=card(e);drawBar()}
+function drawBar(){const ls=cartLines(),n=ls.reduce((a,x)=>a+x.q,0),tot=ls.reduce((a,x)=>a+x.q*x.it.p,0);
+ $("bar").hidden=!n;$("total").textContent=dh(tot);$("count").textContent=T().items(n);$("review").innerHTML=CART_ICON+esc(T().order);store.set("talabia-cart-"+slug,cart)}
+const entryOf=id=>{const it=byId(id);return it?(it.g||it.id):null};
+function setQ(id,q){if(q>0)cart[id]=Math.min(99,q);else delete cart[id]}
+
+function openSheet(){const ls=cartLines();if(!ls.length)return;const me=store.get("talabia-me")||{};
+ const tot=ls.reduce((a,x)=>a+x.q*x.it.p,0);
+ $("sheetIn").innerHTML=`<h2 id="sheetTitle">${esc(T().yourOrder)}</h2>
+  ${ls.map(x=>`<div class="line"><div class="n"><b dir="auto">${esc(x.it.n)}</b><small>${x.q} × ${dh(x.it.p)}</small></div><div class="qty"><button type="button" data-sdec="${esc(x.it.id)}" aria-label="−">−</button><span>${x.q}</span><button type="button" data-sinc="${esc(x.it.id)}" aria-label="+">+</button></div></div>`).join("")}
+  <div class="line"><div class="n"><b>${esc(T().total)}</b></div><b class="price">${dh(tot)} <small style="font:500 12px var(--body);color:var(--muted)">${esc(T().delivery)}</small></b></div>
+  <label>${esc(T().name)} *<input id="fn" autocomplete="name" value="${esc(me.n||"")}"></label>
+  <label>${esc(T().phone)} *<input id="fp" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="06…" value="${esc(me.p||"")}"></label>
+  <label>${esc(T().city)} *<input id="fc" autocomplete="address-level2" value="${esc(me.c||"")}"></label>
+  <label>${esc(T().address)}<input id="fa" autocomplete="street-address" value="${esc(me.a||"")}"></label>
+  <label>${esc(T().note)}<textarea id="fo" rows="2" placeholder="${esc(T().notePh)}">${esc(me.o||"")}</textarea></label>
+  <p class="hint">${esc(T().optional)}</p>
+  ${ordErr?`<p class="err" role="alert">${esc(ordErr)}</p>`:""}
+  <button type="button" class="go" id="sendOrder" ${ordBusy?"disabled":""}>${CART_ICON}${esc(ordBusy?T().sending:T().sendOrder)}</button>
+  <a class="walink" id="send" href="#" target="_blank" rel="noopener">${WA_ICON}${esc(T().send)}</a>
+  <button type="button" class="ghost" id="close">${esc(T().back)}</button>`;
+ $("sheet").hidden=false;document.body.style.overflow="hidden";updateLink()}
+function closeSheet(){$("sheet").hidden=true;document.body.style.overflow="";ordErr="";draw()}
+async function sendOrder(){if(ordBusy)return;updateLink();const me=store.get("talabia-me")||{};ordErr="";
+ let ph=String(me.p||"").replace(/\D/g,"");if(ph.startsWith("212"))ph="0"+ph.slice(3);if(ph.length===9&&/^[5-7]/.test(ph))ph="0"+ph;
+ if((me.n||"").trim().length<2)ordErr=T().needName;else if(!/^0[5-7]\d{8}$/.test(ph))ordErr=T().needPhone;else if((me.c||"").trim().length<2)ordErr=T().needCity;
+ if(ordErr){openSheet();return}
+ ordBusy=true;openSheet();
+ try{const r=await fetch(API+"/rest/v1/rpc/place_catalog_order",{method:"POST",headers:{apikey:KEY,"content-type":"application/json"},
+   body:JSON.stringify({p_slug:slug,p_items:cartLines().map(x=>({id:x.it.id,q:x.q})),p_name:me.n,p_phone:ph,p_city:me.c,p_address:me.a||"",p_note:(me.o||"").trim(),p_src:FROM})});
+  const j=await r.json().catch(()=>null);
+  if(!r.ok){const m=String((j&&j.message)||"");ordErr=/too many/.test(m)?T().tooMany:/no available|closed/.test(m)?T().gone:/phone/.test(m)?T().needPhone:/name/.test(m)?T().needName:/city/.test(m)?T().needCity:T().failed;ordBusy=false;openSheet();return}
+  const ls=cartLines(),tot=ls.reduce((a,x)=>a+x.q*x.it.p,0);
+  cart={};store.set("talabia-cart-"+slug,cart);me.o="";store.set("talabia-me",me);ordBusy=false;
+  $("sheetIn").innerHTML=`<div class="done"><div class="ok" aria-hidden="true">✓</div><h2 id="sheetTitle">${esc(T().doneT)}</h2><p>${esc(T().doneP)}</p>
+   <p class="ref">${esc(T().ref)} : <b dir="ltr">#${esc(String(j||""))}</b></p>
+   ${ls.map(x=>`<div class="line"><div class="n"><b dir="auto">${esc(x.it.n)}</b><small>${x.q} × ${dh(x.it.p)}</small></div></div>`).join("")}
+   <div class="line"><div class="n"><b>${esc(T().total)}</b></div><b class="price">${dh(tot)}</b></div>
+   <button type="button" class="go" id="close">${esc(T().close)}</button></div>`;
+  drawBar()}
+ catch(e){ordBusy=false;ordErr=T().failed;openSheet()}}
+function updateLink(){const ls=cartLines(),a=$("send");if(!a)return;const v=id=>($(id).value||"").trim().slice(0,120);
+ const me={n:v("fn"),p:v("fp").replace(/[^\d+ ]/g,"").slice(0,16),c:v("fc"),a:v("fa"),o:($("fo")?$("fo").value:"").slice(0,300)};store.set("talabia-me",me);
+ const lines=ls.map(x=>`• ${x.it.n} × ${x.q} = ${num(x.q*x.it.p)} DH`).join("\n"),tot=ls.reduce((s,x)=>s+x.q*x.it.p,0);
+ const text=T().msg(CAT.shop,lines,num(tot),me.n,me.p,me.c,me.a)+(me.o.trim()?"\n📝 "+me.o.trim():"");
+ a.href="https://wa.me/212"+CAT.wa.slice(1)+"?text="+encodeURIComponent(text)}
+
+document.addEventListener("click",ev=>{const b=ev.target.closest("button,a");if(!b)return;const d=b.dataset;
+ if(d.lang){L=d.lang;store.set("talabia-cat-lang",L);applyLang();if(CAT){if($("sheet").hidden)draw();else openSheet()}else load();return}
+ if(b.id==="retry"){load();return}
+ if(d.pick){pick[d.pick]=d.id;redrawCard(d.pick);return}
+ if(d.add){const e=entries.find(x=>x.id===d.add),it=e&&chosen(e);if(it&&!it.out){setQ(it.id,(cart[it.id]||0)+1);redrawCard(e.id)}return}
+ if(d.inc||d.dec){const id=d.inc||d.dec;setQ(id,(cart[id]||0)+(d.inc?1:-1));redrawCard(entryOf(id));return}
+ if(d.sinc||d.sdec){const id=d.sinc||d.sdec;setQ(id,(cart[id]||0)+(d.sinc?1:-1));drawBar();if(cartLines().length)openSheet();else closeSheet();return}
+ if(b.id==="review"){openSheet();return}
+ if(b.id==="close"){closeSheet();return}
+ if(b.id==="sendOrder"){sendOrder();return}
+ if(b.id==="send"){updateLink();setTimeout(()=>{cart={};store.set("talabia-cart-"+slug,cart);closeSheet()},400);return}
+});
+document.addEventListener("input",ev=>{if(ev.target.id==="q"){query=ev.target.value;const pos=ev.target.selectionStart;draw();const i=$("q");if(i){i.focus();i.setSelectionRange(pos,pos)}}
+ else if(["fn","fp","fc","fa","fo"].includes(ev.target.id)){updateLink();if(ordErr){ordErr="";const e=document.querySelector(".err");if(e)e.remove()}}});
+$("sheet").addEventListener("click",ev=>{if(ev.target.id==="sheet")closeSheet()});
+document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$("sheet").hidden)closeSheet()});
+load();
+</script>
+</body>
+</html>

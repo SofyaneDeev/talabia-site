@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Confirmer ma commande · Talabia</title>
+<meta name="theme-color" content="#0f6b4f">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="../app/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Manrope:wght@500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* A customer confirms, cancels or changes their order in one tap. */
+:root{--bg:#f3f2ee;--surface:#fff;--ink:#1b1d1a;--muted:#64685f;--line:#e2e1da;--accent:#0f6b4f;--accent-soft:#dcefe6;--accent-ink:#fff;
+ --red:#b0351f;--red-soft:#f9e1dc;--amber:#94600f;--amber-soft:#fbefd6;--gold:#e9a828;
+ --display:"Sora",ui-sans-serif,system-ui,sans-serif;--body:"Manrope",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.45 var(--body);min-height:100vh}
+body.ar{--body:"Cairo",ui-sans-serif,system-ui,sans-serif;--display:"Cairo",ui-sans-serif,system-ui,sans-serif}
+button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}[hidden]{display:none!important}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+header{background:var(--accent);color:var(--accent-ink);padding:18px 0 22px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.top b{font:700 15px var(--display);opacity:.9}
+.langs{display:flex;gap:4px}.langs button{background:rgba(255,255,255,.14);border:0;border-radius:999px;padding:4px 10px;font-size:13px;font-weight:700;color:inherit;min-height:32px}
+.langs button[aria-pressed="true"]{background:#fff;color:var(--accent)}
+h1{font:700 24px/1.25 var(--display);margin:12px 0 0}
+.sub{opacity:.88;margin:4px 0 0;font-size:14.5px}
+main{padding:16px 0 40px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.lbl{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+body.ar .lbl{text-transform:none;letter-spacing:0}
+.it{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.it span{min-width:0}.it b,.tot b{font-family:var(--display);white-space:nowrap;direction:ltr}
+.tot{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.tot b{font-size:22px;color:var(--accent)}
+.small{font-size:13px;color:var(--muted);margin:0}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:14px;font-weight:700;font-size:17px;min-height:56px;padding:12px 16px}
+.ok{background:var(--accent);color:#fff}.ok:active{filter:brightness(.92)}
+.no{background:var(--surface);color:var(--red);border:1.5px solid color-mix(in srgb,var(--red) 40%,transparent)}
+.ch{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.6;cursor:wait}
+label{font-size:13px;font-weight:700;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+label input,label textarea{border:1px solid var(--line);border-radius:12px;padding:11px 12px;min-height:48px;font-size:16px;font-weight:500;color:var(--ink);background:var(--surface)}
+label textarea{min-height:80px;resize:vertical}
+.done{align-items:center;text-align:center;padding:28px 18px}
+.done .ic{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:36px}
+.done h2{font:700 21px var(--display);margin:4px 0 0}
+.done p{margin:0;color:var(--muted)}
+.ic.g{background:var(--accent-soft);color:var(--accent)}.ic.r{background:var(--red-soft);color:var(--red)}.ic.a{background:var(--amber-soft);color:var(--amber)}
+.msg{text-align:center;color:var(--muted);padding:40px 10px}.msg h2{color:var(--ink);font:700 20px var(--display);margin:0 0 6px}
+footer{text-align:center;font-size:13px;color:var(--muted)}footer a{color:var(--accent);font-weight:700;text-decoration:none}footer i{font-style:normal;color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="top"><b id="shop">Talabia</b><div class="langs" role="group" aria-label="Langue"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div></div>
+ <h1 id="title"></h1><p class="sub" id="lead"></p>
+</div></header>
+<main class="wrap" id="main"></main>
+<script>
+"use strict";
+const API="https://ggttwxcwlxjedlphgqvm.supabase.co",KEY="sb_publishable_4h5LHbtPTf8wn3dC1FDcug_tWkvxA3M";
+const TXT={
+ fr:{title:"Votre commande",lead:"Vérifiez les détails, puis confirmez en un clic.",items:"Produits",to:"Livraison à",total:"Total à payer à la livraison",
+  confirm:"✓ Je confirme ma commande",cancel:"Annuler la commande",change:"Modifier l'adresse ou ajouter une note",
+  city:"Ville",address:"Adresse",note:"Note pour le vendeur",send:"Envoyer la modification",back:"Retour",
+  sureCancel:"Vous êtes sûr ? Touchez encore pour annuler la commande.",
+  okT:"Merci, commande confirmée !",okP:"Le vendeur prépare votre colis. Préparez le montant pour le livreur.",
+  noT:"Commande annulée",noP:"Le vendeur est prévenu. Vous avez changé d'avis ? Écrivez-lui sur WhatsApp.",
+  chT:"Modification envoyée",chP:"Le vendeur va vérifier votre demande et vous recontacter.",
+  again:"Changer ma réponse",loading:"Chargement…",notFound:"Lien introuvable",notFoundSub:"Ce lien est incomplet ou a expiré. Écrivez au vendeur sur WhatsApp.",
+  offline:"Pas de connexion",offlineSub:"Vérifiez votre internet puis réessayez.",retry:"Réessayer",made:"Créé avec",fail:"Ça n'a pas marché. Vérifiez votre internet puis réessayez."},
+ ar:{title:"الطلبية ديالك",lead:"تأكد من التفاصيل، ومن بعد أكد بضغطة وحدة.",items:"المنتجات",to:"التوصيل لـ",total:"المجموع اللي غادي تخلص عند التوصيل",
+  confirm:"✓ كنأكد الطلبية ديالي",cancel:"إلغاء الطلبية",change:"تبديل العنوان ولا زيد ملاحظة",
+  city:"المدينة",address:"العنوان",note:"ملاحظة للبائع",send:"صيفط التبديل",back:"رجوع",
+  sureCancel:"واش متأكد؟ ضغط مرة أخرى باش تلغي الطلبية.",
+  okT:"شكراً، الطلبية تأكدات!",okP:"البائع كيوجد الكولي ديالك. وجد الفلوس لموزع التوصيل.",
+  noT:"الطلبية تلغات",noP:"البائع عرف. بدلتي رأيك؟ كتب ليه فواتساب.",
+  chT:"التبديل تصيفط",chP:"البائع غادي يشوف الطلب ديالك ويتواصل معاك.",
+  again:"بدّل الجواب ديالي",loading:"جارٍ التحميل…",notFound:"الرابط ما كاينش",notFoundSub:"هاد الرابط ناقص ولا سالا. كتب للبائع فواتساب.",
+  offline:"ما كاينش الأنترنت",offlineSub:"تأكد من الأنترنت وعاود.",retry:"عاود",made:"تصاوب بـ",fail:"ما خدمش. تأكد من الأنترنت وعاود."},
+ en:{title:"Your order",lead:"Check the details, then confirm in one tap.",items:"Products",to:"Delivery to",total:"Total to pay on delivery",
+  confirm:"✓ I confirm my order",cancel:"Cancel the order",change:"Change the address or add a note",
+  city:"City",address:"Address",note:"Note for the seller",send:"Send the change",back:"Back",
+  sureCancel:"Are you sure? Tap again to cancel the order.",
+  okT:"Thank you, order confirmed!",okP:"The seller is preparing your package. Have the amount ready for the courier.",
+  noT:"Order cancelled",noP:"The seller has been told. Changed your mind? Write to them on WhatsApp.",
+  chT:"Change sent",chP:"The seller will check your request and get back to you.",
+  again:"Change my answer",loading:"Loading…",notFound:"Link not found",notFoundSub:"This link is incomplete or has expired. Write to the seller on WhatsApp.",
+  offline:"No connection",offlineSub:"Check your internet and try again.",retry:"Try again",made:"Made with",fail:"That didn't work. Check your internet and try again."}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const dh=n=>Math.round(+n||0).toLocaleString("fr-FR").replace(/ | /g," ")+" DH";
+const code=(new URLSearchParams(location.search).get("c")||location.hash.slice(1)||"").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,16);
+let L=(()=>{const q=new URLSearchParams(location.search).get("l");let s=null;try{s=localStorage.getItem("talabia-cat-lang")}catch(e){}if(TXT[q])return q;if(TXT[s])return s;const n=(navigator.language||"").toLowerCase();return n.startsWith("ar")?"ar":n.startsWith("en")?"en":"fr"})();
+let D=null,view="ask",busy=false,sure=false,err="";
+const T=()=>TXT[L];
+async function rpc(fn,body){const r=await fetch(API+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,"content-type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw r.status;return r.json()}
+function lang(){document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";document.body.classList.toggle("ar",L==="ar");
+ document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));$("title").textContent=T().title;$("lead").textContent=T().lead}
+const foot=`<footer>${"{made}"} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a></footer>`;
+function msg(t,s,retry){$("main").innerHTML=`<div class="msg"><h2>${esc(t)}</h2>${s?`<p>${esc(s)}</p>`:""}${retry?`<button type="button" class="btn ch" id="retry">${esc(T().retry)}</button>`:""}</div>`}
+async function load(){lang();if(!code){msg(T().notFound,T().notFoundSub);return}msg(T().loading);
+ try{const rows=await rpc("get_order_link",{p_code:code});if(!rows.length){msg(T().notFound,T().notFoundSub);return}
+  D=rows[0];$("shop").textContent=D.shop;document.title=D.shop+" · "+T().title;
+  view=D.status==="confirmed"?"ok":D.status==="cancelled"?"no":D.status==="change"?"ch":"ask";draw()}
+ catch(e){msg(T().offline,T().offlineSub,true)}}
+function draw(){const t=T(),s=D.summary||{},items=Array.isArray(s.items)?s.items:[];
+ const order=`<div class="card"><div class="lbl">${esc(t.items)}</div>
+  ${items.map(i=>`<div class="it"><span dir="auto">${+i.q>1?esc(i.q)+" × ":""}${esc(i.n)}</span>${i.p!=null?`<b>${dh(i.p)}</b>`:""}</div>`).join("")}
+  <div class="tot"><span>${esc(t.total)}</span><b>${dh(s.total)}</b></div></div>
+  <div class="card"><div class="lbl">${esc(t.to)}</div><div dir="auto"><b>${esc(s.name||"")}</b><br>${esc(s.address||"")}${s.address?"<br>":""}<b>${esc(s.city||"")}</b></div></div>`;
+ const fe=foot.replace("{made}",esc(t.made));
+ if(view==="ok"||view==="no"||view==="ch"){const m={ok:["g","✓",t.okT,t.okP],no:["r","✕",t.noT,t.noP],ch:["a","✎",t.chT,t.chP]}[view];
+  $("main").innerHTML=`<div class="card done"><div class="ic ${m[0]}" aria-hidden="true">${m[1]}</div><h2>${esc(m[2])}</h2><p>${esc(m[3])}</p></div>${order}${view==="ch"?`<button type="button" class="btn ok" id="yes">${esc(t.confirm)}</button><button type="button" class="btn ch" id="chg">${esc(t.change)}</button>`:""}${fe}`;return}
+ if(view==="form"){const a=(D.answer||{});
+  $("main").innerHTML=`${order}<div class="card"><label>${esc(t.city)}<input id="fc" autocomplete="address-level2" value="${esc(a.city||s.city||"")}"></label>
+   <label>${esc(t.address)}<input id="fa" autocomplete="street-address" value="${esc(a.address||s.address||"")}"></label>
+   <label>${esc(t.note)}<textarea id="fn">${esc(a.note||"")}</textarea></label>
+   ${err?`<p class="small" style="color:var(--red)">${esc(err)}</p>`:""}
+   <button type="button" class="btn ok" id="sendCh" ${busy?"disabled":""}>${esc(t.send)}</button><button type="button" class="btn ch" id="back">${esc(t.back)}</button></div>${fe}`;return}
+ $("main").innerHTML=`${order}${err?`<p class="small" style="color:var(--red);text-align:center">${esc(err)}</p>`:""}
+  <button type="button" class="btn ok" id="yes" ${busy?"disabled":""}>${esc(t.confirm)}</button>
+  <button type="button" class="btn ch" id="chg" ${busy?"disabled":""}>${esc(t.change)}</button>
+  ${sure?`<p class="small" style="text-align:center;color:var(--red)">${esc(t.sureCancel)}</p>`:""}
+  <button type="button" class="btn no" id="nope" ${busy?"disabled":""}>${esc(t.cancel)}</button>${fe}`}
+async function answer(action,details){busy=true;err="";draw();
+ try{const r=await rpc("answer_order_link",{p_code:code,p_action:action,p_details:details||null});
+  if(typeof r==="string"&&r.startsWith("final:"))action=r.slice(6);
+  D.status=action;if(details)D.answer=details;
+  view=action==="confirmed"?"ok":action==="cancelled"?"no":"ch";busy=false;sure=false;draw();scrollTo(0,0)}
+ catch(e){busy=false;err=T().fail;draw()}}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.lang){L=b.dataset.lang;try{localStorage.setItem("talabia-cat-lang",L)}catch(x){}lang();if(D)draw();else load();return}
+ if(b.id==="retry"){load();return}
+ if(b.id==="yes"){answer("confirmed");return}
+ if(b.id==="nope"){if(!sure){sure=true;draw();return}answer("cancelled");return}
+ if(b.id==="chg"){view="form";err="";draw();return}
+ if(b.id==="back"){view=D.status==="change"?"ch":"ask";sure=false;err="";draw();return}
+ if(b.id==="sendCh"){const v=id=>($(id).value||"").trim();answer("change",{city:v("fc"),address:v("fa"),note:v("fn")});return}});
+load();
+</script>
+</body>
+</html>
