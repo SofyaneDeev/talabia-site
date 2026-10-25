@@ -1,18 +1,404 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Talabia</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Talabia · Vos commandes Instagram et WhatsApp au même endroit</title>
+<meta name="description" content="Talabia aide les vendeurs en ligne au Maroc : commandes Instagram et WhatsApp, stock, catalogue, confirmation en un clic, livraison et argent, au même endroit.">
+<meta name="theme-color" content="#0f6b4f">
+<meta property="og:title" content="Talabia · Vos commandes Instagram et WhatsApp au même endroit">
+<meta property="og:description" content="Commandes, stock, catalogue en ligne, confirmation en un clic et paiement à la livraison. Fait au Maroc.">
+<meta property="og:image" content="https://talabiaapp.ma/img/home-fr.webp">
+<meta property="og:url" content="https://talabiaapp.ma/">
+<link rel="canonical" href="https://talabiaapp.ma/">
+<link rel="icon" href="app/icons/icon-192.png">
+<link rel="apple-touch-icon" href="app/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Manrope:wght@500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Talabia website: same colours and fonts as the app. Light only, Arabic / French / English. */
+:root{--bg:#f3f2ee;--surface:#fff;--ink:#1b1d1a;--muted:#5c6158;--line:#e2e1da;--accent:#0f6b4f;--accent-2:#0b5a42;--accent-soft:#dcefe6;
+ --gold:#e9a828;--gold-soft:#fbefd6;--wa:#17773f;--ig:#9e2f6b;--ai:#6b4fd1;--ai-soft:#ebe6fb;--conf:#a3500a;--conf-soft:#fbe6d2;--ship:#5b4bc4;--ship-soft:#e6e2f8;--red:#b0351f;--red-soft:#f9e1dc;
+ --display:"Sora",ui-sans-serif,system-ui,sans-serif;--body:"Manrope",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+body.ar{--body:"Cairo",ui-sans-serif,system-ui,sans-serif;--display:"Cairo",ui-sans-serif,system-ui,sans-serif}
+a{color:inherit}img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:10;background:rgba(243,242,238,.88);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.top.scrolled{border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:64px}
+.logo{font:800 24px var(--display);letter-spacing:-.02em;text-decoration:none;direction:ltr;font-family:"Sora",sans-serif}.logo i{font-style:normal;color:var(--accent)}
+.top nav{display:flex;gap:22px;margin-inline-start:auto;font-weight:600;font-size:15px}
+.top nav a{text-decoration:none;color:var(--muted)}.top nav a:hover{color:var(--ink)}
+.langs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px}
+.langs button{border:0;background:none;border-radius:999px;padding:4px 10px;font:700 13px var(--body);color:var(--muted);cursor:pointer;min-height:32px}
+.langs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+@media (max-width:820px){.top nav{display:none}.langs{margin-inline-start:auto}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:14px;padding:14px 22px;min-height:54px;font:700 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -12px rgba(15,107,79,.7)}.btn.primary:hover{background:var(--accent-2)}
+.btn.ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{border-color:#c9c8bf}
+.btn.wa{background:var(--wa);color:#fff}
+.btn svg{width:22px;height:22px;flex:none}
+.play{display:inline-flex;align-items:center;gap:12px;background:#111;color:#fff;border-radius:14px;padding:9px 18px 9px 14px;min-height:56px;text-decoration:none;text-align:start}
+.play svg{width:26px;height:26px;flex:none}.play small{display:block;font-size:11px;opacity:.8;line-height:1.1;letter-spacing:.02em}.play b{display:block;font:700 18px "Sora",sans-serif;line-height:1.15;direction:ltr}
+.play.soon{background:#2b2d2a}
+.soonnote{font-size:13px;color:var(--muted);margin:10px 0 0}
+
+/* hero */
+.hero{padding:56px 0 40px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13.5px;border-radius:999px;padding:6px 12px}
+h1{font:800 clamp(34px,5vw,56px)/1.08 var(--display);letter-spacing:-.025em;margin:18px 0 16px;text-wrap:balance}
+body.ar h1{line-height:1.3;letter-spacing:0}
+h1 em{font-style:normal;color:var(--accent);background:linear-gradient(transparent 62%,var(--gold-soft) 62%)}
+.lead{font-size:clamp(17px,2vw,19px);color:var(--muted);margin:0 0 26px;max-width:34em}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-size:14px;color:var(--muted);font-weight:600}
+.trust span{display:inline-flex;align-items:center;gap:6px}.trust svg{width:18px;height:18px;color:var(--accent)}
+.phones{position:relative;display:flex;justify-content:center;min-height:540px}
+.phone{width:262px;border-radius:38px;background:#111;padding:9px;box-shadow:0 40px 70px -30px rgba(27,29,26,.45),0 0 0 1px rgba(0,0,0,.06)}
+.phone img{border-radius:30px;width:100%;height:auto;aspect-ratio:390/844;object-fit:cover;object-position:top;background:var(--bg)}
+.phones .phone.back{position:absolute;transform:rotate(-7deg) translate(-44%,22px) scale(.88);opacity:.96}
+.phones .phone.front{position:relative;transform:translate(18%,0);z-index:2}
+body.ar .phones .phone.back{transform:rotate(7deg) translate(44%,22px) scale(.88)}body.ar .phones .phone.front{transform:translate(-18%,0)}
+.badge{position:absolute;z-index:3;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 14px;box-shadow:0 16px 30px -18px rgba(0,0,0,.35);font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px}
+.badge .dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px}
+.badge.b1{top:40px;inset-inline-end:0}.badge.b1 .dot{background:var(--accent-soft)}
+.badge.b2{bottom:60px;inset-inline-start:0}.badge.b2 .dot{background:var(--gold-soft)}
+.badge small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.phones{min-height:480px;margin-top:10px}.phone{width:226px}}
+@media (max-width:480px){.hero{padding-top:34px}.badge{display:none}.phones{min-height:430px}.phone{width:208px}}
+
+/* sections */
+section{padding:72px 0}
+.sec-h{max-width:640px;margin:0 auto 40px;text-align:center}
+.sec-h h2{font:800 clamp(28px,3.6vw,40px)/1.15 var(--display);letter-spacing:-.02em;margin:10px 0 12px;text-wrap:balance}
+body.ar .sec-h h2{line-height:1.35;letter-spacing:0}
+.sec-h p{color:var(--muted);margin:0;font-size:17px}
+.tag{display:inline-block;font-weight:800;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+body.ar .tag{letter-spacing:0}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;position:relative}
+.step .n{width:42px;height:42px;border-radius:12px;background:var(--accent);color:#fff;font:800 19px var(--display);display:grid;place-items:center;margin-bottom:16px}
+.step h3{font:700 20px/1.3 var(--display);margin:0 0 8px}.step p{margin:0;color:var(--muted)}
+.step .ex{margin-top:16px;background:var(--bg);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--ink);border:1px dashed var(--line)}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px}
+.feat .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px}
+.feat .ic svg{width:24px;height:24px}
+.feat h3{font:700 17px/1.3 var(--display);margin:0 0 6px}.feat p{margin:0;color:var(--muted);font-size:15px}
+.k1{background:var(--accent-soft);color:var(--accent)}.k2{background:var(--ai-soft);color:var(--ai)}.k3{background:var(--gold-soft);color:#94600f}.k4{background:var(--ship-soft);color:var(--ship)}
+.k5{background:var(--conf-soft);color:var(--conf)}.k6{background:var(--red-soft);color:var(--red)}.k7{background:#dbf1e3;color:var(--wa)}.k8{background:#f6e0ec;color:var(--ig)}
+@media (max-width:980px){.feats{grid-template-columns:repeat(2,1fr)}}@media (max-width:520px){.feats{grid-template-columns:1fr}}
+
+/* gallery */
+.dark{background:#10241c;color:#eef0ea}
+.dark .sec-h p{color:#b9c3bb}.dark .tag{color:#7fd6b2}
+.gal{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 24px;margin:0 -20px;scrollbar-width:none}
+.gal::-webkit-scrollbar{display:none}
+.shot{flex:0 0 236px;scroll-snap-align:center;text-align:center}
+.shot .phone{width:100%;box-shadow:0 30px 50px -28px rgba(0,0,0,.8)}
+.shot p{margin:14px 0 0;font-weight:700;font-size:15px}.shot small{display:block;color:#9fb0a5;font-weight:500;font-size:13.5px;margin-top:2px}
+@media (min-width:1100px){.gal{justify-content:center;overflow:visible}.shot{flex-basis:198px}}
+
+/* who */
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.who div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;font-weight:700}
+.who span{display:block;font-size:30px;margin-bottom:6px}
+@media (max-width:720px){.who{grid-template-columns:repeat(2,1fr)}}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:880px;margin:0 auto}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.plan.pro{border:2px solid var(--accent);position:relative;box-shadow:0 30px 60px -36px rgba(15,107,79,.55)}
+.plan .pill{position:absolute;top:-13px;inset-inline-start:24px;background:linear-gradient(180deg,#ffd76a,#f2b632);color:#5a3d00;font-weight:800;font-size:13px;border-radius:999px;padding:4px 12px}
+.plan h3{font:800 22px var(--display);margin:0}
+.price{font:800 44px/1 var(--display);letter-spacing:-.02em;direction:ltr;text-align:start}body.ar .price{text-align:right}
+.price small{font:600 15px var(--body);color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.plan li{display:flex;gap:10px;align-items:flex-start}.plan li svg{width:20px;height:20px;flex:none;color:var(--accent);margin-top:3px}
+.plan .btn{margin-top:auto}
+.durs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.durs div{background:var(--bg);border-radius:12px;padding:8px 6px;text-align:center;font-size:13px;color:var(--muted);font-weight:600}
+.durs b{display:block;color:var(--ink);font:800 17px var(--display);direction:ltr}
+@media (max-width:760px){.plans{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:0 20px}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:700;font-size:17px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:600 24px var(--display);color:var(--accent);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 18px;color:var(--muted)}
+
+/* final */
+.final{background:var(--accent);color:#fff;border-radius:28px;padding:48px 32px;text-align:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;opacity:.1;background:#fff;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0/56px 56px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0/56px 56px}
+.final>*{position:relative}
+.final h2{font:800 clamp(26px,3.4vw,38px)/1.2 var(--display);margin:0 0 10px}
+.final p{opacity:.9;margin:0 auto 26px;max-width:36em}
+.final .ctas{justify-content:center}.final .btn.ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
+
+footer{padding:40px 0 50px;color:var(--muted);font-size:14.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}footer a:hover{color:var(--ink)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-<header><div class="in"><b>Talabia<i>.</i></b><p>Orders from Instagram and WhatsApp, in one place.</p></div></header>
+<header class="top" id="top"><div class="wrap">
+ <a class="logo" href="#" aria-label="Talabia">Talabia<i>.</i></a>
+ <nav aria-label="Menu"><a href="#how" data-i="nav.how"></a><a href="#features" data-i="nav.features"></a><a href="#pricing" data-i="nav.pricing"></a><a href="#faq" data-i="nav.faq"></a></nav>
+ <div class="langs" role="group" aria-label="Langue / اللغة"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div>
+</div></header>
+
 <main>
-<h1>Talabia for online sellers</h1>
-<p>Turn your customers' Instagram and WhatsApp messages into orders, track your stock, confirm orders on WhatsApp and know what delivery companies owe you.</p>
-<p>Questions: WhatsApp <b>+212 6 14 84 06 96</b></p>
-<p><a href="privacy.html">Privacy policy</a> · <a href="delete-account.html">Delete your account</a></p>
+<section class="hero"><div class="wrap">
+ <div>
+  <span class="eyebrow">🇲🇦 <span data-i="hero.eyebrow"></span></span>
+  <h1 data-i="hero.title" data-html></h1>
+  <p class="lead" data-i="hero.lead"></p>
+  <div class="ctas">
+   <a class="play soon" id="playBtn" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m17.3 8.5-3.5 3.5 3.5 3.5 4.1-2.3c.9-.5.9-1.9 0-2.4z"/><path fill="#4285F4" d="M13.8 12 3.6 22.2c.4.2.9.2 1.4-.1l12.3-6.6z"/><path fill="#EA4335" d="M17.3 8.5 5 1.9c-.5-.3-1-.3-1.4-.1L13.8 12z"/></svg>
+    <span><small data-i="play.small"></small><b>Google Play</b></span></a>
+   <a class="btn ghost" href="app/" data-i="hero.web"></a>
+  </div>
+  <p class="soonnote" id="soonNote"><span data-i="play.soon"></span> <a href="#" id="joinTest" target="_blank" rel="noopener" data-i="play.join"></a></p>
+  <div class="trust">
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="trust.1"></span></span>
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="trust.2"></span></span>
+   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="trust.3"></span></span>
+  </div>
+ </div>
+ <div class="phones" aria-hidden="true">
+  <div class="phone back"><img data-shot="orders" alt="" width="390" height="844"></div>
+  <div class="phone front"><img data-shot="home" alt="" width="390" height="844" fetchpriority="high"></div>
+  <div class="badge b1"><span class="dot">✅</span><span><span data-i="badge.1"></span><small data-i="badge.1s"></small></span></div>
+  <div class="badge b2"><span class="dot">🛍</span><span><span data-i="badge.2"></span><small data-i="badge.2s"></small></span></div>
+ </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="how.tag"></span><h2 data-i="how.title"></h2><p data-i="how.sub"></p></div>
+ <div class="steps">
+  <div class="step reveal"><div class="n">1</div><h3 data-i="how.1t"></h3><p data-i="how.1p"></p><div class="ex" dir="ltr" data-notr>« Salam, bghit joj argan 50ml, ana Houda f Rabat, Agdal, 0661234567 »</div></div>
+  <div class="step reveal"><div class="n">2</div><h3 data-i="how.2t"></h3><p data-i="how.2p"></p><div class="ex" data-i="how.2ex"></div></div>
+  <div class="step reveal"><div class="n">3</div><h3 data-i="how.3t"></h3><p data-i="how.3p"></p><div class="ex" data-i="how.3ex"></div></div>
+ </div>
+</div></section>
+
+<section id="features" style="padding-top:20px"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="f.tag"></span><h2 data-i="f.title"></h2><p data-i="f.sub"></p></div>
+ <div class="feats">
+  <div class="feat reveal"><div class="ic k2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.6L12 15l-1.8-4.4L5.5 9l4.7-1.4z"/><path d="M19 15l.8 2 2 .8-2 .8L19 21l-.8-2.4-2-.8 2-.8z"/></svg></div><h3 data-i="f.1t"></h3><p data-i="f.1p"></p></div>
+  <div class="feat reveal"><div class="ic k3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 12.5a1 1 0 0 1-1 .9H6.5a1 1 0 0 1-1-.9z"/><path d="M8.5 7a3.5 3.5 0 0 1 7 0"/></svg></div><h3 data-i="f.2t"></h3><p data-i="f.2p"></p></div>
+  <div class="feat reveal"><div class="ic k1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg></div><h3 data-i="f.3t"></h3><p data-i="f.3p"></p></div>
+  <div class="feat reveal"><div class="ic k4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4.5L21 12.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></div><h3 data-i="f.4t"></h3><p data-i="f.4p"></p></div>
+  <div class="feat reveal"><div class="ic k5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></div><h3 data-i="f.5t"></h3><p data-i="f.5p"></p></div>
+  <div class="feat reveal"><div class="ic k7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3 data-i="f.6t"></h3><p data-i="f.6p"></p></div>
+  <div class="feat reveal"><div class="ic k8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V5M14 20v-8M19 20V8M2 20h20"/></svg></div><h3 data-i="f.7t"></h3><p data-i="f.7p"></p></div>
+  <div class="feat reveal"><div class="ic k6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.8 3 2.6 3.5 5.2"/></svg></div><h3 data-i="f.8t"></h3><p data-i="f.8p"></p></div>
+ </div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="g.tag"></span><h2 data-i="g.title"></h2><p data-i="g.sub"></p></div>
+ <div class="gal">
+  <div class="shot"><div class="phone"><img data-shot="home" alt="" loading="lazy" width="390" height="844"></div><p data-i="g.1"></p><small data-i="g.1s"></small></div>
+  <div class="shot"><div class="phone"><img data-shot="detail" alt="" loading="lazy" width="390" height="844"></div><p data-i="g.2"></p><small data-i="g.2s"></small></div>
+  <div class="shot"><div class="phone"><img data-shot="catalogue" alt="" loading="lazy" width="390" height="844"></div><p data-i="g.3"></p><small data-i="g.3s"></small></div>
+  <div class="shot"><div class="phone"><img data-shot="confirm" alt="" loading="lazy" width="390" height="844"></div><p data-i="g.4"></p><small data-i="g.4s"></small></div>
+  <div class="shot"><div class="phone"><img data-shot="products" alt="" loading="lazy" width="390" height="844"></div><p data-i="g.5"></p><small data-i="g.5s"></small></div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="w.tag"></span><h2 data-i="w.title"></h2></div>
+ <div class="who reveal"><div><span>💄</span><b data-i="w.1"></b></div><div><span>👗</span><b data-i="w.2"></b></div><div><span>🌿</span><b data-i="w.3"></b></div><div><span>⌚</span><b data-i="w.4"></b></div></div>
+</div></section>
+
+<section id="pricing" style="padding-top:20px"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="p.tag"></span><h2 data-i="p.title"></h2><p data-i="p.sub"></p></div>
+ <div class="plans">
+  <div class="plan reveal"><h3 data-i="p.free"></h3><div class="price">0 DH <small data-i="p.month"></small></div>
+   <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.f1"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.f2"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.f3"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.f4"></span></li></ul>
+   <a class="btn ghost" href="app/" data-i="p.startFree"></a></div>
+  <div class="plan pro reveal"><span class="pill">★ Pro</span><h3>Pro</h3><div class="price">79 DH <small data-i="p.month"></small></div>
+   <div class="durs"><div><b>79</b><span data-i="p.d1"></span></div><div><b>75</b><span data-i="p.d3"></span></div><div><b>69</b><span data-i="p.d6"></span></div><div><b>60</b><span data-i="p.d12"></span></div></div>
+   <ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.p1"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.p2"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.p3"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.p4"></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-i="p.p5"></span></li></ul>
+   <a class="btn primary" href="#" id="proWa" target="_blank" rel="noopener" data-i="p.askPro"></a></div>
+ </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag">FAQ</span><h2 data-i="q.title"></h2></div>
+ <div class="faq">
+  <details><summary data-i="q.1"></summary><p data-i="q.1a"></p></details>
+  <details><summary data-i="q.2"></summary><p data-i="q.2a"></p></details>
+  <details><summary data-i="q.3"></summary><p data-i="q.3a"></p></details>
+  <details><summary data-i="q.4"></summary><p data-i="q.4a"></p></details>
+  <details><summary data-i="q.5"></summary><p data-i="q.5a"></p></details>
+  <details><summary data-i="q.6"></summary><p data-i="q.6a"></p></details>
+ </div>
+</div></section>
+
+<section style="padding-top:10px"><div class="wrap">
+ <div class="final reveal"><h2 data-i="end.title"></h2><p data-i="end.sub"></p>
+  <div class="ctas"><a class="btn ghost" href="app/" data-i="hero.web"></a><a class="btn wa" href="#" id="endWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.2-.2-.5-.3z"/></svg><span data-i="end.wa"></span></a></div></div>
+</div></section>
 </main>
+
+<footer><div class="wrap">
+ <div><a class="logo" href="#" style="font-size:20px">Talabia<i>.</i></a><div data-i="foot.made"></div></div>
+ <nav><a href="privacy.html" data-i="foot.privacy"></a><a href="delete-account.html" data-i="foot.delete"></a><a href="#" id="footWa" target="_blank" rel="noopener">WhatsApp · <span dir="ltr">+212 6 14 84 06 96</span></a></nav>
+</div></footer>
+
+<script>
+"use strict";
+// When the app is public on Google Play, set PLAY_LIVE to true.
+const PLAY_LIVE=false,PLAY_URL="https://play.google.com/store/apps/details?id=ma.talabia.app",WA="212614840696";
+const T={
+fr:{"nav.how":"Comment ça marche","nav.features":"Fonctions","nav.pricing":"Tarifs","nav.faq":"Questions",
+"hero.eyebrow":"Fait au Maroc, pour les vendeurs en ligne","hero.title":"Vos commandes Instagram et WhatsApp, <em>au même endroit</em>.",
+"hero.lead":"Collez le message du client, Talabia remplit la commande. Confirmez en un clic, suivez le colis jusqu'au paiement et sachez toujours ce que les livreurs vous doivent.",
+"hero.web":"Ouvrir la version web","play.small":"BIENTÔT SUR","play.small.live":"DISPONIBLE SUR","play.soon":"Talabia est en test sur Google Play.","play.join":"Rejoindre le test →",
+"trust.1":"Paiement à la livraison","trust.2":"Darija, français, العربية","trust.3":"Gratuit pour commencer",
+"badge.1":"Commande confirmée","badge.1s":"par le client, en un clic","badge.2":"Nouvelle commande","badge.2s":"depuis votre catalogue",
+"how.tag":"Comment ça marche","how.title":"De la conversation au paiement, en 3 étapes","how.sub":"Pas besoin de site web ni de formation. Si vous savez utiliser WhatsApp, vous savez utiliser Talabia.",
+"how.1t":"Collez le message","how.1p":"Copiez le message du client depuis Instagram ou WhatsApp, ou partagez une capture d'écran vers Talabia.",
+"how.2t":"Talabia remplit tout","how.2p":"Nom, téléphone, ville, adresse, produits et prix : le Remplissage intelligent comprend la darija et le français.","how.2ex":"✓ Houda · Rabat, Agdal · 0661234567 · 2 × Argan 50 ml · 240 DH",
+"how.3t":"Confirmez et suivez","how.3p":"Envoyez le lien de confirmation, préparez la liste d'expédition, et suivez chaque colis jusqu'au paiement du livreur.","how.3ex":"À confirmer → Confirmée → Expédiée → Livrée → Payée",
+"f.tag":"Fonctions","f.title":"Tout ce qu'un vendeur en ligne utilise chaque jour","f.sub":"Pensé pour le paiement à la livraison au Maroc : refus, livreurs, stock, argent.",
+"f.1t":"Remplissage intelligent","f.1p":"Un message ou une capture d'écran devient une commande complète en quelques secondes.",
+"f.2t":"Catalogue en ligne","f.2p":"Un lien avec vos produits, photos et prix. Vos clients commandent, la commande arrive dans l'app.",
+"f.3t":"Confirmation en un clic","f.3p":"Le client confirme, annule ou modifie par lien. La commande se met à jour toute seule.",
+"f.4t":"Liste d'expédition","f.4p":"Les colis du jour pour le livreur, sur WhatsApp ou en fichier Excel, et tout marquer expédié d'un coup.",
+"f.5t":"Stock et options","f.5p":"Tailles, couleurs, prix d'achat. Talabia retire le stock à chaque commande et vous prévient avant la rupture.",
+"f.6t":"Caisse","f.6p":"Ce que chaque société de livraison vous doit, après ses frais. Plus d'argent oublié.",
+"f.7t":"Rapports","f.7p":"Ventes, vrai bénéfice, meilleurs produits, refus par ville et commandes par source.",
+"f.8t":"Équipe","f.8p":"Invitez vos aides avec un accès « Commandes seulement », et voyez qui a fait quoi.",
+"g.tag":"Aperçu","g.title":"Simple, rapide, en arabe ou en français","g.sub":"Des écrans clairs, de grands boutons, et les infos importantes en premier.",
+"g.1":"Accueil","g.1s":"Ventes et commandes du jour","g.2":"Commande","g.2s":"Message de confirmation prêt","g.3":"Catalogue","g.3s":"Ce que voient vos clients","g.4":"Confirmation","g.4s":"Le client confirme en un clic","g.5":"Produits","g.5s":"Stock, tailles et couleurs",
+"w.tag":"Pour qui","w.title":"Pour les vendeurs qui vendent sur Instagram, WhatsApp, TikTok et Facebook","w.1":"Cosmétique","w.2":"Mode","w.3":"Produits naturels","w.4":"Accessoires",
+"p.tag":"Tarifs","p.title":"Commencez gratuitement","p.sub":"Passez à Pro quand votre boutique grandit. Sans engagement.","p.free":"Gratuit","p.month":"/ mois",
+"p.f1":"30 commandes par mois","p.f2":"Remplissage intelligent (20 par mois)","p.f3":"Catalogue en ligne et confirmation en un clic","p.f4":"Stock, caisse et liste d'expédition","p.startFree":"Commencer gratuitement",
+"p.d1":"1 mois","p.d3":"3 mois","p.d6":"6 mois","p.d12":"12 mois",
+"p.p1":"Commandes illimitées","p.p2":"Remplissage intelligent illimité","p.p3":"Rapports : bénéfice, produits, villes, sources","p.p4":"Clients et liste « ne pas livrer »","p.p5":"Équipe et messages personnalisés","p.askPro":"Passer à Pro",
+"q.title":"Questions fréquentes",
+"q.1":"Est-ce que j'ai besoin d'un site web ?","q.1a":"Non. Talabia vous donne un catalogue en ligne avec un lien à mettre dans votre bio Instagram, TikTok ou Facebook. Vos clients commandent depuis ce lien.",
+"q.2":"Ça marche avec quelles sociétés de livraison ?","q.2a":"Avec toutes : Ozon Express, Sendit, Amana, Cathedis, Coliix, Speedaf ou n'importe quelle autre. Vous indiquez le prix de chaque livraison et Talabia calcule ce qu'on vous doit.",
+"q.3":"Mes données sont-elles en sécurité ?","q.3a":"Oui. Votre boutique est enregistrée en ligne et protégée par votre mot de passe. Nous ne vendons pas vos données et vous pouvez tout supprimer depuis l'application.",
+"q.4":"Mon équipe peut-elle l'utiliser ?","q.4a":"Oui, avec Pro. Invitez vos aides par numéro de téléphone et choisissez « Commandes seulement » ou « Accès complet ».",
+"q.5":"Faut-il un iPhone ou un ordinateur ?","q.5a":"Non. Talabia fonctionne sur Android, et la version web s'ouvre sur n'importe quel téléphone ou ordinateur.",
+"q.6":"Comment payer Pro ?","q.6a":"Par CashPlus ou virement bancaire, puis vous envoyez le reçu depuis l'application. Pro est activé rapidement.",
+"end.title":"Prêt à gagner du temps sur chaque commande ?","end.sub":"Créez votre boutique en 1 minute. Une question ? Écrivez-nous sur WhatsApp.","end.wa":"Nous écrire sur WhatsApp",
+"foot.made":"Fait à Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Politique de confidentialité","foot.delete":"Supprimer mon compte",
+"wa.test":"Salam, je voudrais tester Talabia sur Google Play.","wa.pro":"Salam, je voudrais passer à Talabia Pro.","wa.hello":"Salam, j'ai une question sur Talabia."},
+ar:{"nav.how":"كيفاش كيخدم","nav.features":"المميزات","nav.pricing":"الأثمنة","nav.faq":"الأسئلة",
+"hero.eyebrow":"مصنوع فالمغرب، للبائعين أونلاين","hero.title":"الطلبيات ديال إنستغرام وواتساب، <em>فبلاصة وحدة</em>.",
+"hero.lead":"لصق رسالة الزبون، و Talabia كيعمر الطلبية. أكدها بضغطة وحدة، تابع الكولي حتى للخلاص، وعرف ديما شحال مدينين ليك شركات التوصيل.",
+"hero.web":"حل النسخة ديال الويب","play.small":"قريباً على","play.small.live":"متوفر على","play.soon":"Talabia فالتجربة على Google Play.","play.join":"دخل للتجربة ←",
+"trust.1":"الخلاص عند التوصيل","trust.2":"الدارجة، الفرنسية، العربية","trust.3":"مجاني باش تبدا",
+"badge.1":"الطلبية تأكدات","badge.1s":"من الزبون، بضغطة وحدة","badge.2":"طلبية جديدة","badge.2s":"من الكتالوج ديالك",
+"how.tag":"كيفاش كيخدم","how.title":"من المحادثة حتى للخلاص، ف3 مراحل","how.sub":"ما محتاجش سيت ولا تكوين. إلا كتعرف تستعمل واتساب، كتعرف تستعمل Talabia.",
+"how.1t":"لصق الرسالة","how.1p":"نسخ رسالة الزبون من إنستغرام ولا واتساب، ولا شارك لقطة الشاشة مع Talabia.",
+"how.2t":"Talabia كيعمر كلشي","how.2p":"السمية، الهاتف، المدينة، العنوان، المنتجات والثمن: التعبئة الذكية كتفهم الدارجة والفرنسية.","how.2ex":"✓ هدى · الرباط، أكدال · 0661234567 · 2 × أركان 50 ml · 240 درهم",
+"how.3t":"أكد وتابع","how.3p":"صيفط رابط التأكيد، وجد لائحة الإرسال، وتابع كل كولي حتى يخلصك موزع التوصيل.","how.3ex":"للتأكيد ← مؤكدة ← مرسولة ← مسلّمة ← مدفوعة",
+"f.tag":"المميزات","f.title":"كلشي اللي كيحتاجو البائع أونلاين كل نهار","f.sub":"مصمم للخلاص عند التوصيل فالمغرب: الرفض، شركات التوصيل، المخزون والفلوس.",
+"f.1t":"التعبئة الذكية","f.1p":"رسالة ولا لقطة شاشة كتولي طلبية كاملة ف ثواني.",
+"f.2t":"كتالوج أونلاين","f.2p":"رابط فيه المنتجات، التصاور والأثمنة. الزبناء كيطلبو، والطلبية كتوصل للتطبيق.",
+"f.3t":"التأكيد بضغطة وحدة","f.3p":"الزبون كيأكد، كيلغي ولا كيبدل بالرابط. الطلبية كتتحدّث بوحدها.",
+"f.4t":"لائحة الإرسال","f.4p":"كوليات النهار لموزع التوصيل، فواتساب ولا ملف Excel، وعلّم كلشي مرسول بمرة.",
+"f.5t":"المخزون والخيارات","f.5p":"المقاسات، الألوان، ثمن الشرا. Talabia كينقص المخزون مع كل طلبية وكينبهك قبل ما يسالي.",
+"f.6t":"المداخيل","f.6p":"شحال مدينة ليك كل شركة توصيل، من بعد المصاريف ديالها. ما بقاش الفلوس كتضيع.",
+"f.7t":"التقارير","f.7p":"المبيعات، الربح الحقيقي، أحسن المنتجات، الرفض حسب المدينة والطلبيات حسب المصدر.",
+"f.8t":"الفريق","f.8p":"عرض على المساعدين ديالك بصلاحية «الطلبيات فقط»، وشوف شكون دار شنو.",
+"g.tag":"لمحة","g.title":"ساهل، سريع، بالعربية ولا بالفرنسية","g.sub":"شاشات واضحة، بوطونات كبار، والمعلومات المهمة هي الأولى.",
+"g.1":"الرئيسية","g.1s":"مبيعات وطلبيات اليوم","g.2":"الطلبية","g.2s":"رسالة التأكيد واجدة","g.3":"الكتالوج","g.3s":"اللي كيشوفو الزبناء","g.4":"التأكيد","g.4s":"الزبون كيأكد بضغطة","g.5":"المنتجات","g.5s":"المخزون، المقاسات والألوان",
+"w.tag":"لمن","w.title":"للبائعين اللي كيبيعو على إنستغرام، واتساب، تيك توك وفيسبوك","w.1":"التجميل","w.2":"الموضة","w.3":"المنتجات الطبيعية","w.4":"الإكسسوارات",
+"p.tag":"الأثمنة","p.title":"بدا بالمجان","p.sub":"دوز لـ Pro ملي يكبر المتجر ديالك. بلا التزام.","p.free":"مجاني","p.month":"/ الشهر",
+"p.f1":"30 طلبية فالشهر","p.f2":"التعبئة الذكية (20 فالشهر)","p.f3":"كتالوج أونلاين وتأكيد بضغطة وحدة","p.f4":"المخزون، المداخيل ولائحة الإرسال","p.startFree":"بدا بالمجان",
+"p.d1":"شهر","p.d3":"3 شهور","p.d6":"6 شهور","p.d12":"12 شهر",
+"p.p1":"طلبيات بلا حدود","p.p2":"التعبئة الذكية بلا حدود","p.p3":"التقارير: الربح، المنتجات، المدن، المصادر","p.p4":"الزبناء ولائحة «ما توصلش»","p.p5":"الفريق والرسائل ديالك","p.askPro":"دوز لـ Pro",
+"q.title":"أسئلة متكررة",
+"q.1":"واش محتاج سيت ويب؟","q.1a":"لا. Talabia كيعطيك كتالوج أونلاين برابط تحطو فالبيو ديال إنستغرام، تيك توك ولا فيسبوك. الزبناء كيطلبو من هاد الرابط.",
+"q.2":"مع أش من شركات التوصيل كيخدم؟","q.2a":"مع كاملين: Ozon Express، Sendit، Amana، Cathedis، Coliix، Speedaf ولا أي شركة أخرى. كتحط ثمن كل توصيل و Talabia كيحسب شحال مدينين ليك.",
+"q.3":"واش المعطيات ديالي فأمان؟","q.3a":"إيه. المتجر ديالك محفوظ أونلاين ومحمي بكلمة السر ديالك. ما كنبيعوش المعطيات ديالك وتقدر تمسح كلشي من التطبيق.",
+"q.4":"واش الفريق ديالي يقدر يستعملو؟","q.4a":"إيه، مع Pro. عرض على المساعدين برقم الهاتف واختار «الطلبيات فقط» ولا «صلاحية كاملة».",
+"q.5":"واش خاصني آيفون ولا بيسي؟","q.5a":"لا. Talabia كيخدم على أندرويد، والنسخة ديال الويب كتحل فأي تيليفون ولا بيسي.",
+"q.6":"كيفاش نخلص Pro؟","q.6a":"بـ CashPlus ولا تحويل بنكي، ومن بعد كتصيفط الوصل من التطبيق. Pro كيتفعل بسرعة.",
+"end.title":"واجد تربح الوقت فكل طلبية؟","end.sub":"صاوب المتجر ديالك فدقيقة. عندك سؤال؟ كتب لينا فواتساب.","end.wa":"كتب لينا فواتساب",
+"foot.made":"مصنوع فالدار البيضاء 🇲🇦 · © 2026 Talabia","foot.privacy":"سياسة الخصوصية","foot.delete":"مسح الحساب ديالي",
+"wa.test":"السلام، بغيت نجرب Talabia على Google Play.","wa.pro":"السلام، بغيت ندوز لـ Talabia Pro.","wa.hello":"السلام، عندي سؤال على Talabia."},
+en:{"nav.how":"How it works","nav.features":"Features","nav.pricing":"Pricing","nav.faq":"FAQ",
+"hero.eyebrow":"Made in Morocco, for online sellers","hero.title":"Your Instagram and WhatsApp orders, <em>in one place</em>.",
+"hero.lead":"Paste the customer's message and Talabia fills in the order. Confirm it in one tap, follow the package until you're paid, and always know what delivery companies owe you.",
+"hero.web":"Open the web version","play.small":"COMING SOON ON","play.small.live":"GET IT ON","play.soon":"Talabia is in testing on Google Play.","play.join":"Join the test →",
+"trust.1":"Cash on delivery","trust.2":"Darija, French, العربية","trust.3":"Free to start",
+"badge.1":"Order confirmed","badge.1s":"by the customer, in one tap","badge.2":"New order","badge.2s":"from your catalogue",
+"how.tag":"How it works","how.title":"From chat to payment, in 3 steps","how.sub":"No website or training needed. If you can use WhatsApp, you can use Talabia.",
+"how.1t":"Paste the message","how.1p":"Copy the customer's message from Instagram or WhatsApp, or share a screenshot to Talabia.",
+"how.2t":"Talabia fills it in","how.2p":"Name, phone, city, address, products and price: Smart fill understands Darija and French.","how.2ex":"✓ Houda · Rabat, Agdal · 0661234567 · 2 × Argan 50 ml · 240 DH",
+"how.3t":"Confirm and follow","how.3p":"Send the confirmation link, prepare the shipping list, and follow every package until the courier pays you.","how.3ex":"To confirm → Confirmed → Shipped → Delivered → Paid",
+"f.tag":"Features","f.title":"Everything an online seller uses every day","f.sub":"Built for cash on delivery in Morocco: refusals, couriers, stock, money.",
+"f.1t":"Smart fill","f.1p":"A message or a screenshot becomes a complete order in seconds.",
+"f.2t":"Online catalogue","f.2p":"One link with your products, photos and prices. Customers order, the order lands in the app.",
+"f.3t":"One-tap confirmation","f.3p":"The customer confirms, cancels or changes by link. The order updates by itself.",
+"f.4t":"Shipping list","f.4p":"Today's packages for the courier, on WhatsApp or as an Excel file, and mark them all shipped at once.",
+"f.5t":"Stock and options","f.5p":"Sizes, colours, purchase price. Talabia takes stock out with each order and warns you before you run out.",
+"f.6t":"Cash","f.6p":"What each delivery company owes you, after its fees. No more forgotten money.",
+"f.7t":"Reports","f.7p":"Sales, real profit, best products, refusals by city and orders by source.",
+"f.8t":"Team","f.8p":"Invite helpers with \"Orders only\" access, and see who did what.",
+"g.tag":"Preview","g.title":"Simple, fast, in Arabic or French","g.sub":"Clear screens, big buttons, and what matters first.",
+"g.1":"Home","g.1s":"Today's sales and orders","g.2":"Order","g.2s":"Confirmation message ready","g.3":"Catalogue","g.3s":"What your customers see","g.4":"Confirmation","g.4s":"One tap for the customer","g.5":"Products","g.5s":"Stock, sizes and colours",
+"w.tag":"Who it's for","w.title":"For sellers on Instagram, WhatsApp, TikTok and Facebook","w.1":"Beauty","w.2":"Fashion","w.3":"Natural products","w.4":"Accessories",
+"p.tag":"Pricing","p.title":"Start for free","p.sub":"Go Pro when your shop grows. No commitment.","p.free":"Free","p.month":"/ month",
+"p.f1":"30 orders a month","p.f2":"Smart fill (20 a month)","p.f3":"Online catalogue and one-tap confirmation","p.f4":"Stock, cash and shipping list","p.startFree":"Start for free",
+"p.d1":"1 month","p.d3":"3 months","p.d6":"6 months","p.d12":"12 months",
+"p.p1":"Unlimited orders","p.p2":"Unlimited Smart fill","p.p3":"Reports: profit, products, cities, sources","p.p4":"Customers and don't-deliver list","p.p5":"Team and your own messages","p.askPro":"Go Pro",
+"q.title":"Frequently asked questions",
+"q.1":"Do I need a website?","q.1a":"No. Talabia gives you an online catalogue with a link for your Instagram, TikTok or Facebook bio. Customers order from that link.",
+"q.2":"Which delivery companies does it work with?","q.2a":"All of them: Ozon Express, Sendit, Amana, Cathedis, Coliix, Speedaf or any other. You enter the price per delivery and Talabia counts what you're owed.",
+"q.3":"Is my data safe?","q.3a":"Yes. Your shop is saved online and protected by your password. We don't sell your data, and you can delete everything from the app.",
+"q.4":"Can my team use it?","q.4a":"Yes, with Pro. Invite helpers by phone number and choose \"Orders only\" or \"Full access\".",
+"q.5":"Do I need an iPhone or a computer?","q.5a":"No. Talabia works on Android, and the web version opens on any phone or computer.",
+"q.6":"How do I pay for Pro?","q.6a":"By CashPlus or bank transfer, then you send the receipt from the app. Pro is turned on quickly.",
+"end.title":"Ready to save time on every order?","end.sub":"Create your shop in 1 minute. A question? Write to us on WhatsApp.","end.wa":"Write to us on WhatsApp",
+"foot.made":"Made in Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Privacy policy","foot.delete":"Delete my account",
+"wa.test":"Salam, I'd like to test Talabia on Google Play.","wa.pro":"Salam, I'd like to go Pro on Talabia.","wa.hello":"Salam, I have a question about Talabia."}};
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let L=(()=>{const q=new URLSearchParams(location.search).get("l"),s=store.get("talabia-site-lang");if(T[q])return q;if(T[s])return s;const n=(navigator.language||"").toLowerCase();return n.startsWith("ar")?"ar":n.startsWith("en")?"en":"fr"})();
+const wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+function apply(){const t=T[L],h=document.documentElement;h.lang=L;h.dir=L==="ar"?"rtl":"ltr";document.body.classList.toggle("ar",L==="ar");
+ document.querySelectorAll("[data-i]").forEach(el=>{const k=el.dataset.i;let v=t[k];if(k==="play.small"&&PLAY_LIVE)v=t["play.small.live"];if(v==null)return;if(el.hasAttribute("data-html"))el.innerHTML=v;else el.textContent=v});
+ document.querySelectorAll("[data-shot]").forEach(img=>{img.src=`img/${img.dataset.shot}-${L}.webp`});
+ document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));
+ const play=document.getElementById("playBtn");play.classList.toggle("soon",!PLAY_LIVE);play.href=PLAY_LIVE?PLAY_URL:wa(t["wa.test"]);
+ document.getElementById("soonNote").hidden=PLAY_LIVE;document.getElementById("joinTest").href=wa(t["wa.test"]);
+ document.getElementById("proWa").href=wa(t["wa.pro"]);document.getElementById("endWa").href=wa(t["wa.hello"]);document.getElementById("footWa").href=wa(t["wa.hello"]);
+ document.title=L==="ar"?"Talabia · الطلبيات ديال إنستغرام وواتساب فبلاصة وحدة":L==="en"?"Talabia · Your Instagram and WhatsApp orders in one place":"Talabia · Vos commandes Instagram et WhatsApp au même endroit"}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-lang]");if(!b)return;L=b.dataset.lang;store.set("talabia-site-lang",L);apply()});
+apply();
+// header line once scrolled, and gentle fade-in of sections
+addEventListener("scroll",()=>document.getElementById("top").classList.toggle("scrolled",scrollY>8),{passive:true});
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{rootMargin:"0px 0px -8% 0px"});document.querySelectorAll(".reveal").forEach(el=>io.observe(el))}
+else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
+</script>
 </body>
 </html>
