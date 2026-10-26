@@ -47,6 +47,8 @@ body.ar .price{text-align:right}
 .out{font-size:12px;font-weight:700;color:var(--red);background:var(--red-soft);border-radius:6px;padding:2px 8px;align-self:flex-start}
 .opts{display:flex;flex-wrap:wrap;gap:5px}
 .opt{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700;min-height:32px}
+.opt .ot{width:22px;height:22px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-inline-end:6px;margin-inline-start:-4px}.opt:has(.ot){padding-inline-start:8px}
+.card .ph{transition:opacity .2s}
 .opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
 .opt:disabled{opacity:.45;text-decoration:line-through;cursor:not-allowed}
 .add{margin-top:auto;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:10px;min-height:44px}
@@ -173,11 +175,14 @@ async function load(){
 
 function priceOf(e){const ps=e.items.map(i=>+i.p);const lo=Math.min(...ps),hi=Math.max(...ps);return lo===hi?dh(lo):`${T().from} ${dh(lo)}`}
 function chosen(e){if(e.kind==="one")return e.items[0];const id=pick[e.id];return e.items.find(i=>i.id===id)||null}
-function card(e){const it=chosen(e),allOut=e.items.every(i=>i.out),img=safeImg((it||e.items.find(i=>i.img)||{}).img);
+// Main photo of a product with options: the shop's main photo, else the first option that has one
+const mainImg=e=>safeImg((e.items.find(i=>i.gi)||{}).gi)||safeImg((e.items.find(i=>i.img)||{}).img);
+const ownImg=(e,i)=>{const u=safeImg(i.img),gi=safeImg((e.items.find(x=>x.gi)||{}).gi);if(!u)return "";return gi?(u!==gi?u:""):(new Set(e.items.map(x=>x.img).filter(Boolean)).size>1?u:"")};
+function card(e){const it=chosen(e),allOut=e.items.every(i=>i.out),img=it&&safeImg(it.img)?safeImg(it.img):mainImg(e);
  const q=it?cart[it.id]||0:0;
  return `<div class="card" data-e="${esc(e.id)}">${img?`<img class="ph" src="${esc(img)}" alt="" loading="lazy">`:`<div class="ph" aria-hidden="true">${esc((e.name.trim()[0]||"?").toUpperCase())}</div>`}
  <div class="cb"><b dir="auto">${esc(e.name)}</b><div class="price">${it?dh(it.p):priceOf(e)}</div>
- ${e.kind==="grp"?`<div class="opts" role="group" aria-label="${esc(e.name)}">${e.items.map(i=>`<button type="button" class="opt" dir="auto" data-pick="${esc(e.id)}" data-id="${esc(i.id)}" aria-pressed="${!!it&&it.id===i.id}" ${i.out?"disabled":""}>${esc(i.o||i.n)}</button>`).join("")}</div>`:""}
+ ${e.kind==="grp"?`<div class="opts" role="group" aria-label="${esc(e.name)}">${e.items.map(i=>`<button type="button" class="opt" dir="auto" data-pick="${esc(e.id)}" data-id="${esc(i.id)}" aria-pressed="${!!it&&it.id===i.id}" ${i.out?"disabled":""}>${ownImg(e,i)?`<img class="ot" src="${esc(ownImg(e,i))}" alt="" loading="lazy">`:""}${esc(i.o||i.n)}</button>`).join("")}</div>`:""}
  ${allOut||(it&&it.out)?`<span class="out">${esc(T().out)}</span>`:""}
  ${q?`<div class="qty"><button type="button" data-dec="${esc(it.id)}" aria-label="−">−</button><span>${q}</span><button type="button" data-inc="${esc(it.id)}" aria-label="+">+</button></div>`
    :`<button type="button" class="add" data-add="${esc(e.id)}" ${allOut||(it&&it.out)||(e.kind==="grp"&&!it)?"disabled":""}>${esc(e.kind==="grp"&&!it?"↑ "+e.items.map(i=>i.o).filter(Boolean).slice(0,2).join(" / ")+(e.items.length>2?"…":""):T().add)}</button>`}
