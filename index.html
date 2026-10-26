@@ -267,7 +267,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}fo
 
 <footer><div class="wrap">
  <div><a class="logo" href="#" style="font-size:20px">Talabia<i>.</i></a><div data-i="foot.made"></div></div>
- <nav><a href="privacy.html" data-i="foot.privacy"></a><a href="delete-account.html" data-i="foot.delete"></a><a href="#" id="footWa" target="_blank" rel="noopener">WhatsApp · <span dir="ltr">+212 6 14 84 06 96</span></a></nav>
+ <nav><a href="privacy.html" data-i="foot.privacy"></a><a href="delete-account.html" data-i="foot.delete"></a><a href="terms.html" data-i="foot.terms"></a><a href="#" id="footWa" target="_blank" rel="noopener">WhatsApp · <span dir="ltr">+212 6 14 84 06 96</span></a></nav>
 </div></footer>
 
 <script>
@@ -309,7 +309,7 @@ fr:{"nav.how":"Comment ça marche","nav.features":"Fonctions","nav.pricing":"Tar
 "q.5":"Faut-il un iPhone ou un ordinateur ?","q.5a":"Non. Talabia fonctionne sur Android, et la version web s'ouvre sur n'importe quel téléphone ou ordinateur.",
 "q.6":"Comment payer Pro ?","q.6a":"Par CashPlus ou virement bancaire, puis vous envoyez le reçu depuis l'application. Pro est activé rapidement.",
 "end.title":"Prêt à gagner du temps sur chaque commande ?","end.sub":"Créez votre boutique en 1 minute. Une question ? Écrivez-nous sur WhatsApp.","end.wa":"Nous écrire sur WhatsApp",
-"foot.made":"Fait à Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Politique de confidentialité","foot.delete":"Supprimer mon compte",
+"foot.made":"Fait à Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Politique de confidentialité","foot.delete":"Supprimer mon compte","foot.terms":"Conditions d'utilisation",
 "wa.test":"Salam, je voudrais tester Talabia sur Google Play.","wa.pro":"Salam, je voudrais passer à Talabia Pro.","wa.hello":"Salam, j'ai une question sur Talabia."},
 ar:{"nav.how":"كيفاش كيخدم","nav.features":"المميزات","nav.pricing":"الأثمنة","nav.faq":"الأسئلة",
 "hero.eyebrow":"مصنوع فالمغرب، للبائعين أونلاين","hero.title":"الطلبيات ديال إنستغرام وواتساب، <em>فبلاصة وحدة</em>.",
@@ -345,7 +345,7 @@ ar:{"nav.how":"كيفاش كيخدم","nav.features":"المميزات","nav.pri
 "q.5":"واش خاصني آيفون ولا بيسي؟","q.5a":"لا. Talabia كيخدم على أندرويد، والنسخة ديال الويب كتحل فأي تيليفون ولا بيسي.",
 "q.6":"كيفاش نخلص Pro؟","q.6a":"بـ CashPlus ولا تحويل بنكي، ومن بعد كتصيفط الوصل من التطبيق. Pro كيتفعل بسرعة.",
 "end.title":"واجد تربح الوقت فكل طلبية؟","end.sub":"صاوب المتجر ديالك فدقيقة. عندك سؤال؟ كتب لينا فواتساب.","end.wa":"كتب لينا فواتساب",
-"foot.made":"مصنوع فالدار البيضاء 🇲🇦 · © 2026 Talabia","foot.privacy":"سياسة الخصوصية","foot.delete":"مسح الحساب ديالي",
+"foot.made":"مصنوع فالدار البيضاء 🇲🇦 · © 2026 Talabia","foot.privacy":"سياسة الخصوصية","foot.delete":"مسح الحساب ديالي","foot.terms":"شروط الاستخدام",
 "wa.test":"السلام، بغيت نجرب Talabia على Google Play.","wa.pro":"السلام، بغيت ندوز لـ Talabia Pro.","wa.hello":"السلام، عندي سؤال على Talabia."},
 en:{"nav.how":"How it works","nav.features":"Features","nav.pricing":"Pricing","nav.faq":"FAQ",
 "hero.eyebrow":"Made in Morocco, for online sellers","hero.title":"Your Instagram and WhatsApp orders, <em>in one place</em>.",
@@ -381,7 +381,7 @@ en:{"nav.how":"How it works","nav.features":"Features","nav.pricing":"Pricing","
 "q.5":"Do I need an iPhone or a computer?","q.5a":"No. Talabia works on Android, and the web version opens on any phone or computer.",
 "q.6":"How do I pay for Pro?","q.6a":"By CashPlus or bank transfer, then you send the receipt from the app. Pro is turned on quickly.",
 "end.title":"Ready to save time on every order?","end.sub":"Create your shop in 1 minute. A question? Write to us on WhatsApp.","end.wa":"Write to us on WhatsApp",
-"foot.made":"Made in Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Privacy policy","foot.delete":"Delete my account",
+"foot.made":"Made in Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Privacy policy","foot.delete":"Delete my account","foot.terms":"Terms of use",
 "wa.test":"Salam, I'd like to test Talabia on Google Play.","wa.pro":"Salam, I'd like to go Pro on Talabia.","wa.hello":"Salam, I have a question about Talabia."}};
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 let L=(()=>{const q=new URLSearchParams(location.search).get("l"),s=store.get("talabia-site-lang");if(T[q])return q;if(T[s])return s;const n=(navigator.language||"").toLowerCase();return n.startsWith("ar")?"ar":n.startsWith("en")?"en":"fr"})();
