@@ -1325,6 +1325,31 @@ async function syncCatOrders(){if(!linksOn()||catOrdBusy||Date.now()-catOrdLast<
 setInterval(()=>{if(document.visibilityState==="visible"&&S.user&&SH_())syncCatOrders()},30000);
 function confirmMsg(o){return fillTpl(tplFor(tplPick).text,o)}
 
+// ---- Sendit: send a confirmed order to the seller's Sendit account (server keeps the keys) ----
+const SENDIT_PHONES=["0662416411"];
+const senditOn=()=>CLOUD&&!!session&&SENDIT_PHONES.includes(S.user);
+let sdBusy=null,sdPick=null,sdErr=null;
+async function senditSend(id,districtId){
+ const o=SH_().orders.find(x=>x.id==id);if(!o||sdBusy||o.sendit)return;
+ sdBusy=o.id;sdErr=null;render();
+ try{
+  const t=await token();if(!t)throw {code:"auth"};
+  const r=await fetch(CONFIG.url+"/functions/v1/sendit-push",{method:"POST",headers:{apikey:CONFIG.anon,Authorization:"Bearer "+t,"content-type":"application/json"},
+   body:JSON.stringify({action:"send",district_id:districtId||undefined,order:{name:o.name,phone:o.phone,city:o.city,address:o.address||"",amount:+o.price||0,items:itemsLabel(itemsOf(o),", "),note:o.note||"",reference:"TLB-"+(o.no||o.id)}})});
+  const j=await r.json().catch(()=>({}));
+  if(j.ok){o.sendit={code:j.code||"",t:Date.now()};touch(o);save();sdPick=null;toast("Sent to Sendit")}
+  else if(j.error==="city"){sdPick={id:o.id,options:j.options||[]}}
+  else sdErr={id:o.id,msg:j.error==="not_allowed"?"This account is not linked to Sendit.":j.error==="login_failed"||j.error==="keys_missing"?"Sendit login failed. Check the keys in Supabase.":("Sendit: "+(j.message||j.error||"error")+(j.details&&j.details!=='""'?" "+j.details:""))}
+ }catch(e){sdErr={id:o.id,msg:"No connection. Try again."}}
+ sdBusy=null;render()}
+function sdCard(o){
+ if(!senditOn()||o.status!=="confirmed")return "";
+ if(o.sendit)return `<div class="okbox">\u2713 Sent to Sendit${o.sendit.code?" \u00b7 <b dir=\"ltr\">"+esc(o.sendit.code)+"</b>":""}</div>`;
+ const busy=sdBusy===o.id;
+ return `<div class="card"><div class="label">Sendit</div>
+  <button type="button" class="btn ${busy?"busy":""}" data-sdsend="${o.id}" ${busy?"disabled":""}>${busy?"Sending\u2026":"Send to Sendit"}</button>
+  ${sdPick&&sdPick.id===o.id?`<p class="hint" style="margin:0">${sdPick.options.length?"Which city is it in Sendit?":"Sendit does not know this city. Change the city on the order and try again."}</p><div class="chips">${sdPick.options.map(c=>`<button type="button" class="chip" data-sdcity="${o.id}:${c.id}">${esc(c.name)}</button>`).join("")}</div>`:`<p class="hint" style="margin:0">Creates the parcel in your Sendit account: ${esc(o.name)} \u00b7 ${esc(o.city)} \u00b7 ${dh(o.price)} to collect.</p>`}
+  ${sdErr&&sdErr.id===o.id?`<div class="warnbox">${esc(sdErr.msg)}</div>`:""}</div>`}
 function vDetail(){
  const o=SH_().orders.find(x=>x.id===route.id);if(!o)return vOrders();
  const r=refusedBefore(o),idx=STATUSES.indexOf(o.status);
@@ -1354,6 +1379,7 @@ function vDetail(){
  ${o.lchg?`<div class="card chgbox"><b>✎ The customer asked for a change</b>${o.lchg.city?`<div><span class="label">City</span><div>${esc(o.lchg.city)}</div></div>`:""}${o.lchg.address?`<div><span class="label">Address</span><div>${esc(o.lchg.address)}</div></div>`:""}${o.lchg.note?`<div><span class="label">Note</span><div>${esc(o.lchg.note)}</div></div>`:""}
   <div class="catrow">${o.lchg.city||o.lchg.address?`<button type="button" class="btn sm" data-usechg="${o.id}">Use the new address</button>`:""}<button type="button" class="btn ghost sm" data-donechg="${o.id}">Done</button></div></div>`:""}
  ${o.la==="confirmed"&&!o.lchg?`<div class="okbox">✓ The customer confirmed with the link</div>`:o.la==="cancelled"?`<div class="warnbox">✕ The customer cancelled with the link</div>`:""}
+ ${sdCard(o)}
  ${confirmBlock}
  ${histBlock(o)}
  ${quickCard(o)}
@@ -2571,6 +2597,8 @@ if(el.id==="updDismiss"){try{localStorage.setItem("talabia-upd-dismiss",String(a
    try{navigator.clipboard.writeText(txt).then(()=>toast("Message copied. Paste it in Instagram."),fallback)}catch(err){fallback()}return}
  if(d.usechg){const o=SH_().orders.find(x=>x.id==d.usechg);if(o&&o.lchg){if(o.lchg.city)o.city=o.lchg.city;if(o.lchg.address)o.address=o.lchg.address;if(o.lchg.note)o.note=(o.note?o.note+" · ":"")+o.lchg.note;delete o.lchg;touch(o);save();render();toast("Address updated")}return}
  if(d.donechg){const o=SH_().orders.find(x=>x.id==d.donechg);if(o){delete o.lchg;touch(o);save();render()}return}
+ if(d.sdsend){senditSend(d.sdsend);return}
+ if(d.sdcity){const [a,b]=String(d.sdcity).split(":");senditSend(a,+b);return}
  if(d.advance){const o=SH_().orders.find(x=>x.id==d.advance);o.status=STATUSES[STATUSES.indexOf(o.status)+1];stamp(o,o.status);touch(o);save();toast(LABEL[o.status]);render();return}
  if(d.refuse&&!confirmTap(el))return;
  if(d.refuse){const o=SH_().orders.find(x=>x.id==d.refuse);const was=o.status==="shipped";o.status="refused";stamp(o,"refused");o.lost=was?orderFee(o):0;touch(o);returnStock(o);save();toast(`Refused · ${o.qty} back in stock`);render();return}
