@@ -48,9 +48,9 @@ button.main:disabled{opacity:.6}
 <script>
 const URL_="https://ggttwxcwlxjedlphgqvm.supabase.co",ANON="sb_publishable_4h5LHbtPTf8wn3dC1FDcug_tWkvxA3M";
 const T={
- fr:{title:"Nouveau mot de passe",intro:"Choisissez un nouveau mot de passe pour votre boutique Talabia.",p1:"Nouveau mot de passe",p2:"Répétez le mot de passe",save:"Enregistrer le mot de passe",saving:"Enregistrement…",short:"Utilisez au moins 6 caractères.",diff:"Les deux mots de passe ne sont pas identiques.",bad:"Ce lien n'est plus valable. Retournez dans Talabia et demandez un nouveau lien.",net:"Pas de connexion internet. Vérifiez-la et réessayez.",fail:"Une erreur est survenue. Réessayez dans un instant.",done:"Votre mot de passe a été changé. Ouvrez Talabia et connectez-vous avec votre nouveau mot de passe.",open:"Ouvrir Talabia"},
- ar:{title:"كلمة مرور جديدة",intro:"اختر كلمة مرور جديدة لمتجرك في Talabia.",p1:"كلمة المرور الجديدة",p2:"أعد كتابة كلمة المرور",save:"حفظ كلمة المرور",saving:"جارٍ الحفظ…",short:"استعمل 6 أحرف على الأقل.",diff:"كلمتا المرور غير متطابقتين.",bad:"هذا الرابط لم يعد صالحاً. ارجع إلى Talabia واطلب رابطاً جديداً.",net:"لا يوجد اتصال بالإنترنت. تحقق منه وحاول مرة أخرى.",fail:"حدث خطأ. حاول بعد قليل.",done:"تم تغيير كلمة المرور. افتح Talabia وسجّل الدخول بكلمة المرور الجديدة.",open:"افتح Talabia"},
- en:{title:"New password",intro:"Choose a new password for your Talabia shop.",p1:"New password",p2:"Repeat the password",save:"Save password",saving:"Saving…",short:"Use at least 6 characters.",diff:"The two passwords don't match.",bad:"This link doesn't work anymore. Go back to Talabia and ask for a new link.",net:"No internet connection. Check it and try again.",fail:"Something went wrong. Try again in a moment.",done:"Your password has been changed. Open Talabia and log in with your new password.",open:"Open Talabia"}
+ fr:{title:"Nouveau mot de passe",intro:"Choisissez un nouveau mot de passe pour votre boutique Talabia.",p1:"Nouveau mot de passe",p2:"Répétez le mot de passe",save:"Enregistrer le mot de passe",saving:"Enregistrement…",short:"Utilisez au moins 8 caractères.",diff:"Les deux mots de passe ne sont pas identiques.",bad:"Ce lien n'est plus valable. Retournez dans Talabia et demandez un nouveau lien.",net:"Pas de connexion internet. Vérifiez-la et réessayez.",fail:"Une erreur est survenue. Réessayez dans un instant.",done:"Votre mot de passe a été changé. Ouvrez Talabia et connectez-vous avec votre nouveau mot de passe.",open:"Ouvrir Talabia"},
+ ar:{title:"كلمة مرور جديدة",intro:"اختر كلمة مرور جديدة لمتجرك في Talabia.",p1:"كلمة المرور الجديدة",p2:"أعد كتابة كلمة المرور",save:"حفظ كلمة المرور",saving:"جارٍ الحفظ…",short:"استعمل 8 أحرف على الأقل.",diff:"كلمتا المرور غير متطابقتين.",bad:"هذا الرابط لم يعد صالحاً. ارجع إلى Talabia واطلب رابطاً جديداً.",net:"لا يوجد اتصال بالإنترنت. تحقق منه وحاول مرة أخرى.",fail:"حدث خطأ. حاول بعد قليل.",done:"تم تغيير كلمة المرور. افتح Talabia وسجّل الدخول بكلمة المرور الجديدة.",open:"افتح Talabia"},
+ en:{title:"New password",intro:"Choose a new password for your Talabia shop.",p1:"New password",p2:"Repeat the password",save:"Save password",saving:"Saving…",short:"Use at least 8 characters.",diff:"The two passwords don't match.",bad:"This link doesn't work anymore. Go back to Talabia and ask for a new link.",net:"No internet connection. Check it and try again.",fail:"Something went wrong. Try again in a moment.",done:"Your password has been changed. Open Talabia and log in with your new password.",open:"Open Talabia"}
 };
 const q=new URLSearchParams(location.search),tok=q.get("t")||"";
 let L=["fr","ar","en"].includes(q.get("l"))?q.get("l"):"fr";
@@ -68,7 +68,7 @@ let busy=false;
 $("go").onclick=async()=>{
  if(busy)return;$("err").hidden=true;
  const a=$("p1").value,b=$("p2").value;
- if(a.length<6)return err("short");if(a!==b)return err("diff");
+ if(a.length<8)return err("short");if(a!==b)return err("diff");
  busy=true;const g=$("go");g.disabled=true;g.textContent=T[L].saving;
  try{
   const v=await fetch(URL_+"/auth/v1/verify",{method:"POST",headers:{apikey:ANON,"content-type":"application/json"},body:JSON.stringify({type:"recovery",token_hash:tok})});
@@ -76,6 +76,7 @@ $("go").onclick=async()=>{
   if(!v.ok||!s.access_token){busy=false;g.disabled=false;g.textContent=T[L].save;return err("bad")}
   const u=await fetch(URL_+"/auth/v1/user",{method:"PUT",headers:{apikey:ANON,Authorization:"Bearer "+s.access_token,"content-type":"application/json"},body:JSON.stringify({password:a})});
   if(!u.ok){busy=false;g.disabled=false;g.textContent=T[L].save;return err("fail")}
+  try{await fetch(URL_+"/functions/v1/account",{method:"POST",headers:{apikey:ANON,Authorization:"Bearer "+s.access_token,"content-type":"application/json"},body:JSON.stringify({action:"revoke-others",all:true})})}catch(e){}   // sign out every device that was logged in before the reset
   $("form").hidden=true;$("done").hidden=false;
  }catch(e){busy=false;g.disabled=false;g.textContent=T[L].save;err("net")}
 };
