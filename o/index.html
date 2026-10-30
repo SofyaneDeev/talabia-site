@@ -73,7 +73,7 @@ const TXT={
   noT:"Commande annulée",noP:"Le vendeur est prévenu. Vous avez changé d'avis ? Écrivez-lui sur WhatsApp.",
   chT:"Modification envoyée",chP:"Le vendeur va vérifier votre demande et vous recontacter.",
   again:"Changer ma réponse",loading:"Chargement…",notFound:"Lien introuvable",notFoundSub:"Ce lien est incomplet ou a expiré. Écrivez au vendeur sur WhatsApp.",
-  offline:"Pas de connexion",offlineSub:"Vérifiez votre internet puis réessayez.",retry:"Réessayer",made:"Créé avec",fail:"Ça n'a pas marché. Vérifiez votre internet puis réessayez."},
+  offline:"Pas de connexion",offlineSub:"Vérifiez votre internet puis réessayez.",retry:"Réessayer",made:"Créé avec",privL:"Confidentialité",fail:"Ça n'a pas marché. Vérifiez votre internet puis réessayez."},
  ar:{title:"الطلبية ديالك",lead:"تأكد من التفاصيل، ومن بعد أكد بضغطة وحدة.",items:"المنتجات",to:"التوصيل لـ",total:"المجموع اللي غادي تخلص عند التوصيل",
   confirm:"✓ كنأكد الطلبية ديالي",cancel:"إلغاء الطلبية",change:"تبديل العنوان ولا زيد ملاحظة",
   city:"المدينة",address:"العنوان",note:"ملاحظة للبائع",send:"صيفط التبديل",back:"رجوع",
@@ -82,7 +82,7 @@ const TXT={
   noT:"الطلبية تلغات",noP:"البائع عرف. بدلتي رأيك؟ كتب ليه فواتساب.",
   chT:"التبديل تصيفط",chP:"البائع غادي يشوف الطلب ديالك ويتواصل معاك.",
   again:"بدّل الجواب ديالي",loading:"جارٍ التحميل…",notFound:"الرابط ما كاينش",notFoundSub:"هاد الرابط ناقص ولا سالا. كتب للبائع فواتساب.",
-  offline:"ما كاينش الأنترنت",offlineSub:"تأكد من الأنترنت وعاود.",retry:"عاود",made:"تصاوب بـ",fail:"ما خدمش. تأكد من الأنترنت وعاود."},
+  offline:"ما كاينش الأنترنت",offlineSub:"تأكد من الأنترنت وعاود.",retry:"عاود",made:"تصاوب بـ",privL:"الخصوصية",fail:"ما خدمش. تأكد من الأنترنت وعاود."},
  en:{title:"Your order",lead:"Check the details, then confirm in one tap.",items:"Products",to:"Delivery to",total:"Total to pay on delivery",
   confirm:"✓ I confirm my order",cancel:"Cancel the order",change:"Change the address or add a note",
   city:"City",address:"Address",note:"Note for the seller",send:"Send the change",back:"Back",
@@ -91,7 +91,7 @@ const TXT={
   noT:"Order cancelled",noP:"The seller has been told. Changed your mind? Write to them on WhatsApp.",
   chT:"Change sent",chP:"The seller will check your request and get back to you.",
   again:"Change my answer",loading:"Loading…",notFound:"Link not found",notFoundSub:"This link is incomplete or has expired. Write to the seller on WhatsApp.",
-  offline:"No connection",offlineSub:"Check your internet and try again.",retry:"Try again",made:"Made with",fail:"That didn't work. Check your internet and try again."}};
+  offline:"No connection",offlineSub:"Check your internet and try again.",retry:"Try again",made:"Made with",privL:"Privacy",fail:"That didn't work. Check your internet and try again."}};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const dh=n=>Math.round(+n||0).toLocaleString("fr-FR").replace(/ | /g," ")+" DH";
@@ -102,7 +102,7 @@ const T=()=>TXT[L];
 async function rpc(fn,body){const r=await fetch(API+"/rest/v1/rpc/"+fn,{method:"POST",headers:{apikey:KEY,"content-type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw r.status;return r.json()}
 function lang(){document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";document.body.classList.toggle("ar",L==="ar");
  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));$("title").textContent=T().title;$("lead").textContent=T().lead}
-const foot=`<footer>${"{made}"} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a></footer>`;
+const foot=`<footer>${"{made}"} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a> · <a href="../privacy.html" target="_blank" rel="noopener">${"{privL}"}</a></footer>`;
 function msg(t,s,retry){$("main").innerHTML=`<div class="msg"><h2>${esc(t)}</h2>${s?`<p>${esc(s)}</p>`:""}${retry?`<button type="button" class="btn ch" id="retry">${esc(T().retry)}</button>`:""}</div>`}
 async function load(){lang();if(!code){msg(T().notFound,T().notFoundSub);return}msg(T().loading);
  try{const rows=await rpc("get_order_link",{p_code:code});if(!rows.length){msg(T().notFound,T().notFoundSub);return}
@@ -114,7 +114,7 @@ function draw(){const t=T(),s=D.summary||{},items=Array.isArray(s.items)?s.items
   ${items.map(i=>`<div class="it"><span dir="auto">${+i.q>1?esc(i.q)+" × ":""}${esc(i.n)}</span>${i.p!=null?`<b>${dh(i.p)}</b>`:""}</div>`).join("")}
   <div class="tot"><span>${esc(t.total)}</span><b>${dh(s.total)}</b></div></div>
   <div class="card"><div class="lbl">${esc(t.to)}</div><div dir="auto"><b>${esc(s.name||"")}</b><br>${esc(s.address||"")}${s.address?"<br>":""}<b>${esc(s.city||"")}</b></div></div>`;
- const fe=foot.replace("{made}",esc(t.made));
+ const fe=foot.replace("{made}",esc(t.made)).replace("{privL}",esc(t.privL));
  if(view==="ok"||view==="no"||view==="ch"){const m={ok:["g","✓",t.okT,t.okP],no:["r","✕",t.noT,t.noP],ch:["a","✎",t.chT,t.chP]}[view];
   $("main").innerHTML=`<div class="card done"><div class="ic ${m[0]}" aria-hidden="true">${m[1]}</div><h2>${esc(m[2])}</h2><p>${esc(m[3])}</p></div>${order}${view==="ch"?`<button type="button" class="btn ok" id="yes">${esc(t.confirm)}</button><button type="button" class="btn ch" id="chg">${esc(t.change)}</button>`:""}${fe}`;return}
  if(view==="form"){const a=(D.answer||{});

@@ -88,6 +88,7 @@ footer{text-align:center;margin:28px 0 10px;font-size:13px;color:var(--muted)}
 footer a{color:var(--accent);font-weight:700;text-decoration:none}
 footer a i{font-style:normal;color:var(--gold)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.privn{margin:8px 0 0;font-size:12.5px;color:var(--mut,#64685f)}.privn a{color:inherit}
 </style>
 </head>
 <body>
@@ -110,7 +111,7 @@ const PHOTO=API+"/storage/v1/object/public/products/";
 const WA_ICON='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.2-.2-.5-.3z"/></svg>';
 const CART_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg>';
 const TXT={
- fr:{lead:"Choisissez vos produits, puis passez la commande.",search:"Chercher un produit",add:"Ajouter",out:"Épuisé",from:"à partir de",
+ fr:{privL:"Confidentialité",privN:"Vos informations sont envoyées au vendeur pour préparer et livrer votre commande.",lead:"Choisissez vos produits, puis passez la commande.",search:"Chercher un produit",add:"Ajouter",out:"Épuisé",from:"à partir de",
   items:n=>n===1?"1 article":n+" articles",review:"Commander sur WhatsApp",yourOrder:"Votre commande",name:"Votre nom",phone:"Téléphone",city:"Ville",address:"Adresse",
   optional:"* obligatoire",send:"ou commander sur WhatsApp",order:"Commander",note:"Commentaire pour le vendeur",notePh:"Ex. couleur, heure de livraison, question…",sendOrder:"Envoyer la commande",sending:"Envoi…",
   doneT:"Commande reçue !",doneP:"Le vendeur va vous contacter pour confirmer votre commande.",ref:"Référence",close:"Fermer",
@@ -118,7 +119,7 @@ const TXT={
   loading:"Chargement…",notFound:"Catalogue introuvable",notFoundSub:"Le lien est peut-être incomplet, ou le vendeur l'a fermé.",offline:"Pas de connexion",offlineSub:"Vérifiez votre internet puis réessayez.",retry:"Réessayer",
   none:"Aucun produit pour le moment.",noMatch:"Aucun produit trouvé.",made:"Créé avec",
   msg:(shop,lines,total,n,ph,c,a)=>`Salam 👋 Je voudrais commander chez ${shop} :\n${lines}\nTotal : ${total} DH (+ livraison)\n\nNom : ${n}\nTéléphone : ${ph}\nVille : ${c}\nAdresse : ${a}\n\n(Commande envoyée depuis le catalogue Talabia)`},
- ar:{lead:"اختار المنتجات ديالك، ومن بعد دوز الطلبية.",search:"قلب على منتج",add:"زيد",out:"سالا",from:"ابتداءً من",
+ ar:{privL:"الخصوصية",privN:"المعلومات ديالك كتصيفط للبائع باش يحضر ويوصل ليك الطلبية.",lead:"اختار المنتجات ديالك، ومن بعد دوز الطلبية.",search:"قلب على منتج",add:"زيد",out:"سالا",from:"ابتداءً من",
   items:n=>n===1?"منتج واحد":n+" منتجات",review:"اطلب فواتساب",yourOrder:"الطلبية ديالك",name:"سميتك",phone:"الهاتف",city:"المدينة",address:"العنوان",
   optional:"* ضروري",send:"ولا اطلب فواتساب",order:"اطلب دابا",note:"ملاحظة للبائع",notePh:"مثلاً اللون، وقت التوصيل، سؤال…",sendOrder:"صيفط الطلبية",sending:"كيتصيفط…",
   doneT:"الطلبية توصلات!",doneP:"البائع غادي يتواصل معاك باش يأكد الطلبية.",ref:"المرجع",close:"سد",
@@ -126,7 +127,7 @@ const TXT={
   loading:"جارٍ التحميل…",notFound:"الكتالوج ما كاينش",notFoundSub:"يمكن الرابط ناقص، ولا البائع سدّو.",offline:"ما كاينش الأنترنت",offlineSub:"تأكد من الأنترنت وعاود.",retry:"عاود",
   none:"ما كاين حتى منتج دابا.",noMatch:"ما لقينا حتى منتج.",made:"تصاوب بـ",
   msg:(shop,lines,total,n,ph,c,a)=>`السلام 👋 بغيت نطلب من ${shop}:\n${lines}\nالمجموع: ${total} درهم (+ التوصيل)\n\nالسمية: ${n}\nالهاتف: ${ph}\nالمدينة: ${c}\nالعنوان: ${a}\n\n(طلبية من كتالوج Talabia)`},
- en:{lead:"Pick your products, then place your order.",search:"Search a product",add:"Add",out:"Sold out",from:"from",
+ en:{privL:"Privacy",privN:"Your details are sent to the seller to prepare and deliver your order.",lead:"Pick your products, then place your order.",search:"Search a product",add:"Add",out:"Sold out",from:"from",
   items:n=>n===1?"1 item":n+" items",review:"Order on WhatsApp",yourOrder:"Your order",name:"Your name",phone:"Phone",city:"City",address:"Address",
   optional:"* required",send:"or order on WhatsApp",order:"Order now",note:"Comment for the seller",notePh:"E.g. colour, delivery time, a question…",sendOrder:"Send the order",sending:"Sending…",
   doneT:"Order received!",doneP:"The seller will contact you to confirm your order.",ref:"Reference",close:"Close",
@@ -192,7 +193,7 @@ function draw(){
  const q=query.trim().toLowerCase(),list=q?entries.filter(e=>(e.name+" "+e.items.map(i=>i.o||"").join(" ")).toLowerCase().includes(q)):entries;
  $("main").innerHTML=`${entries.length>6?`<div class="search"><input type="search" id="q" value="${esc(query)}" placeholder="${esc(T().search)}" aria-label="${esc(T().search)}"></div>`:""}
   ${entries.length?(list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty">${esc(T().noMatch)}</div>`):`<div class="empty">${esc(T().none)}</div>`}
-  <footer>${esc(T().made)} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a></footer>`;
+  <footer>${esc(T().made)} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a> · <a href="../privacy.html" target="_blank" rel="noopener">${esc(T().privL)}</a></footer>`;
  drawBar()}
 function redrawCard(eid){const e=entries.find(x=>x.id===eid),el=document.querySelector(`.card[data-e="${CSS.escape(eid)}"]`);if(e&&el)el.outerHTML=card(e);drawBar()}
 function drawBar(){const ls=cartLines(),n=ls.reduce((a,x)=>a+x.q,0),tot=ls.reduce((a,x)=>a+x.q*x.it.p,0);
@@ -212,6 +213,7 @@ function openSheet(){const ls=cartLines();if(!ls.length)return;const me=store.ge
   <label>${esc(T().note)}<textarea id="fo" rows="2" placeholder="${esc(T().notePh)}">${esc(me.o||"")}</textarea></label>
   <p class="hint">${esc(T().optional)}</p>
   ${ordErr?`<p class="err" role="alert">${esc(ordErr)}</p>`:""}
+  <p class="privn">${esc(T().privN)} <a href="../privacy.html#customers" target="_blank" rel="noopener">${esc(T().privL)}</a></p>
   <button type="button" class="go" id="sendOrder" ${ordBusy?"disabled":""}>${CART_ICON}${esc(ordBusy?T().sending:T().sendOrder)}</button>
   <a class="walink" id="send" href="#" target="_blank" rel="noopener">${WA_ICON}${esc(T().send)}</a>
   <button type="button" class="ghost" id="close">${esc(T().back)}</button>`;
