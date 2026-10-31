@@ -611,6 +611,7 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 .cdhead h2{display:none}
 .cukp,.cu-av,.cu-city,.cu-n,.cu-view{display:none}
 .cucard,.cu-id{display:contents}
+.tcr,.tmlab,.tmd,.tmsend,.tmnote,.hjw{display:none}
 .ph-brand .crown{font-size:.9em}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
@@ -860,25 +861,6 @@ body.desk main[data-v=cash] .cm-bar{height:8px;border-radius:99px;background:var
 body.desk main[data-v=cash] .cm-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
 body.desk main[data-v=cash] .cm-p em{font-style:normal;font-weight:700}
 body.desk main[data-v=cash] .cashrep>.btn{margin-top:14px}
-/* Team */
-body.desk main[data-v=team]{max-width:1200px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px 24px;align-items:start}
-body.desk main[data-v=team]>*{grid-column:1/-1;min-width:0}
-body.desk main[data-v=team]>.phead{grid-column:1/-1}
-body.desk main[data-v=team] .phead h1{font-size:34px}
-body.desk main[data-v=team] .psold{display:none}
-body.desk main[data-v=team] .psdesk{display:block;font-size:16px;margin-top:6px}
-body.desk main[data-v=team]>.tmcard{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;padding:24px 26px;border-radius:20px}
-body.desk main[data-v=team] .tmcol{display:flex;flex-direction:column;gap:14px;min-width:0}
-body.desk main[data-v=team] .tmf{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg);align-self:start}
-body.desk main[data-v=team] .tmtitle{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800}
-body.desk main[data-v=team] .tmcount{background:var(--accent-soft);color:var(--accent);border-radius:99px;font-size:13.5px;padding:2px 11px}
-body.desk main[data-v=team] .tmempty{display:block;border:1px dashed var(--line);border-radius:14px;padding:34px 20px;text-align:center;color:var(--muted)}
-body.desk main[data-v=team] .tmcol .clist{border:1px solid var(--line);border-radius:14px;overflow:hidden}
-body.desk main[data-v=team] .tmrow{grid-template-columns:minmax(0,1.3fr) auto auto auto;padding:14px 18px;gap:0 14px}
-body.desk main[data-v=team] .tmrow .tmroles{grid-column:auto;flex-wrap:nowrap}
-body.desk main[data-v=team] .tmrow .btn.link{grid-column:auto;justify-self:end}
-body.desk main[data-v=team] .row2{display:grid;grid-template-columns:1fr;gap:10px}
-body.desk main[data-v=team] .tmf .btn{width:100%}
 /* Customers */
 body.desk main[data-v=customers]{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
 body.desk main[data-v=customers] .phead h1{font-size:34px}
@@ -907,6 +889,59 @@ body.desk main[data-v=customers] .cucard .order .price{grid-column:4;justify-sel
 body.desk main[data-v=customers] .cucard .order .info{display:none}
 body.desk main[data-v=customers] .cucard .order .cu-last{grid-column:5;font-size:14px;color:var(--muted)}
 body.desk main[data-v=customers] .cu-view{display:inline-flex;grid-column:6;justify-self:end;border:1px solid var(--accent);color:var(--accent);border-radius:12px;padding:10px 18px;font-weight:700;font-size:14.5px}
+/* Team */
+body.desk main[data-v=team]{max-width:1240px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 22px;align-items:start}
+body.desk main[data-v=team]>*{grid-column:1/-1;min-width:0}
+body.desk main[data-v=team]>.back{display:none}
+body.desk main[data-v=team] .tcr{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:12px}
+body.desk main[data-v=team] .tcr button{background:none;border:0;padding:0;color:var(--muted);font-size:13.5px}
+body.desk main[data-v=team] .tcr b{color:var(--accent)}
+body.desk main[data-v=team] .phead h1{font-size:36px}
+body.desk main[data-v=team] .psold{display:none}
+body.desk main[data-v=team] .psdesk{display:block;font-size:17px;margin-top:8px}
+body.desk main[data-v=team]>.tmcard{display:contents}
+body.desk main[data-v=team] .tmcol,body.desk main[data-v=team] .tmf{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px;min-height:480px}
+body.desk main[data-v=team] .tmcol{grid-column:1}
+body.desk main[data-v=team] .tmf{grid-column:2;gap:12px}
+body.desk main[data-v=team] .tmtitle{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800}
+body.desk main[data-v=team] .tmcount{background:var(--accent-soft);color:var(--accent);border-radius:99px;font-size:13.5px;padding:2px 11px}
+body.desk main[data-v=team] .tmempty{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:1;gap:8px;padding:20px;color:var(--muted)}
+body.desk main[data-v=team] .tme-ic{display:flex;gap:0;margin-bottom:14px}
+body.desk main[data-v=team] .tme-ic span{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--accent-soft);color:var(--accent);border:4px solid var(--surface);margin-inline:-8px}
+body.desk main[data-v=team] .tme-ic span:nth-child(2){transform:translateY(-14px);width:96px;height:96px}
+body.desk main[data-v=team] .tme-ic svg{width:42px;height:42px}
+body.desk main[data-v=team] .tmempty b{font-size:26px;color:var(--ink)}
+body.desk main[data-v=team] .tmempty p{margin:0;font-size:16px}
+body.desk main[data-v=team] .tmempty small{margin-top:14px;font-size:14px}
+body.desk main[data-v=team] .tmcol .clist{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+body.desk main[data-v=team] .tmrow{grid-template-columns:minmax(0,1.3fr) auto auto auto;padding:14px 18px;gap:0 14px}
+body.desk main[data-v=team] .tmrow .tmroles{grid-column:auto;flex-wrap:nowrap}
+body.desk main[data-v=team] .tmrow .btn.link{grid-column:auto;justify-self:end}
+body.desk main[data-v=team] .row2{display:flex;flex-direction:column;gap:6px}
+body.desk main[data-v=team] .tmlab{display:block;font-weight:600;font-size:15px;margin-top:6px}
+body.desk main[data-v=team] .tmf input{padding:14px 16px;border-radius:12px}
+body.desk main[data-v=team] .tmf .field>.label{text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;color:var(--ink)}
+body.desk main[data-v=team] .tmf .field .chips{flex-direction:column;gap:12px;flex-wrap:nowrap}
+body.desk main[data-v=team] .tmf .chip[data-tmrole]{display:grid;grid-template-columns:24px 1fr;grid-template-rows:auto auto;gap:2px 14px;align-items:center;text-align:start;width:100%;border-radius:12px;padding:16px 18px;background:var(--surface);border:1.5px solid var(--line);color:var(--ink);min-height:0;height:auto;white-space:normal}
+body.desk main[data-v=team] .tmf .chip[data-tmrole]::before{content:"";grid-row:1/3;width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);box-sizing:border-box}
+body.desk main[data-v=team] .tmf .chip[data-tmrole][aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
+body.desk main[data-v=team] .tmf .chip[data-tmrole][aria-pressed=true]::before{border:6px solid var(--accent);background:#fff}
+body.desk main[data-v=team] .tmn{font-weight:700;font-size:16px}
+body.desk main[data-v=team] .tmd{display:block;grid-column:2;font-size:14.5px;color:var(--muted);font-weight:400}
+body.desk main[data-v=team] .tmf .btn#tmAdd{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px}
+body.desk main[data-v=team] .tmsend{display:inline-flex}
+body.desk main[data-v=team] .tmsend svg{width:20px;height:20px}
+body.desk main[data-v=team] .tmnote{display:block;text-align:center;margin:0;font-size:14px;color:var(--muted)}
+html[dir=rtl] body.desk main[data-v=team] .tmsend svg{transform:scaleX(-1)}
+body.desk main[data-v=team]>.card:last-child{padding:24px 26px;border-radius:20px}
+body.desk main[data-v=team] .hjo{display:none}
+body.desk main[data-v=team] .hjw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 40px;margin-top:6px}
+body.desk main[data-v=team] .hj{display:flex;gap:16px;align-items:flex-start}
+body.desk main[data-v=team] .hjn{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:19px}
+body.desk main[data-v=team] .hj b{font-size:16.5px}
+body.desk main[data-v=team] .hj p{margin:6px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
+body.desk main[data-v=team] .hjf{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:14.5px}
+body.desk main[data-v=team] .hjf svg{width:20px;height:20px}
 body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
@@ -2880,23 +2915,23 @@ let teamList=null,teamErr="";
 function vTeam(){
  if(teamOf)return backBtn()+`<h1>Team</h1><div class="card"><p style="margin:0">You are a helper on <b>${esc(teamOf.shop)}</b> · ${tr(ROLE_TXT[teamOf.role])}.</p><button type="button" class="btn ghost" id="leaveTeam">Leave this team</button></div>`;
  if(!proActive())return proTeaser("team");
- const how=`<div class="card"><h2>How a helper joins</h2><ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px"><li>Add their name and email, and choose what they can do.</li><li>They install Talabia and create an account (or log in) with that email.</li><li>Talabia asks them to join your team. Once they accept, they work on your shop and you see who did what on each order.</li></ol></div>`;
+ const how=`<div class="card"><h2>How a helper joins</h2><div class="hjw"><div class="hj"><span class="hjn">1</span><div><b>${LL({en:"Send an invitation",fr:"Envoyer une invitation",ar:"صيفط دعوة"})}</b><p>${LL({en:"Enter their name, email and access level.",fr:"Entrez son nom, e-mail et niveau d'accès.",ar:"دخل السمية، البريد ومستوى الولوج."})}</p></div></div><div class="hj"><span class="hjn">2</span><div><b>${LL({en:"Sign in to Talabia",fr:"Se connecter à Talabia",ar:"دخل لـ Talabia"})}</b><p>${LL({en:"They use the same email to sign in or create an account.",fr:"Ils utilisent le même e-mail pour se connecter ou créer un compte.",ar:"كيستعملو نفس البريد باش يدخلو ولا يصاوبو حساب."})}</p></div></div><div class="hj"><span class="hjn">3</span><div><b>${LL({en:"Accept and start",fr:"Accepter et commencer",ar:"قبل وبدا"})}</b><p>${LL({en:"Once accepted, they can work in your shop.",fr:"Une fois accepté, ils peuvent travailler dans votre boutique.",ar:"من بعد القبول، يقدرو يخدمو فمتجرك."})}</p></div></div><div class="hjf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>${LL({en:"See who handled each order.",fr:"Voyez qui a traité chaque commande.",ar:"شوف شكون تكلف بكل طلب."})}</span></div></div><ol class="hjo" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px"><li>Add their name and email, and choose what they can do.</li><li>They install Talabia and create an account (or log in) with that email.</li><li>Talabia asks them to join your team. Once they accept, they work on your shop and you see who did what on each order.</li></ol></div>`;
  if(!CLOUD){const list=SH_().teamPreview||[];
-  return backBtn()+`<div class="phead"><h1>Team</h1><p class="sub">Preview: in the Android app your helpers are saved on your server.</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(list)}${how}`}
+  return backBtn()+`<div class="phead"><div class="tcr"><button type="button" data-tab="today">${LL({en:"Home",fr:"Accueil",ar:"الرئيسية"})}</button><span>/</span><b>${LL({en:"Team",fr:"Équipe",ar:"الفريق"})}</b></div><h1>Team</h1><p class="sub">Preview: in the Android app your helpers are saved on your server.</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(list)}${how}`}
  if(teamList===null){loadTeam();return backBtn()+`<h1>Team</h1><div class="empty">Loading your team…</div>`}
- return backBtn()+`<div class="phead"><h1>Team</h1><p class="sub psold">${teamList.length} helper${teamList.length===1?"":"s"}</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(teamList)}${how}`}
+ return backBtn()+`<div class="phead"><div class="tcr"><button type="button" data-tab="today">${LL({en:"Home",fr:"Accueil",ar:"الرئيسية"})}</button><span>/</span><b>${LL({en:"Team",fr:"Équipe",ar:"الفريق"})}</b></div><h1>Team</h1><p class="sub psold">${teamList.length} helper${teamList.length===1?"":"s"}</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(teamList)}${how}`}
 var tmRole="orders";
 const ROLE_TXT={orders:"Orders only",full:"Full access"};
 function teamForm(list){
  return `<div class="card tmcard"><div class="tmcol"><div class="tmtitle">${LL({en:"Your helpers",fr:"Vos aides",ar:"المساعدين ديالك"})}<span class="tmcount">${list.length}</span></div>${list.length?`<div class="clist">${list.map(m=>{const st=m.status||"active";return `<div class="tmrow"><div class="grow"><b>${esc(m.name||"Helper")}</b><div class="hint" dir="ltr">${esc(idShow(m.member_phone))}</div></div>
    <span class="pill ${st==="active"?"s-ok":st==="invited"?"s-low":"s-out"}">${st==="active"?"Joined":st==="invited"?"Invited":"Declined"}</span>
    <div class="chips tmroles">${["orders","full"].map(r=>`<button type="button" class="chip" data-trole="${esc(m.member_phone)}" data-r="${r}" aria-pressed="${(m.role||"full")===r}">${ROLE_TXT[r]}</button>`).join("")}</div>
-   <button type="button" class="btn link sm" style="color:var(--red)" data-tdelm="${esc(m.member_phone)}">Remove</button></div>`}).join("")}</div>`:`<div class="tmempty">${LL({en:"No helpers yet. Invite the first one with the form.",fr:"Pas encore d'aide. Invitez le premier avec le formulaire.",ar:"باقي ما زدتي حتى مساعد. دعو الأول بالاستمارة."})}</div>`}</div>
-  <div class="tmf"><div class="tmtitle">${LL({en:"Invite a helper",fr:"Inviter une aide",ar:"دعو مساعد"})}</div><div class="row2"><input id="tmName" placeholder="Name, e.g. Sara" autocomplete="off"><input id="tmPhone" inputmode="email" placeholder="Helper's email" autocomplete="off"></div>
-  <div class="field"><span class="label">What can this helper do?</span><div class="chips">${["orders","full"].map(r=>`<button type="button" class="chip" data-tmrole="${r}" aria-pressed="${tmRole===r}">${ROLE_TXT[r]}</button>`).join("")}</div>
+   <button type="button" class="btn link sm" style="color:var(--red)" data-tdelm="${esc(m.member_phone)}">Remove</button></div>`}).join("")}</div>`:`<div class="tmempty"><div class="tme-ic"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span></div><b>${LL({en:"Build your team",fr:"Construisez votre équipe",ar:"كوّن فريقك"})}</b><p>${LL({en:"Invite your first helper to manage orders together.",fr:"Invitez votre première aide pour gérer les commandes ensemble.",ar:"دعو أول مساعد باش تسيرو الطلبات مع بعض."})}</p><small>${LL({en:"Your helpers will appear here",fr:"Vos aides apparaîtront ici",ar:"المساعدين ديالك غادي يبانو هنا"})}</small></div>`}</div>
+  <div class="tmf"><div class="tmtitle">${LL({en:"Invite a helper",fr:"Inviter une aide",ar:"دعو مساعد"})}</div><div class="row2"><label class="tmlab" for="tmName">${LL({en:"Name",fr:"Nom",ar:"الاسم"})}</label><input id="tmName" placeholder="Name, e.g. Sara" autocomplete="off"><label class="tmlab" for="tmPhone">${LL({en:"Email address",fr:"Adresse e-mail",ar:"البريد الإلكتروني"})}</label><input id="tmPhone" inputmode="email" placeholder="Helper's email" autocomplete="off"></div>
+  <div class="field"><span class="label">What can this helper do?</span><div class="chips">${["orders","full"].map(r=>`<button type="button" class="chip" data-tmrole="${r}" aria-pressed="${tmRole===r}"><span class="tmn">${ROLE_TXT[r]}</span><span class="tmd">${LL(r==="orders"?{en:"Add, confirm and ship orders. View products and stock.",fr:"Ajouter, confirmer et expédier les commandes. Voir produits et stock.",ar:"زيد وأكد وصيفط الطلبات. شوف المنتجات والمخزون."}:{en:"Manage all shop features.",fr:"Gérer toutes les fonctions de la boutique.",ar:"تسيّر جميع ميزات المتجر."})}</span></button>`).join("")}</div>
   <span class="hint">${tmRole==="orders"?"Add, confirm and ship orders, see products and stock. No money, reports, prices or deleting.":"Everything except your plan, your catalogue and deleting the shop."}</span></div>
   ${teamErr?`<div class="err">${esc(teamErr)}</div>`:""}
-  <button type="button" class="btn" id="tmAdd">Send the invitation</button></div></div>`}
+  <button type="button" class="btn" id="tmAdd"><span class="tmsend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></span>Send the invitation</button><p class="tmnote">${LL({en:"They will join after accepting your invitation.",fr:"Ils rejoindront après avoir accepté votre invitation.",ar:"غادي يدخلو من بعد ما يقبلو الدعوة ديالك."})}</p></div></div>`}
 async function setRole(ph,r){if(!CLOUD){const m=(SH_().teamPreview||[]).find(x=>x.member_phone===ph);if(m){m.role=r;save();render()}return}
  try{await api(`/rest/v1/team_members?owner_id=eq.${session.uid}&member_phone=eq.${encodeURIComponent(ph)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({role:r})});const m=(teamList||[]).find(x=>x.member_phone===ph);if(m)m.role=r;render();toast("Access updated")}
  catch(e){toast("Couldn't save. Check your internet.")}}
