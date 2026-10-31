@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Manrope:wght@500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <style>
 /* Public product catalogue of one Talabia shop. Customers pick products and send the order on WhatsApp. */
-:root{--bg:#f3f2ee;--surface:#fff;--ink:#1b1d1a;--muted:#64685f;--line:#e2e1da;--accent:#0f6b4f;--accent-soft:#dcefe6;--accent-ink:#fff;
+:root{--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E");--bg:#f3f2ee;--surface:#fff;--ink:#1b1d1a;--muted:#64685f;--line:#e2e1da;--accent:#0f6b4f;--accent-soft:#dcefe6;--accent-ink:#fff;
  --red:#b0351f;--red-soft:#f9e1dc;--wa:#17773f;--wa-soft:#dbf1e3;--gold:#e9a828;
  --display:"Sora",ui-sans-serif,system-ui,sans-serif;--body:"Manrope",ui-sans-serif,system-ui,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
@@ -89,16 +89,78 @@ footer a{color:var(--accent);font-weight:700;text-decoration:none}
 footer a i{font-style:normal;color:var(--gold)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .privn{margin:8px 0 0;font-size:12.5px;color:var(--mut,#64685f)}.privn a{color:inherit}
+
+.dx,.dtop,.dhero,.dpanel{display:none}.dlayout{display:contents}
+@media (min-width:1000px){
+ body{padding-bottom:0;background:#f6f5f1}
+ body>header,.bar{display:none!important}
+ .dtop{display:block;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+ .dtop .in{max-width:1280px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;gap:28px}
+ .dtop .brand{display:flex;align-items:center;gap:14px;min-width:0}
+ .dtop .dav{width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:700 21px var(--display);flex:none}
+ .dtop .dshop{font:700 22px var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+ .dtop .dsearch{flex:1;max-width:620px;margin:0 auto;position:relative}
+ .dtop .dsearch svg{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted)}
+ .dtop .dsearch input{width:100%;border:1px solid var(--line);background:#f6f5f1;border-radius:12px;padding:12px 16px 12px 44px;min-height:46px;font-size:15.5px}
+ html[dir=rtl] .dtop .dsearch input{padding:12px 44px 12px 16px}
+ .dtop .dr{display:flex;align-items:center;gap:14px;margin-inline-start:auto}
+ .dtop .langs button{background:#f1f0eb;color:var(--ink);min-height:38px;min-width:38px;font-size:14px}
+ .dtop .langs button[aria-pressed="true"]{background:var(--accent);color:#fff}
+ .dcart{display:flex;align-items:center;gap:8px;border:1.5px solid var(--accent);color:var(--accent);background:#fff;border-radius:12px;padding:10px 18px;font-weight:700;min-height:46px}
+ .dcart svg{width:20px;height:20px}
+ .dhero{display:block;position:relative;overflow:hidden;background:var(--accent);color:#fff}
+ .dhero::before{content:"";position:absolute;inset:0;opacity:.1;background:currentColor;-webkit-mask:var(--pat);mask:var(--pat);-webkit-mask-size:56px;mask-size:56px}
+ .dhero .in{position:relative;max-width:1280px;margin:0 auto;padding:30px 32px 32px}
+ .dhero h2{font:700 38px/1.15 var(--display);margin:0;letter-spacing:-.01em}
+ .dhero p{margin:8px 0 0;font-size:19px;opacity:.92}
+ .dlayout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;max-width:1280px;margin:0 auto;padding:30px 32px 20px;align-items:start}
+ main.wrap{max-width:none;margin:0;padding:0;min-width:0}
+ .dx{display:flex}
+ .chead{align-items:baseline;gap:14px;margin-bottom:6px}
+ .chead h3{font:700 30px var(--display);margin:0}.chead span{color:var(--muted);font-size:15px}
+ main .search{display:none}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;margin-top:18px}
+ .card{border-radius:18px;padding:6px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+ .card .ph{aspect-ratio:1/1;border-radius:14px}
+ .cb{padding:12px 8px 8px;gap:6px}
+ .cb b{font-size:15.5px}
+ .price{font-size:18px}
+ .add{background:var(--accent-soft);color:var(--accent);border-radius:12px;min-height:46px;display:flex;align-items:center;justify-content:center;gap:8px}
+ .add:not(:disabled)::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border:2px solid currentColor;border-radius:50%;font-size:16px;line-height:1}
+ .add:not(:disabled):hover{background:var(--accent);color:#fff}
+ .dpanel{display:block;position:sticky;top:94px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;min-height:420px}
+ .dpanel h3{font:700 24px var(--display);margin:0;display:flex;align-items:center;gap:10px}
+ .dpanel h3 .n{background:var(--accent);color:#fff;font-size:13.5px;border-radius:999px;padding:2px 11px}
+ .dp-empty{text-align:center;padding:26px 6px 14px}
+ .dp-empty svg{width:150px;height:150px;color:var(--accent)}
+ .dp-empty b{display:block;font:700 21px var(--display);margin-top:6px}
+ .dp-empty span{color:var(--muted);font-size:14.5px}
+ .dp-lines{margin-top:12px;max-height:46vh;overflow:auto}
+ .dp-lines .line .qty{width:104px}
+ .dp-sub{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:16px;padding-top:16px;font-weight:700}
+ .dp-sub b{font:700 20px var(--display);color:var(--accent);direction:ltr}
+ .dp-note{color:var(--muted);font-size:13.5px;margin:6px 0 14px}
+ .dpanel .go{border-radius:12px}
+ .dpanel .go:disabled{background:var(--line);color:var(--muted);opacity:1;cursor:not-allowed}
+ .sheet{align-items:center;padding:20px}
+ .sheet .in{max-width:520px;border-radius:20px;padding:24px}
+ footer{grid-column:1/-1}
+}
 </style>
 </head>
 <body>
+<div class="dtop"><div class="in"><div class="brand"><div class="dav" id="dav" aria-hidden="true">·</div><div class="dshop" id="dshop">…</div></div>
+ <div class="dsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" id="hq" autocomplete="off"></div>
+ <div class="dr"><div class="langs" role="group" aria-label="Langue"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div><button type="button" class="dcart" id="review3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg><span id="dcartT"></span></button></div></div></div>
+<div class="dhero"><div class="in"><h2 id="dhT"></h2><p id="dhS"></p></div></div>
 <header><div class="wrap">
  <div class="top"><div class="av" id="av" aria-hidden="true">·</div>
   <div class="langs" role="group" aria-label="Langue"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div></div>
  <h1 id="shop">…</h1>
  <p class="sub" id="lead"></p>
 </div></header>
-<main class="wrap" id="main"><div class="msg" id="state"></div></main>
+<div class="dlayout"><main class="wrap" id="main"><div class="msg" id="state"></div></main>
+<aside class="dpanel" id="dpanel" aria-label="Cart"></aside></div>
 <div class="bar" id="bar" hidden><div class="wrap">
  <div class="sum"><b id="total"></b><span id="count"></span></div>
  <button type="button" class="go" id="review"></button>
@@ -156,8 +218,16 @@ function group(items){const out=[],seen={};
 const byId=id=>CAT&&CAT.items.find(i=>i.id===id);
 const cartLines=()=>Object.entries(cart).map(([id,q])=>({it:byId(id),q})).filter(x=>x.it&&!x.it.out&&x.q>0);
 
+const DX={fr:{hT:"Votre boutique, en toute simplicité.",cat:"Notre catalogue",cnt:n=>n+(n===1?" produit":" produits"),cart:"Panier",cartT:"Votre panier",emT:"Votre panier est vide",emS:"Ajoutez des produits pour commencer.",sub:"Sous-total",dl:"Livraison calculée à l'étape suivante",go:"Passer la commande"},
+ ar:{hT:"المتجر ديالك، ببساطة.",cat:"الكتالوغ ديالنا",cnt:n=>n+" منتج",cart:"السلة",cartT:"السلة ديالك",emT:"السلة خاوية",emS:"زيد منتجات باش تبدا.",sub:"المجموع الجزئي",dl:"التوصيل كيتحسب فالمرحلة الجاية",go:"دوز الطلبية"},
+ en:{hT:"Your shop, made simple.",cat:"Our catalogue",cnt:n=>n+(n===1?" product":" products"),cart:"Cart",cartT:"Your cart",emT:"Your cart is empty",emS:"Add products to get started.",sub:"Subtotal",dl:"Delivery is calculated at the next step",go:"Place the order"}};
+const BAG='<svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="78" cy="86" rx="52" ry="46" fill="currentColor" opacity=".08" stroke="none"/><path d="M48 58h50l8 52H40z" fill="#fff"/><path d="M62 58v-8a14 14 0 0 1 28 0v8"/><path d="M104 58l6 4 10 46h-14M118 40l6-5M126 52l8-2"/></svg>';
+function dxLang(){const X=DX[L];$("dhT").textContent=X.hT;$("dhS").textContent=T().lead;$("hq").placeholder=T().search+"…";$("hq").value=query}
+function drawPanel(ls,n,tot){const X=DX[L],p=$("dpanel");if(!p)return;$("dcartT").textContent=X.cart+" ("+n+")";
+ p.innerHTML=`<h3>${esc(X.cartT)}<span class="n">${n}</span></h3>`+(n?`<div class="dp-lines">${ls.map(x=>`<div class="line"><div class="n"><b dir="auto">${esc(x.it.n)}</b><small>${x.q} × ${dh(x.it.p)}</small></div><div class="qty"><button type="button" data-dec="${esc(x.it.id)}" aria-label="−">−</button><span>${x.q}</span><button type="button" data-inc="${esc(x.it.id)}" aria-label="+">+</button></div></div>`).join("")}</div>`:`<div class="dp-empty">${BAG}<b>${esc(X.emT)}</b><span>${esc(X.emS)}</span></div>`)
+  +`<div class="dp-sub"><span>${esc(X.sub)}</span><b>${dh(tot)}</b></div><p class="dp-note">${esc(X.dl)}</p><button type="button" class="go" id="review2" ${n?"":"disabled"}>${esc(X.go)}</button>`}
 function applyLang(){document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";document.body.classList.toggle("ar",L==="ar");
- document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));$("lead").textContent=T().lead}
+ document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===L));$("lead").textContent=T().lead;dxLang()}
 
 function state(title,sub,retry){$("main").innerHTML=`<div class="msg"><h2>${esc(title)}</h2>${sub?`<p>${esc(sub)}</p>`:""}${retry?`<button type="button" class="ghost" id="retry">${esc(T().retry)}</button>`:""}</div>`}
 
@@ -169,7 +239,7 @@ async function load(){
   if(!r.ok)throw 0;const rows=await r.json();
   if(!rows.length){$("shop").textContent="Talabia";state(T().notFound,T().notFoundSub);return}
   CAT=rows[0];CAT.items=Array.isArray(CAT.items)?CAT.items:[];entries=group(CAT.items);
-  document.title=CAT.shop+" · Catalogue";$("shop").textContent=CAT.shop;$("av").textContent=(CAT.shop.trim()[0]||"·").toUpperCase();
+  document.title=CAT.shop+" · Catalogue";$("shop").textContent=CAT.shop;$("dshop").textContent=CAT.shop;$("dav").textContent=(CAT.shop.trim()[0]||"·").toUpperCase();$("av").textContent=(CAT.shop.trim()[0]||"·").toUpperCase();
   for(const id of Object.keys(cart))if(!byId(id))delete cart[id];
   draw()}
  catch(e){state(T().offline,T().offlineSub,true)}}
@@ -192,12 +262,13 @@ function card(e){const it=chosen(e),allOut=e.items.every(i=>i.out),img=it&&safeI
 function draw(){
  const q=query.trim().toLowerCase(),list=q?entries.filter(e=>(e.name+" "+e.items.map(i=>i.o||"").join(" ")).toLowerCase().includes(q)):entries;
  $("main").innerHTML=`${entries.length>6?`<div class="search"><input type="search" id="q" value="${esc(query)}" placeholder="${esc(T().search)}" aria-label="${esc(T().search)}"></div>`:""}
+  <div class="dx chead"><h3>${esc(DX[L].cat)}</h3><span>${esc(DX[L].cnt(entries.length))}</span></div>
   ${entries.length?(list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty">${esc(T().noMatch)}</div>`):`<div class="empty">${esc(T().none)}</div>`}
   <footer>${esc(T().made)} <a href="../" target="_blank" rel="noopener" dir="ltr">Talabia<i>.</i></a> · <a href="../privacy.html" target="_blank" rel="noopener">${esc(T().privL)}</a></footer>`;
  drawBar()}
 function redrawCard(eid){const e=entries.find(x=>x.id===eid),el=document.querySelector(`.card[data-e="${CSS.escape(eid)}"]`);if(e&&el)el.outerHTML=card(e);drawBar()}
 function drawBar(){const ls=cartLines(),n=ls.reduce((a,x)=>a+x.q,0),tot=ls.reduce((a,x)=>a+x.q*x.it.p,0);
- $("bar").hidden=!n;$("total").textContent=dh(tot);$("count").textContent=T().items(n);$("review").innerHTML=CART_ICON+esc(T().order);store.set("talabia-cart-"+slug,cart)}
+ drawPanel(ls,n,tot);$("bar").hidden=!n;$("total").textContent=dh(tot);$("count").textContent=T().items(n);$("review").innerHTML=CART_ICON+esc(T().order);store.set("talabia-cart-"+slug,cart)}
 const entryOf=id=>{const it=byId(id);return it?(it.g||it.id):null};
 function setQ(id,q){if(q>0)cart[id]=Math.min(99,q);else delete cart[id]}
 
@@ -250,12 +321,12 @@ document.addEventListener("click",ev=>{const b=ev.target.closest("button,a");if(
  if(d.add){const e=entries.find(x=>x.id===d.add),it=e&&chosen(e);if(it&&!it.out){setQ(it.id,(cart[it.id]||0)+1);redrawCard(e.id)}return}
  if(d.inc||d.dec){const id=d.inc||d.dec;setQ(id,(cart[id]||0)+(d.inc?1:-1));redrawCard(entryOf(id));return}
  if(d.sinc||d.sdec){const id=d.sinc||d.sdec;setQ(id,(cart[id]||0)+(d.sinc?1:-1));drawBar();if(cartLines().length)openSheet();else closeSheet();return}
- if(b.id==="review"){openSheet();return}
+ if(b.id==="review"||b.id==="review2"||b.id==="review3"){openSheet();return}
  if(b.id==="close"){closeSheet();return}
  if(b.id==="sendOrder"){sendOrder();return}
  if(b.id==="send"){updateLink();setTimeout(()=>{cart={};store.set("talabia-cart-"+slug,cart);closeSheet()},400);return}
 });
-document.addEventListener("input",ev=>{if(ev.target.id==="q"){query=ev.target.value;const pos=ev.target.selectionStart;draw();const i=$("q");if(i){i.focus();i.setSelectionRange(pos,pos)}}
+document.addEventListener("input",ev=>{if(ev.target.id==="q"||ev.target.id==="hq"){query=ev.target.value;const tid=ev.target.id,pos=ev.target.selectionStart;draw();const i=$(tid);if(i){i.focus();i.setSelectionRange(pos,pos)}}
  else if(["fn","fp","fc","fa","fo"].includes(ev.target.id)){updateLink();if(ordErr){ordErr="";const e=document.querySelector(".err");if(e)e.remove()}}});
 $("sheet").addEventListener("click",ev=>{if(ev.target.id==="sheet")closeSheet()});
 document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$("sheet").hidden)closeSheet()});
