@@ -609,6 +609,8 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 .pth,.psdesk,.pst,.cmanage,.cth,.cnote,.cr-av,.cr-n,.cr-fee,.ksub,.cmock,.tmtitle,.tmempty{display:none}
 .duecard,.cdhead,.tmf,.tmcol{display:contents}
 .cdhead h2{display:none}
+.cukp,.cu-av,.cu-city,.cu-n,.cu-view{display:none}
+.cucard,.cu-id{display:contents}
 .ph-brand .crown{font-size:.9em}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
@@ -877,6 +879,34 @@ body.desk main[data-v=team] .tmrow .tmroles{grid-column:auto;flex-wrap:nowrap}
 body.desk main[data-v=team] .tmrow .btn.link{grid-column:auto;justify-self:end}
 body.desk main[data-v=team] .row2{display:grid;grid-template-columns:1fr;gap:10px}
 body.desk main[data-v=team] .tmf .btn{width:100%}
+/* Customers */
+body.desk main[data-v=customers]{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+body.desk main[data-v=customers] .phead h1{font-size:34px}
+body.desk main[data-v=customers] .psold{display:none}
+body.desk main[data-v=customers] .psdesk{display:block;font-size:16px;margin-top:6px}
+body.desk main[data-v=customers] .cukp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+body.desk main[data-v=customers] .cukp .kpi{display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:18px}
+body.desk main[data-v=customers] .cukp .kpi strong{font-size:32px}
+body.desk main[data-v=customers] .cukp .ski{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent);flex:none}
+body.desk main[data-v=customers] .cukp .ski svg{width:30px;height:30px}
+body.desk main[data-v=customers] .cucard{display:flex;flex-direction:column;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px}
+body.desk main[data-v=customers] .cucard .tmtitle{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
+body.desk main[data-v=customers] .tmcount{background:var(--accent-soft);color:var(--accent);border-radius:99px;font-size:13.5px;padding:2px 11px}
+body.desk main[data-v=customers] .cucard .order{border:1px solid var(--line)!important;box-shadow:none}
+body.desk main[data-v=customers] .cucard input{max-width:none;padding:14px 16px;border-radius:12px}
+body.desk main[data-v=customers] .cucard .list{display:flex;flex-direction:column;gap:12px}
+body.desk main[data-v=customers] .cucard .order{display:grid;grid-template-columns:64px minmax(0,2fr) 120px minmax(0,1fr) minmax(0,1.3fr) 140px;gap:0 16px;align-items:center;padding:16px 20px;border-radius:16px;text-align:start;width:100%}
+body.desk main[data-v=customers] .cucard .order>*{grid-row:1;min-width:0}
+body.desk main[data-v=customers] .cu-av{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:20px;grid-column:1}
+body.desk main[data-v=customers] .cu-id{display:flex;flex-direction:column;gap:4px;grid-column:2}
+body.desk main[data-v=customers] .cu-id b{font-size:17px}
+body.desk main[data-v=customers] .cu-city{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:14px}
+body.desk main[data-v=customers] .cu-city svg{width:16px;height:16px}
+body.desk main[data-v=customers] .cu-n{display:inline-flex;grid-column:3;justify-self:start;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:14px;padding:6px 16px;border-radius:999px}
+body.desk main[data-v=customers] .cucard .order .price{grid-column:4;justify-self:start;font-size:18px;font-weight:800;position:static}
+body.desk main[data-v=customers] .cucard .order .info{display:none}
+body.desk main[data-v=customers] .cucard .order .cu-last{grid-column:5;font-size:14px;color:var(--muted)}
+body.desk main[data-v=customers] .cu-view{display:inline-flex;grid-column:6;justify-self:end;border:1px solid var(--accent);color:var(--accent);border-radius:12px;padding:10px 18px;font-weight:700;font-size:14.5px}
 body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
@@ -2809,14 +2839,15 @@ function customersList(){const m={};
  return Object.values(m).sort((a,b)=>b.last-a.last)}
 function custRows(){const q=norm(custQ),bl=SH_().blocked||{};
  const list=customersList().filter(c=>!q||norm(c.name+" "+c.phone+" "+c.city).includes(q));
- return list.length?list.map(c=>`<button type="button" class="order" data-cust="${esc(c.phone)}"><b>${bl[c.phone]?"⛔ ":""}${esc(c.name)}</b><span class="price">${dh(c.spent)}</span>
-  <span class="info">${esc(c.city)} · ${c.n} order${c.n===1?"":"s"}${c.refused?` · <span class="flag">${c.refused} refused</span>`:""}</span><span class="hint">${ago(c.last)}</span></button>`).join(""):`<div class="empty">${SH_().orders.length?"No customer matches your search.":"Customers appear here after your first order."}</div>`}
+ return list.length?list.map(c=>`<button type="button" class="order" data-cust="${esc(c.phone)}"><span class="cu-av">${esc((c.name||"?").trim().slice(0,1).toUpperCase())}</span><span class="cu-id"><b>${bl[c.phone]?"⛔ ":""}${esc(c.name)}</b><small class="cu-city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>${esc(c.city)}</small></span><span class="cu-n">${c.n} ${LL({en:c.n===1?"order":"orders",fr:c.n===1?"commande":"commandes",ar:c.n===1?"طلب":"طلبات"})}</span><span class="price" dir="ltr">${dh(c.spent)}</span>
+  <span class="info">${esc(c.city)} · ${c.n} order${c.n===1?"":"s"}${c.refused?` · <span class="flag">${c.refused} refused</span>`:""}</span><span class="hint cu-last">${ago(c.last)}</span><span class="cu-view">${LL({en:"View profile",fr:"Voir le profil",ar:"عرض الملف"})}</span></button>`).join(""):`<div class="empty">${SH_().orders.length?"No customer matches your search.":"Customers appear here after your first order."}</div>`}
 function vCustomers(){
  if(!proActive())return proTeaser("customers");
  const list=customersList(),bl=Object.keys(SH_().blocked||{}).length;
- return backBtn()+`<div><h1>Customers</h1><p class="sub">${list.length} customer${list.length===1?"":"s"}${bl?` · ${bl} on your don't-deliver list`:""}</p></div>
- <input id="custSearch" type="search" placeholder="Search a name, phone or city" value="${esc(custQ)}" autocomplete="off">
- <div class="list" id="custList">${custRows()}</div>`}
+ return backBtn()+`<div class="phead"><h1>Customers</h1><p class="sub psold">${list.length} customer${list.length===1?"":"s"}${bl?` · ${bl} on your don't-deliver list`:""}</p><p class="sub psdesk">${LL({en:"Get to know your shop's customers and follow their orders easily",fr:"Connaissez les clients de votre boutique et suivez leurs commandes facilement",ar:"تعرف على زبناء متجرك وتبع طلباتهم بسهولة"})}</p></div>
+ <div class="cukp"><div class="kpi"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3 3 0 0 1 0 5.5M18 14.8c1.8.6 3 2.4 3 5.2"/></svg></span><div><span>${LL({en:"Total customers",fr:"Total des clients",ar:"مجموع الزبناء"})}</span><strong>${list.length}</strong></div></div><div class="kpi"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h3"/></svg></span><div><span>${LL({en:"Total orders",fr:"Total des commandes",ar:"مجموع الطلبات"})}</span><strong>${list.reduce((a,c)=>a+c.n,0)}</strong></div></div><div class="kpi"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><span>${LL({en:"Cities",fr:"Villes",ar:"المدن"})}</span><strong>${new Set(list.map(c=>c.city)).size}</strong></div></div></div>
+ <div class="cucard"><div class="tmtitle">${LL({en:"Customers list",fr:"Liste des clients",ar:"لائحة الزبناء"})}<span class="tmcount">${list.length}</span></div><input id="custSearch" type="search" placeholder="Search a name, phone or city" value="${esc(custQ)}" autocomplete="off">
+ <div class="list" id="custList">${custRows()}</div></div>`}
 function vCustomer(){
  if(!proActive())return vCustomers();
  const ph=route.phone,c=customersList().find(x=>x.phone===ph);if(!c)return vCustomers();
