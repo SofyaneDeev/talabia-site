@@ -603,7 +603,7 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 }
 </style>
 <style id="desk">/* Talabia web (computer) layout. Only used by /siteweb. Same app, same account; wide screens get a sidebar and wider pages. */
-.deskbrand,.xsep,.xtra,.deskhero{display:none}
+.deskbrand,.xsep,.xtra,.deskhero,.lhead{display:none}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
 body.desk .app{max-width:none;margin:0 0 0 252px;border:0;min-height:100vh}
@@ -630,13 +630,63 @@ body.desk nav .xtra{display:flex;font-weight:500;color:var(--muted)}
 body.desk header{padding-inline:36px;justify-content:flex-end;gap:12px}
 body.desk header .brand{display:none}
 body.desk main{max-width:820px;margin:0 auto;padding:28px 36px 56px}
-body.desk main[data-v=today],body.desk main[data-v=orders],body.desk main[data-v=products],body.desk main[data-v=cash],body.desk main[data-v=reports],body.desk main[data-v=account]{max-width:1200px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;align-items:start}
+body.desk main[data-v=orders],body.desk main[data-v=products],body.desk main[data-v=cash],body.desk main[data-v=reports],body.desk main[data-v=account]{max-width:1200px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;align-items:start}
 body.desk main[data-v]>*{grid-column:1/-1;min-width:0}
-body.desk main[data-v=today]>.sumcard,body.desk main[data-v=today]>.hcard:not(.lcard){grid-column:span 1}
 body.desk main[data-v=reports]>.card,body.desk main[data-v=account]>.card{grid-column:span 1}
 body.desk main[data-v=orders] .list,body.desk main[data-v=cash] .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:12px}
 body.desk main[data-v=orders] .chips{flex-wrap:wrap;overflow:visible}
 body.desk main[data-v=today] .tools{grid-template-columns:repeat(4,1fr)}
+/* Home (dashboard) */
+body.desk main[data-v=today]{max-width:1200px;gap:22px}
+body.desk main[data-v=today] .hello h1{font-size:30px}
+body.desk main[data-v=today] .hello .sub{font-size:15px}
+body.desk main[data-v=today] .sumcard{background:none;border:0;border-radius:0;overflow:visible;padding:0}
+body.desk main[data-v=today] .datechip{display:inline-flex;width:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 14px;margin-bottom:14px}
+body.desk main[data-v=today] .datechip .chev{margin-inline-start:6px}
+body.desk main[data-v=today] .sumgrid{gap:18px}
+body.desk main[data-v=today] .sum{display:grid;grid-template-columns:68px auto 1fr;column-gap:16px;row-gap:3px;align-items:center;text-align:start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 1px 2px rgba(0,0,0,.03);transition:box-shadow .15s,transform .15s}
+body.desk main[data-v=today] .sum:hover{box-shadow:0 10px 24px -14px rgba(15,107,79,.35);transform:translateY(-1px)}
+body.desk main[data-v=today] .sum+.sum{border-inline-start:1px solid var(--line)}
+body.desk main[data-v=today] .sum .sic{grid-row:1/4;grid-column:1;width:68px;height:68px;border-radius:18px;margin:0}
+body.desk main[data-v=today] .sum .sic svg{width:32px;height:32px}
+body.desk main[data-v=today] .sum .sl{grid-column:2/4;grid-row:1;font-size:14.5px}
+body.desk main[data-v=today] .sum strong{grid-column:2/4;grid-row:2;font-size:36px}
+body.desk main[data-v=today] .sum .tr,body.desk main[data-v=today] .sum .tr0{grid-column:2;grid-row:3}
+body.desk main[data-v=today] .sum>.tr0,body.desk main[data-v=today] .sum>.trl{grid-column:2/4;grid-row:3}
+body.desk main[data-v=today] .sum>.tr+.trl{grid-column:3}
+body.desk main[data-v=today] .hcard{padding:20px 22px;border-radius:20px}
+body.desk main[data-v=today] .sts{gap:16px;margin-top:16px}
+body.desk main[data-v=today] .st{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:2px;align-items:center;text-align:start;padding:18px 20px;border-radius:16px;background:var(--soft)}
+body.desk main[data-v=today] .st .si{grid-row:1/3;grid-column:1}
+body.desk main[data-v=today] .st .si svg{width:34px;height:34px}
+body.desk main[data-v=today] .st .sl{grid-column:2;min-height:0;font-size:14px}
+body.desk main[data-v=today] .st .sb{grid-column:2;padding:0}
+body.desk main[data-v=today] .st strong{font-size:28px}
+body.desk main[data-v=today] .tools{gap:18px}
+body.desk main[data-v=today] .tool{padding:20px 16px;align-items:center;text-align:center;border-radius:18px;gap:6px}
+body.desk main[data-v=today] .tool .ti{margin-bottom:4px}
+body.desk main[data-v=today] .lcard{padding:0;overflow:hidden}
+body.desk main[data-v=today] .lhead,body.desk main[data-v=today] .lrow{display:grid;grid-template-columns:56px minmax(150px,1.6fr) .7fr 1fr 1fr 1.1fr 110px;grid-template-areas:none;align-items:center;gap:0 12px;padding:12px 20px}
+body.desk main[data-v=today] .lhead{background:var(--bg);font-size:13px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--line)}
+body.desk main[data-v=today] .lrow{border-top:1px solid var(--line);padding-block:14px;transition:background .12s}
+body.desk main[data-v=today] .lrow:first-of-type{border-top:0}
+body.desk main[data-v=today] .lrow:hover{background:var(--bg)}
+body.desk main[data-v=today] .lrow>*,body.desk main[data-v=today] .lrow .lmain>*,body.desk main[data-v=today] .lrow .lpr>*{grid-area:auto;grid-row:1}
+body.desk main[data-v=today] .lrow .lmain,body.desk main[data-v=today] .lrow .lpr{display:contents}
+body.desk main[data-v=today] .lrow .av2{grid-column:1}
+body.desk main[data-v=today] .lrow .lmain b{grid-column:2;font-size:15px}
+body.desk main[data-v=today] .lrow .lno{grid-column:3;font-size:14px;color:var(--muted)}
+body.desk main[data-v=today] .lrow .lago{display:none}
+body.desk main[data-v=today] .lrow .lpr span{grid-column:4;font-size:13.5px;color:var(--muted)}
+body.desk main[data-v=today] .lrow .lpr b{grid-column:5;justify-self:start;font-size:15px}
+body.desk main[data-v=today] .lrow .pill{grid-column:6;justify-self:start;font-size:13px;padding:5px 12px}
+body.desk main[data-v=today] .lrow .chev{grid-column:7;justify-self:end;font-size:0;display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent);padding:8px 14px;border-radius:10px;font-weight:700}
+body.desk main[data-v=today] .lrow .chev::before{content:"";width:17px;height:17px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f6b4f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center/contain no-repeat}
+body.desk main[data-v=today] .lrow .chev::after{font-size:13.5px}
+html[lang=en] body.desk main[data-v=today] .lrow .chev::after{content:"View"}
+html[lang=fr] body.desk main[data-v=today] .lrow .chev::after{content:"Voir"}
+html[lang=ar] body.desk main[data-v=today] .lrow .chev::after{content:"عرض"}
+body.desk main[data-v=today] .hsec{margin-bottom:-8px}
 body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings],body.desk main[data-v=pro]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
@@ -1368,7 +1418,7 @@ ${limited()?"":`<button type="button" class="sum" data-tab="cash"><span class="s
  ${plan}
  ${toolsGrid()}
  <div class="hsec"><div class="hhead"><span class="ic g">${HI.list}</span><h2>Latest orders</h2></div><button type="button" class="btn link sm" data-filter-go="all">See all ›</button></div>
- <div class="hcard lcard">${rows}</div>`}
+ <div class="hcard lcard"><div class="lhead"><span></span><span>${({en:"Customer",fr:"Client",ar:"الزبون"})[LANG]||"Customer"}</span><span>${({en:"Order",fr:"Commande",ar:"الطلب"})[LANG]||"Order"}</span><span>${({en:"Products",fr:"Produits",ar:"المنتجات"})[LANG]||"Products"}</span><span>${({en:"Amount",fr:"Montant",ar:"المبلغ"})[LANG]||"Amount"}</span><span>${({en:"Status",fr:"Statut",ar:"الحالة"})[LANG]||"Status"}</span><span>${({en:"",fr:"",ar:""})[LANG]||""}</span></div>${rows}</div>`}
 function toolsGrid(){return `<div class="label">Tools</div>
  <div class="tools stagger">${TOOLS.filter(t=>!limited()||t.tab==="customers").map(t=>`<button type="button" class="tool" data-tab="${t.tab}"><span class="ti">${t.icon}</span><b>${t.name}</b><span>${t.sub}</span>${proActive()?"":`<em class="star">⭐ Pro</em>`}</button>`).join("")}</div>`}
 const TOOLS=[
