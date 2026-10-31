@@ -603,7 +603,8 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 }
 </style>
 <style id="desk">/* Talabia web (computer) layout. Only used by /siteweb. Same app, same account; wide screens get a sidebar and wider pages. */
-.deskbrand,.xsep,.xtra,.deskhero,.lhead{display:none}
+.deskbrand,.xsep,.xtra,.deskhero,.lhead,.sdesk,.sk-head,.sk-th,.sk-no,.sk-cu,.sk-ci,.sk-pr,.shiprow .pill,.ski,.sd-ic,.sd-note{display:none}
+.shipcard{display:contents}
 .ph-brand .crown{font-size:.9em}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
@@ -716,6 +717,53 @@ body.desk .pfi svg{width:30px;height:30px}
 body.desk main[data-v=pro] .card.pro:not(.prohero) ul{columns:2;column-gap:36px}
 body.desk .pf-help{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--accent-soft);border-radius:16px;padding:18px 24px;font-weight:700;color:var(--accent)}
 body.desk .pf-help a{color:var(--accent);font-weight:700;text-decoration:none}
+/* Shipping list */
+body.desk main[data-v=ship]{max-width:1200px;gap:22px}
+body.desk main[data-v=ship]>.back,body.desk main[data-v=ship]>.sold{display:none}
+body.desk main[data-v=ship]>.sdesk{display:block}
+body.desk main[data-v=ship] .skp{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+body.desk main[data-v=ship] .skp .kpi{display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:18px}
+body.desk main[data-v=ship] .skp .kpi strong{font-size:34px}
+body.desk main[data-v=ship] .ski{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;background:var(--accent-soft);color:var(--accent);flex:none}
+body.desk main[data-v=ship] .ski svg{width:30px;height:30px}
+body.desk main[data-v=ship] .shipcard{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px}
+body.desk main[data-v=ship] .sk-head,body.desk main[data-v=ship] .shipcard>.pl,body.desk main[data-v=ship] .shipcard>.empty{flex:0 0 100%}
+body.desk main[data-v=ship] .sk-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+body.desk main[data-v=ship] .sk-head h2{margin:0;font-size:22px}
+body.desk main[data-v=ship] .sk-badge{background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px}
+body.desk main[data-v=ship] .pl{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+body.desk main[data-v=ship] .sk-th,body.desk main[data-v=ship] .shiprow{display:grid;grid-template-columns:44px 90px 1.3fr 1fr 1.6fr 1fr 150px;align-items:center;gap:0 12px;padding:13px 18px;width:100%}
+body.desk main[data-v=ship] .sk-th{background:var(--bg);font-size:13.5px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--line)}
+body.desk main[data-v=ship] .sk-th span{display:block}
+body.desk main[data-v=ship] .ck2{background:none;border:0;padding:0;display:flex}
+body.desk main[data-v=ship] .ck2[aria-pressed="true"] .ck{border-color:var(--accent);background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/16px no-repeat}
+body.desk main[data-v=ship] .ck2 .ck{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);background:var(--surface)}
+body.desk main[data-v=ship] .shiprow{border-top:1px solid var(--line);min-height:72px}
+body.desk main[data-v=ship] .shiprow[aria-pressed="true"]{background:var(--accent-soft)}
+body.desk main[data-v=ship] .shiprow>*{grid-row:1}
+body.desk main[data-v=ship] .shiprow .ck{grid-column:1}
+body.desk main[data-v=ship] .shiprow .pln{display:none}
+body.desk main[data-v=ship] .sk-no,body.desk main[data-v=ship] .sk-cu,body.desk main[data-v=ship] .sk-ci,body.desk main[data-v=ship] .sk-pr{display:block;font-size:14.5px}
+body.desk main[data-v=ship] .sk-no{grid-column:2;font-weight:700}
+body.desk main[data-v=ship] .sk-cu{grid-column:3;display:flex;align-items:center;gap:10px;font-weight:700}
+body.desk main[data-v=ship] .sk-cu i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:14px}
+body.desk main[data-v=ship] .shiprow[aria-pressed="true"] .sk-cu i{background:#fff}
+body.desk main[data-v=ship] .sk-ci{grid-column:4}
+body.desk main[data-v=ship] .sk-pr{grid-column:5;white-space:pre-line;color:var(--muted);line-height:1.5;font-size:13.5px}
+body.desk main[data-v=ship] .shiprow .sp{grid-column:6;font-size:15px;justify-self:start}
+body.desk main[data-v=ship] .shiprow .pill{display:inline-flex;align-items:center;gap:6px;grid-column:7;justify-self:start;font-size:13px;padding:6px 12px;border-radius:999px}
+body.desk main[data-v=ship] .shiprow .pill .dot{position:static;width:7px;height:7px;min-width:0;padding:0;margin:0}
+body.desk main[data-v=ship] .shipcard>.btn.wa{width:auto;min-width:240px;padding-inline:28px}
+body.desk main[data-v=ship] .shipcard .catrow{display:flex;gap:12px;margin:0}
+body.desk main[data-v=ship] .shipcard>.btn.wa,body.desk main[data-v=ship] .shipcard .catrow{display:inline-flex}
+body.desk main[data-v=ship] .shipcard .catrow .btn{width:auto;min-width:150px}
+body.desk main[data-v=ship] .shipdone{display:grid;grid-template-columns:64px 1fr;column-gap:18px;row-gap:6px;align-items:center;padding:24px 28px;border-radius:20px}
+body.desk main[data-v=ship] .sd-ic{display:grid;place-items:center;grid-row:1/3;width:64px;height:64px;border-radius:50%;background:var(--accent-soft);color:var(--accent)}
+body.desk main[data-v=ship] .sd-ic svg{width:30px;height:30px}
+body.desk main[data-v=ship] .shipdone>b{grid-column:2;font-size:22px;font-family:var(--display)}
+body.desk main[data-v=ship] .shipdone>.hint{grid-column:2;font-size:15px}
+body.desk main[data-v=ship] .shipdone #shipDone{grid-column:1/-1;margin-top:12px;padding-block:16px;font-size:17px}
+body.desk main[data-v=ship] .sd-note{display:block;grid-column:1/-1;margin:2px 0 0;text-align:center;color:var(--muted);font-size:14px}
 body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
@@ -1553,14 +1601,14 @@ function vShip(){const all=shipAll();
  const shown=all.filter(o=>shipCar==="all"||(o.carrier||"")===shipCar),os=shipPicked(),tot=os.reduce((a,o)=>a+(+o.price||0),0);
  if(!all.length)return `${backBtn("orders","Orders")}<div><h1>Shipping list</h1></div><div class="empty">No confirmed orders to ship. Confirm your new orders first, then come back here.</div>`;
  const txt=shipText(os);
- return `${backBtn("orders","Orders")}<div><h1>Shipping list</h1><p class="sub">Confirmed orders to hand over to the delivery company. Untick the ones that are not leaving today.</p></div>
+ return `${backBtn("orders","Orders")}<div class="sold"><h1>Shipping list</h1><p class="sub">Confirmed orders to hand over to the delivery company. Untick the ones that are not leaving today.</p></div><div class="pdesk sdesk"><div class="crumb"><button type="button" data-tab="orders">Orders</button><span>/</span><b>Shipping list</b></div><h1>Shipping list</h1><p class="sub">${LL({en:"Prepare confirmed orders and hand them to the delivery company",fr:"Préparez les commandes confirmées et remettez-les à la société de livraison",ar:"جهز الطلبات المؤكدة وسلمها لشركة التوصيل"})}</p></div>
  ${cars.length>1?`<div class="chips"><button type="button" class="chip" data-shipcar="all" aria-pressed="${shipCar==="all"}">All <b>${all.length}</b></button>${cars.map(c=>`<button type="button" class="chip" data-shipcar="${esc(c)}" aria-pressed="${shipCar===c}">${esc(c)} <b>${all.filter(o=>o.carrier===c).length}</b></button>`).join("")}</div>`:""}
- <div class="kpis"><div class="kpi"><span>Packages</span><strong>${os.length}</strong></div><div class="kpi"><span>To collect</span><strong>${dh(tot)}</strong></div></div>
- <div class="pl">${shown.map(o=>{const on=!shipOff.has(o.id);return `<button type="button" class="shiprow" data-shipt="${o.id}" aria-pressed="${on}"><span class="ck" aria-hidden="true"></span><span class="pln"><b>${esc(o.name)} · ${esc(o.city)}</b><small>${esc(itemsLabel(itemsOf(o)))}</small></span><b class="sp" dir="ltr">${dh(o.price)}</b></button>`}).join("")}</div>
+ <div class="kpis skp"><div class="kpi"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg></span><div><span>Packages</span><strong>${os.length}</strong></div></div><div class="kpi"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M16 14.5h2"/></svg></span><div><span>To collect</span><strong dir="ltr">${dh(tot)}</strong></div></div></div>
+ <div class="shipcard"><div class="sk-head"><h2>${LL({en:"Orders ready to ship",fr:"Commandes prêtes à expédier",ar:"الطلبات الجاهزة للإرسال"})}</h2><span class="sk-badge">✓ ${os.length} ${LL({en:"selected",fr:"sélectionnée(s)",ar:"محددة"})}</span></div><div class="pl"><div class="sk-th"><button type="button" class="ck2" data-shipall="1" aria-label="Select all" aria-pressed="${shown.length>0&&shown.every(o=>!shipOff.has(o.id))}"><span class="ck"></span></button><span>${LL({en:"Order",fr:"Commande",ar:"الطلب"})}</span><span>${LL({en:"Customer",fr:"Client",ar:"الزبون"})}</span><span>${LL({en:"City",fr:"Ville",ar:"المدينة"})}</span><span>${LL({en:"Products",fr:"Produits",ar:"المنتجات"})}</span><span>${LL({en:"Amount",fr:"Montant",ar:"المبلغ"})}</span><span>${LL({en:"Status",fr:"Statut",ar:"الحالة"})}</span></div>${shown.map(o=>{const on=!shipOff.has(o.id);return `<button type="button" class="shiprow" data-shipt="${o.id}" aria-pressed="${on}"><span class="ck" aria-hidden="true"></span><span class="pln"><b>${esc(o.name)} · ${esc(o.city)}</b><small>${esc(itemsLabel(itemsOf(o)))}</small></span><b class="sp" dir="ltr">${dh(o.price)}</b><span class="sk-no" dir="ltr">#${esc(String(o.no||""))}</span><span class="sk-cu"><i>${esc((o.name||"?").trim().slice(0,1).toUpperCase())}</i>${esc(o.name)}</span><span class="sk-ci">${esc(o.city)}</span><span class="sk-pr">${esc(itemsLabel(itemsOf(o),"\n"))}</span><span class="pill s-confirmed"><i class="dot d-confirmed"></i>Ready to ship</span></button>`}).join("")}</div>
  ${os.length?`<a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener">Send on WhatsApp</a>
- <div class="catrow"><button type="button" class="btn ghost sm" data-copyval="${esc(txt)}" data-copymsg="List copied">Copy the list</button><button type="button" class="btn ghost sm" id="shipCsv">Excel file</button></div>
- <div class="card" style="gap:8px"><b>Packages handed over?</b><p class="hint" style="margin:0">Mark these orders as shipped in one tap.</p><button type="button" class="btn" id="shipDone">${os.length===1?"Mark 1 order as shipped":"Mark "+os.length+" orders as shipped"}</button></div>`
- :`<div class="empty">Tick at least one order.</div>`}`}
+ <div class="catrow"><button type="button" class="btn ghost sm" data-copyval="${esc(txt)}" data-copymsg="List copied">Copy the list</button><button type="button" class="btn ghost sm" id="shipCsv">Excel file</button></div></div>
+ <div class="card shipdone" style="gap:8px"><span class="sd-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4.5L21 12.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span><b>Packages handed over?</b><p class="hint" style="margin:0">Mark these orders as shipped in one tap.</p><button type="button" class="btn" id="shipDone">${os.length===1?"Mark 1 order as shipped":"Mark "+os.length+" orders as shipped"}</button><p class="sd-note">${LL({en:"This only updates the order status.",fr:"Cela met seulement à jour le statut de la commande.",ar:"هاد الإجراء كيحدّث حالة الطلب فقط."})}</p></div>`
+ :`<div class="empty">Tick at least one order.</div></div>`}`}
 const DEFAULT_TEMPLATES=[
  {id:"t-darija",name:"Darija",text:'Salam {name} 🌸\nMerci 3la la commande dyalek m3a {shop}:\n• {qty}{product}\n• Total: {total} DH (paiement à la livraison)\n• Adresse: {address}{city}\n\nWach n2akdo la commande? Jawbi b "Oui" 🙏'},
  {id:"t-fr",name:"Français",text:'Bonjour {name} 🌸\nMerci pour votre commande chez {shop} :\n• {qty}{product}\n• Total : {total} DH (paiement à la livraison)\n• Adresse : {address}{city}\n\nPouvez-vous confirmer la commande ? Répondez "Oui" 🙏'}];
@@ -3223,6 +3271,7 @@ if(el.id==="updDismiss"){try{localStorage.setItem("talabia-upd-dismiss",String(a
  if(el.id==="bulkGo"){bulkGo();return}
  if(el.id==="bulkUndo"){bulkUndo();return}
  if(d.shipcar){shipCar=d.shipcar;render();return}
+ if(d.shipall){const sh=shipAll().filter(o=>shipCar==="all"||(o.carrier||"")===shipCar),allOn=sh.every(o=>!shipOff.has(o.id));sh.forEach(o=>allOn?shipOff.add(o.id):shipOff.delete(o.id));render();return}
  if(d.shipt){const id=+d.shipt;shipOff.has(id)?shipOff.delete(id):shipOff.add(id);render();return}
  if(el.id==="shipCsv"){shipFile(shipPicked());return}
  if(el.id==="shipDone"){const os=shipPicked();if(!os.length)return;const prev=os.map(o=>[o.id,o.status]);os.forEach(o=>{o.status="shipped";stamp(o,"shipped");touch(o)});save();
