@@ -1204,7 +1204,7 @@ function syncStock(sh){if(!sh)return;const now=Date.now();
 const stockCls=p=>p.stock<=0?"out":p.stock<LOW?"low":"ok";
 const stockTxt=p=>p.stock<=0?"Out of stock":p.stock<LOW?`Only ${p.stock} left`:`${p.stock} in stock`;
 var goAfter=(()=>{try{const g=new URLSearchParams(location.search).get("go");return g==="pro"||g==="admin"?g:null}catch(e){return null}})();
-let route={tab:"today"},filter="all",authMode=S.accounts.length||goAfter?"login":"signup",editProd=null,priceTouched=false,newSrc="ig";
+let route={tab:"today"},filter="all",authMode=(()=>{try{const m=new URLSearchParams(location.search).get("mode");if(m==="signup"||m==="login")return m}catch(e){}return S.accounts.length||goAfter?"login":"signup"})(),editProd=null,priceTouched=false,newSrc="ig";
 const app=document.getElementById("app"),nav=document.getElementById("nav");
 /* =================== LANGUAGES (Français · العربية · English) ===================
    The screens are written in English; each text is swapped for the chosen language as it appears. */
@@ -3013,7 +3013,7 @@ function render(){
  document.body.classList.toggle("gate",!S.user);
  if(appUpd&&appUpd.force){nav.hidden=true;app.innerHTML=forceUpdateScreen();return}
  if(!S.user&&!langChosen()&&!goAfter){nav.hidden=true;app.innerHTML=vLang();return}
- if(!S.user&&!tourSeen()&&!goAfter){nav.hidden=true;app.innerHTML=vIntro();return}
+ if(!S.user&&!tourSeen()&&!goAfter&&!/[?&]mode=(login|signup)/.test(location.search)){nav.hidden=true;app.innerHTML=vIntro();return}
  if(!S.user){nav.hidden=true;app.innerHTML=(goAfter==="pro"?`<div class="aibox" style="margin:12px 16px 0">Log in to your shop to choose your Pro plan.</div>`:"")+vLogin(route.err);route.err=null;return}
  if(goAfter&&S.user){if(goAfter==="pro")route={tab:"pro"};else if(goAfter==="admin")route={tab:"admin"};goAfter=null}   // link like talabiaapp.ma/app/?go=pro from the website
  syncStock(SH_());
