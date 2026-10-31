@@ -158,12 +158,49 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justif
 footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}.reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---- new: computer version + special features ---- */
+:root{--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.4'%3E%3Crect x='17' y='17' width='22' height='22'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E")}
+.hero{position:relative}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 70% at 85% 30%,rgba(15,107,79,.10),transparent 70%),radial-gradient(40% 50% at 8% 90%,rgba(233,168,40,.12),transparent 70%)}
+.hero .wrap{position:relative}
+.newpill{display:inline-flex;align-items:center;gap:10px;margin:14px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 14px 5px 5px;text-decoration:none;font-weight:700;font-size:14px;box-shadow:0 8px 20px -14px rgba(0,0,0,.4)}
+.newpill b,.chip.new{background:linear-gradient(180deg,#ffd76a,#f2b632);color:#5a3d00;border-radius:999px;font-weight:800;font-size:12px;padding:3px 10px;letter-spacing:.02em}
+.newpill:hover{border-color:#c9c8bf}
+html[dir=rtl] .newpill{padding:5px 5px 5px 14px}
+.band{position:relative;overflow:hidden;background:linear-gradient(180deg,#e9f4ee,#f3f2ee)}
+.band::before{content:"";position:absolute;inset:0;opacity:.05;background:var(--accent);-webkit-mask:var(--pat);mask:var(--pat);pointer-events:none}
+.band>.wrap{position:relative}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 22px}
+.tabs button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 18px;font:700 14.5px var(--body);color:var(--muted);cursor:pointer;min-height:42px}
+.tabs button:hover{color:var(--ink);border-color:#c9c8bf}
+.tabs button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.browser{max-width:1040px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 50px 90px -40px rgba(15,107,79,.55),0 0 0 1px rgba(0,0,0,.03)}
+.browser .bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#eceae3;border-bottom:1px solid var(--line);direction:ltr}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#d6d3c9}.browser .bar i:nth-child(1){background:#e8806f}.browser .bar i:nth-child(2){background:#e9c25a}.browser .bar i:nth-child(3){background:#7ec58f}
+.browser .bar span{margin-inline-start:14px;background:#fff;border-radius:8px;padding:3px 14px;font-size:12.5px;color:var(--muted);font-weight:600}
+.browser img{width:100%;height:auto;aspect-ratio:1280/800;background:var(--bg)}
+.webpts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1040px;margin:26px auto 0}
+.webpts div{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.webpts b{display:block;font:700 16.5px var(--display);margin-bottom:4px}.webpts span{color:var(--muted);font-size:15px}
+.center{justify-content:center;margin-top:28px}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;position:relative;transition:transform .2s,box-shadow .2s}
+.spec:hover{transform:translateY(-4px);box-shadow:0 26px 40px -26px rgba(15,107,79,.5)}
+.spec .ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;margin-bottom:16px}.spec .ic svg{width:26px;height:26px}
+.spec h3{font:700 18.5px/1.3 var(--display);margin:0 0 8px}.spec p{margin:0;color:var(--muted);font-size:15.5px}
+.chips{position:absolute;top:18px;inset-inline-end:18px;display:flex;gap:6px}
+.chip{font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px}
+.chip.pro{background:var(--accent-soft);color:var(--accent)}
+body.ar .newpill b,body.ar .chip{letter-spacing:0}
+@media (max-width:980px){.specs{grid-template-columns:repeat(2,1fr)}.webpts{grid-template-columns:1fr}}
+@media (max-width:560px){.specs{grid-template-columns:1fr}.tabs button{padding:8px 13px;font-size:13.5px}}
 </style>
 </head>
 <body>
 <header class="top" id="top"><div class="wrap">
  <a class="logo" href="#" aria-label="Talabia">Talabia<i>.</i></a>
- <nav aria-label="Menu"><a href="#how" data-i="nav.how"></a><a href="#features" data-i="nav.features"></a><a href="#pricing" data-i="nav.pricing"></a><a href="#faq" data-i="nav.faq"></a></nav>
+ <nav aria-label="Menu"><a href="#how" data-i="nav.how"></a><a href="#features" data-i="nav.features"></a><a href="#web" data-i="nav.web"></a><a href="#pricing" data-i="nav.pricing"></a><a href="#faq" data-i="nav.faq"></a></nav>
  <div class="langs" role="group" aria-label="Langue / اللغة"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div>
 </div></header>
 
@@ -171,6 +208,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}fo
 <section class="hero"><div class="wrap">
  <div>
   <span class="eyebrow">🇲🇦 <span data-i="hero.eyebrow"></span></span>
+  <div><a class="newpill" href="#web"><b data-i="new.badge"></b><span data-i="new.pill"></span> →</a></div>
   <h1 data-i="hero.title" data-html></h1>
   <p class="lead" data-i="hero.lead"></p>
   <div class="ctas">
@@ -214,6 +252,28 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}fo
   <div class="feat reveal"><div class="ic k7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div><h3 data-i="f.6t"></h3><p data-i="f.6p"></p></div>
   <div class="feat reveal"><div class="ic k8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M9 20V5M14 20v-8M19 20V8M2 20h20"/></svg></div><h3 data-i="f.7t"></h3><p data-i="f.7p"></p></div>
   <div class="feat reveal"><div class="ic k6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.8 3 2.6 3.5 5.2"/></svg></div><h3 data-i="f.8t"></h3><p data-i="f.8p"></p></div>
+ </div>
+</div></section>
+
+<section id="web" class="band"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="web.tag"></span><h2 data-i="web.title"></h2><p data-i="web.sub"></p></div>
+ <div class="tabs reveal" role="group" aria-label="Pages">
+  <button type="button" data-w="home" aria-pressed="true" data-i="wt.home"></button><button type="button" data-w="new" aria-pressed="false" data-i="wt.new"></button><button type="button" data-w="products" aria-pressed="false" data-i="wt.products"></button><button type="button" data-w="cash" aria-pressed="false" data-i="wt.cash"></button><button type="button" data-w="customers" aria-pressed="false" data-i="wt.customers"></button><button type="button" data-w="team" aria-pressed="false" data-i="wt.team"></button>
+ </div>
+ <div class="browser reveal"><div class="bar"><i></i><i></i><i></i><span>talabiaapp.ma/siteweb</span></div><img id="webShot" data-shot="web-home" alt="" loading="lazy" width="1280" height="800"></div>
+ <div class="webpts reveal"><div><b data-i="web.1t"></b><span data-i="web.1p"></span></div><div><b data-i="web.2t"></b><span data-i="web.2p"></span></div><div><b data-i="web.3t"></b><span data-i="web.3p"></span></div></div>
+ <div class="ctas center"><a class="btn primary" href="siteweb/" data-i="hero.web"></a></div>
+</div></section>
+
+<section id="new"><div class="wrap">
+ <div class="sec-h reveal"><span class="tag" data-i="sp.tag"></span><h2 data-i="sp.title"></h2><p data-i="sp.sub"></p></div>
+ <div class="specs">
+ <div class="spec reveal"><div class="chips"><span class="chip new" data-i="new.badge"></span></div><div class="ic k1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></svg></div><h3 data-i="s1t"></h3><p data-i="s1p"></p></div>
+ <div class="spec reveal"><div class="chips"><span class="chip new" data-i="new.badge"></span><span class="chip pro">Pro</span></div><div class="ic k4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 9h4.5L21 12.5V16h-8"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></div><h3 data-i="s2t"></h3><p data-i="s2p"></p></div>
+ <div class="spec reveal"><div class="chips"><span class="chip pro">Pro</span></div><div class="ic k6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div><h3 data-i="s3t"></h3><p data-i="s3p"></p></div>
+ <div class="spec reveal"><div class="chips"><span class="chip pro">Pro</span></div><div class="ic k2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5M18 8v6M15 11h6"/></svg></div><h3 data-i="s4t"></h3><p data-i="s4p"></p></div>
+ <div class="spec reveal"><div class="chips"><span class="chip pro">Pro</span></div><div class="ic k3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></div><h3 data-i="s5t"></h3><p data-i="s5p"></p></div>
+ <div class="spec reveal"><div class="chips"><span class="chip new" data-i="new.badge"></span></div><div class="ic k8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></div><h3 data-i="s6t"></h3><p data-i="s6p"></p></div>
  </div>
 </div></section>
 
@@ -275,7 +335,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}footer a{text-decoration:none}fo
 // When the app is public on Google Play, set PLAY_LIVE to true.
 const PLAY_LIVE=false,PLAY_URL="https://play.google.com/store/apps/details?id=ma.talabia.app",WA="212614840696";
 const T={
-fr:{"nav.how":"Comment ça marche","nav.features":"Fonctions","nav.pricing":"Tarifs","nav.faq":"Questions",
+fr:{"nav.how":"Comment ça marche","nav.web":"Sur ordinateur","new.badge":"Nouveau","new.pill":"La version ordinateur est arrivée","web.tag":"Sur ordinateur","web.title":"Votre boutique aussi sur grand écran","web.sub":"Même compte, mêmes données. Ouvrez Talabia dans votre navigateur pour gérer commandes, stock et caisse plus confortablement.","wt.home":"Accueil","wt.new":"Nouvelle commande","wt.products":"Produits","wt.cash":"Caisse","wt.customers":"Clients","wt.team":"Équipe","web.1t":"Un seul compte partout","web.1p":"Téléphone et ordinateur sont toujours synchronisés.","web.2t":"Plus de place pour travailler","web.2p":"Listes, tableaux et formulaires sur grand écran.","web.3t":"Rien à installer","web.3p":"Ouvrez talabiaapp.ma/siteweb et connectez-vous.","sp.tag":"Nouveautés","sp.title":"Des fonctions pensées pour le vendeur marocain","sp.sub":"Paiement à la livraison, refus, livreurs : Talabia s'occupe de tout ça.","s1t":"Catalogue avec panier","s1p":"Vos clients ajoutent au panier et commandent depuis votre lien, sur téléphone comme sur ordinateur.","s2t":"Envoi à Sendit en un clic","s2p":"Connectez votre compte Sendit et envoyez le colis sans le ressaisir. D'autres sociétés sur demande.","s3t":"Liste « Ne pas livrer »","s3p":"Un client a refusé deux fois ? Talabia vous prévient dès sa prochaine commande.","s4t":"Équipe et rôles","s4p":"Invitez vos aides avec « Commandes seulement » ou « Accès complet ».","s5t":"Vos propres messages","s5p":"Écrivez la confirmation en darija, français ou arabe. Nom, produit et prix se remplissent seuls.","s6t":"Trois langues","s6p":"Arabe/darija, français et anglais, avec affichage de droite à gauche.","nav.features":"Fonctions","nav.pricing":"Tarifs","nav.faq":"Questions",
 "hero.eyebrow":"Fait au Maroc, pour les vendeurs en ligne","hero.title":"Vos commandes Instagram et WhatsApp, <em>au même endroit</em>.",
 "hero.lead":"Collez le message du client, Talabia remplit la commande. Confirmez en un clic, suivez le colis jusqu'au paiement et sachez toujours ce que les livreurs vous doivent.",
 "hero.web":"Ouvrir la version web","play.small":"BIENTÔT SUR","play.small.live":"DISPONIBLE SUR","play.soon":"Talabia est en test sur Google Play.","play.join":"Rejoindre le test →",
@@ -305,13 +365,13 @@ fr:{"nav.how":"Comment ça marche","nav.features":"Fonctions","nav.pricing":"Tar
 "q.1":"Est-ce que j'ai besoin d'un site web ?","q.1a":"Non. Talabia vous donne un catalogue en ligne avec un lien à mettre dans votre bio Instagram, TikTok ou Facebook. Vos clients commandent depuis ce lien.",
 "q.2":"Ça marche avec quelles sociétés de livraison ?","q.2a":"Avec toutes : Ozon Express, Sendit, Amana, Cathedis, Coliix, Speedaf ou n'importe quelle autre. Vous indiquez le prix de chaque livraison et Talabia calcule ce qu'on vous doit.",
 "q.3":"Mes données sont-elles en sécurité ?","q.3a":"Oui. Votre boutique est enregistrée en ligne et protégée par votre mot de passe. Nous ne vendons pas vos données et vous pouvez tout supprimer depuis l'application.",
-"q.4":"Mon équipe peut-elle l'utiliser ?","q.4a":"Oui, avec Pro. Invitez vos aides par numéro de téléphone et choisissez « Commandes seulement » ou « Accès complet ».",
-"q.5":"Faut-il un iPhone ou un ordinateur ?","q.5a":"Non. Talabia fonctionne sur Android, et la version web s'ouvre sur n'importe quel téléphone ou ordinateur.",
+"q.4":"Mon équipe peut-elle l'utiliser ?","q.4a":"Oui, avec Pro. Invitez vos aides par e-mail et choisissez « Commandes seulement » ou « Accès complet ».",
+"q.5":"Faut-il un iPhone ou un ordinateur ?","q.5a":"Non. Talabia fonctionne sur Android, et la version web s'ouvre sur n'importe quel téléphone ou ordinateur, avec une vraie mise en page pour grand écran.",
 "q.6":"Comment payer Pro ?","q.6a":"Par CashPlus ou virement bancaire, puis vous envoyez le reçu depuis l'application. Pro est activé rapidement.",
 "end.title":"Prêt à gagner du temps sur chaque commande ?","end.sub":"Créez votre boutique en 1 minute. Une question ? Écrivez-nous sur WhatsApp.","end.wa":"Nous écrire sur WhatsApp",
 "foot.made":"Fait à Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Politique de confidentialité","foot.delete":"Supprimer mon compte","foot.terms":"Conditions d'utilisation",
 "wa.test":"Salam, je voudrais tester Talabia sur Google Play.","wa.pro":"Salam, je voudrais passer à Talabia Pro.","wa.hello":"Salam, j'ai une question sur Talabia."},
-ar:{"nav.how":"كيفاش كيخدم","nav.features":"المميزات","nav.pricing":"الأثمنة","nav.faq":"الأسئلة",
+ar:{"nav.how":"كيفاش كيخدم","nav.web":"فالكمبيوتر","new.badge":"جديد","new.pill":"النسخة ديال الكمبيوتر وصلات","web.tag":"فالكمبيوتر","web.title":"المتجر ديالك حتى فالشاشة الكبيرة","web.sub":"نفس الحساب ونفس المعلومات. حل Talabia فالمتصفح باش تسير الطلبيات، المخزون والمداخيل براحة.","wt.home":"الرئيسية","wt.new":"طلبية جديدة","wt.products":"المنتجات","wt.cash":"المداخيل","wt.customers":"الزبناء","wt.team":"الفريق","web.1t":"حساب واحد فكلشي","web.1p":"التيليفون والكمبيوتر ديما مرتبطين.","web.2t":"بلاصة كثر باش تخدم","web.2p":"اللوائح والجداول والاستمارات فشاشة كبيرة.","web.3t":"ما كاين والو تحمل","web.3p":"حل talabiaapp.ma/siteweb ودخل.","sp.tag":"الجديد","sp.title":"ميزات مصاوبة للبائع المغربي","sp.sub":"الأداء عند التوصيل، الرفض، الليفرور: Talabia كيهتم بهاد كلشي.","s1t":"كتالوغ بسلة","s1p":"الزبناء كيزيدو للسلة وكيطلبو من الرابط ديالك، فالتيليفون ولا الكمبيوتر.","s2t":"صيفط لـ Sendit بضغطة وحدة","s2p":"ربط حساب Sendit ديالك وصيفط الكولي بلا ما تعاود تكتب. شركات أخرى كتطلبها.","s3t":"لائحة «ما توصلش»","s3p":"زبون رفض جوج مرات؟ Talabia كتنبهك فالطلبية الجاية ديالو.","s4t":"الفريق والصلاحيات","s4p":"عرض على المساعدين ب«الطلبيات فقط» ولا «صلاحية كاملة».","s5t":"الرسائل ديالك","s5p":"كتب التأكيد بالدارجة، الفرنسية ولا العربية. السمية والمنتج والثمن كيتعمرو بوحدهم.","s6t":"تلات لغات","s6p":"العربية/الدارجة، الفرنسية والإنجليزية، مع الكتابة من اليمين لليسار.","nav.features":"المميزات","nav.pricing":"الأثمنة","nav.faq":"الأسئلة",
 "hero.eyebrow":"مصنوع فالمغرب، للبائعين أونلاين","hero.title":"الطلبيات ديال إنستغرام وواتساب، <em>فبلاصة وحدة</em>.",
 "hero.lead":"لصق رسالة الزبون، و Talabia كيعمر الطلبية. أكدها بضغطة وحدة، تابع الكولي حتى للخلاص، وعرف ديما شحال مدينين ليك شركات التوصيل.",
 "hero.web":"حل النسخة ديال الويب","play.small":"قريباً على","play.small.live":"متوفر على","play.soon":"Talabia فالتجربة على Google Play.","play.join":"دخل للتجربة ←",
@@ -341,13 +401,13 @@ ar:{"nav.how":"كيفاش كيخدم","nav.features":"المميزات","nav.pri
 "q.1":"واش محتاج سيت ويب؟","q.1a":"لا. Talabia كيعطيك كتالوج أونلاين برابط تحطو فالبيو ديال إنستغرام، تيك توك ولا فيسبوك. الزبناء كيطلبو من هاد الرابط.",
 "q.2":"مع أش من شركات التوصيل كيخدم؟","q.2a":"مع كاملين: Ozon Express، Sendit، Amana، Cathedis، Coliix، Speedaf ولا أي شركة أخرى. كتحط ثمن كل توصيل و Talabia كيحسب شحال مدينين ليك.",
 "q.3":"واش المعطيات ديالي فأمان؟","q.3a":"إيه. المتجر ديالك محفوظ أونلاين ومحمي بكلمة السر ديالك. ما كنبيعوش المعطيات ديالك وتقدر تمسح كلشي من التطبيق.",
-"q.4":"واش الفريق ديالي يقدر يستعملو؟","q.4a":"إيه، مع Pro. عرض على المساعدين برقم الهاتف واختار «الطلبيات فقط» ولا «صلاحية كاملة».",
-"q.5":"واش خاصني آيفون ولا بيسي؟","q.5a":"لا. Talabia كيخدم على أندرويد، والنسخة ديال الويب كتحل فأي تيليفون ولا بيسي.",
+"q.4":"واش الفريق ديالي يقدر يستعملو؟","q.4a":"إيه، مع Pro. عرض على المساعدين بالإيميل واختار «الطلبيات فقط» ولا «صلاحية كاملة».",
+"q.5":"واش خاصني آيفون ولا بيسي؟","q.5a":"لا. Talabia كيخدم على أندرويد، والنسخة ديال الويب كتحل فأي تيليفون ولا بيسي، وفالبيسي عندها تصميم مخصص للشاشة الكبيرة.",
 "q.6":"كيفاش نخلص Pro؟","q.6a":"بـ CashPlus ولا تحويل بنكي، ومن بعد كتصيفط الوصل من التطبيق. Pro كيتفعل بسرعة.",
 "end.title":"واجد تربح الوقت فكل طلبية؟","end.sub":"صاوب المتجر ديالك فدقيقة. عندك سؤال؟ كتب لينا فواتساب.","end.wa":"كتب لينا فواتساب",
 "foot.made":"مصنوع فالدار البيضاء 🇲🇦 · © 2026 Talabia","foot.privacy":"سياسة الخصوصية","foot.delete":"مسح الحساب ديالي","foot.terms":"شروط الاستخدام",
 "wa.test":"السلام، بغيت نجرب Talabia على Google Play.","wa.pro":"السلام، بغيت ندوز لـ Talabia Pro.","wa.hello":"السلام، عندي سؤال على Talabia."},
-en:{"nav.how":"How it works","nav.features":"Features","nav.pricing":"Pricing","nav.faq":"FAQ",
+en:{"nav.how":"How it works","nav.web":"On computer","new.badge":"New","new.pill":"The computer version is here","web.tag":"On your computer","web.title":"Your shop on a big screen too","web.sub":"Same account, same data. Open Talabia in your browser to manage orders, stock and cash more comfortably.","wt.home":"Home","wt.new":"New order","wt.products":"Products","wt.cash":"Cash","wt.customers":"Customers","wt.team":"Team","web.1t":"One account everywhere","web.1p":"Your phone and computer always stay in sync.","web.2t":"More room to work","web.2p":"Lists, tables and forms on a big screen.","web.3t":"Nothing to install","web.3p":"Open talabiaapp.ma/siteweb and log in.","sp.tag":"What's new","sp.title":"Features made for Moroccan sellers","sp.sub":"Cash on delivery, refusals, couriers: Talabia takes care of it.","s1t":"Catalogue with a cart","s1p":"Customers add to the cart and order from your link, on phone or computer.","s2t":"Send to Sendit in one tap","s2p":"Connect your Sendit account and send the parcel without retyping it. Other companies on request.","s3t":"Don't-deliver list","s3p":"A customer refused twice? Talabia warns you on their next order.","s4t":"Team and roles","s4p":"Invite helpers with “Orders only” or “Full access”.","s5t":"Your own messages","s5p":"Write the confirmation in Darija, French or Arabic. Name, product and price fill themselves.","s6t":"Three languages","s6p":"Arabic/Darija, French and English, with full right-to-left layout.","nav.features":"Features","nav.pricing":"Pricing","nav.faq":"FAQ",
 "hero.eyebrow":"Made in Morocco, for online sellers","hero.title":"Your Instagram and WhatsApp orders, <em>in one place</em>.",
 "hero.lead":"Paste the customer's message and Talabia fills in the order. Confirm it in one tap, follow the package until you're paid, and always know what delivery companies owe you.",
 "hero.web":"Open the web version","play.small":"COMING SOON ON","play.small.live":"GET IT ON","play.soon":"Talabia is in testing on Google Play.","play.join":"Join the test →",
@@ -377,8 +437,8 @@ en:{"nav.how":"How it works","nav.features":"Features","nav.pricing":"Pricing","
 "q.1":"Do I need a website?","q.1a":"No. Talabia gives you an online catalogue with a link for your Instagram, TikTok or Facebook bio. Customers order from that link.",
 "q.2":"Which delivery companies does it work with?","q.2a":"All of them: Ozon Express, Sendit, Amana, Cathedis, Coliix, Speedaf or any other. You enter the price per delivery and Talabia counts what you're owed.",
 "q.3":"Is my data safe?","q.3a":"Yes. Your shop is saved online and protected by your password. We don't sell your data, and you can delete everything from the app.",
-"q.4":"Can my team use it?","q.4a":"Yes, with Pro. Invite helpers by phone number and choose \"Orders only\" or \"Full access\".",
-"q.5":"Do I need an iPhone or a computer?","q.5a":"No. Talabia works on Android, and the web version opens on any phone or computer.",
+"q.4":"Can my team use it?","q.4a":"Yes, with Pro. Invite helpers by email and choose “Orders only” or “Full access”.",
+"q.5":"Do I need an iPhone or a computer?","q.5a":"No. Talabia works on Android, and the web version opens on any phone or computer, with a proper big-screen layout.",
 "q.6":"How do I pay for Pro?","q.6a":"By CashPlus or bank transfer, then you send the receipt from the app. Pro is turned on quickly.",
 "end.title":"Ready to save time on every order?","end.sub":"Create your shop in 1 minute. A question? Write to us on WhatsApp.","end.wa":"Write to us on WhatsApp",
 "foot.made":"Made in Casablanca 🇲🇦 · © 2026 Talabia","foot.privacy":"Privacy policy","foot.delete":"Delete my account","foot.terms":"Terms of use",
@@ -394,7 +454,8 @@ function apply(){const t=T[L],h=document.documentElement;h.lang=L;h.dir=L==="ar"
  document.getElementById("soonNote").hidden=PLAY_LIVE;document.getElementById("joinTest").href=wa(t["wa.test"]);
 document.getElementById("endWa").href=wa(t["wa.hello"]);document.getElementById("footWa").href=wa(t["wa.hello"]);
  document.title=L==="ar"?"Talabia · الطلبيات ديال إنستغرام وواتساب فبلاصة وحدة":L==="en"?"Talabia · Your Instagram and WhatsApp orders in one place":"Talabia · Vos commandes Instagram et WhatsApp au même endroit"}
-document.addEventListener("click",e=>{const b=e.target.closest("[data-lang]");if(!b)return;L=b.dataset.lang;store.set("talabia-site-lang",L);apply()});
+document.addEventListener("click",e=>{const w=e.target.closest("[data-w]");if(w){const im=document.getElementById("webShot");im.dataset.shot="web-"+w.dataset.w;im.src=`img/${im.dataset.shot}-${L}.webp`;document.querySelectorAll("[data-w]").forEach(x=>x.setAttribute("aria-pressed",x===w));return}
+const b=e.target.closest("[data-lang]");if(!b)return;L=b.dataset.lang;store.set("talabia-site-lang",L);apply()});
 apply();
 // header line once scrolled, and gentle fade-in of sections
 addEventListener("scroll",()=>document.getElementById("top").classList.toggle("scrolled",scrollY>8),{passive:true});
