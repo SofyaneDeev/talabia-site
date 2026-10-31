@@ -611,6 +611,7 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 .cdhead h2{display:none}
 .cukp,.cu-av,.cu-city,.cu-n,.cu-view{display:none}
 .cucard,.cu-id{display:contents}
+.tped,.tprev{display:contents}
 .addgrid,.ahead,.acol-side,.acol-main,.ocard,.cady,.abar{display:contents}
 .acr,.otitle,.osum,.abar-n,.abar-x,.tcr,.tmlab,.tmd,.tmsend,.tmnote,.hjw{display:none}
 .ph-brand .crown{font-size:.9em}
@@ -894,9 +895,9 @@ body.desk main[data-v=customers] .cu-view{display:inline-flex;grid-column:6;just
 body.desk main[data-v=team]{max-width:1240px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px 22px;align-items:start}
 body.desk main[data-v=team]>*{grid-column:1/-1;min-width:0}
 body.desk main[data-v=team]>.back{display:none}
-body.desk main[data-v=team] .tcr{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:12px}
-body.desk main[data-v=team] .tcr button{background:none;border:0;padding:0;color:var(--muted);font-size:13.5px}
-body.desk main[data-v=team] .tcr b{color:var(--accent)}
+body.desk .tcr{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:12px}
+body.desk .tcr button{background:none;border:0;padding:0;color:var(--muted);font-size:13.5px}
+body.desk .tcr b{color:var(--accent)}
 body.desk main[data-v=team] .phead h1{font-size:36px}
 body.desk main[data-v=team] .psold{display:none}
 body.desk main[data-v=team] .psdesk{display:block;font-size:17px;margin-top:8px}
@@ -975,6 +976,22 @@ body.desk.gate .dh-l .sub{margin:16px 0 0;font-size:21px;line-height:1.4;color:v
 body.desk.gate .dh-l .foot{margin:14px 0 0;display:inline-block;font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:7px 14px;border-radius:999px}
 body.desk.gate .dh-art{display:block;width:100%;height:auto;margin-top:18px;-webkit-mask-image:radial-gradient(ellipse 62% 64% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 62% 64% at 50% 50%,#000 70%,transparent 100%)}
 /* New order */
+/* Confirmation messages */
+body.desk main[data-v=templates]{max-width:1240px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px;align-items:start}
+body.desk main[data-v=templates]>*{grid-column:1/-1;min-width:0}
+body.desk main[data-v=templates]>.back{display:none}
+body.desk main[data-v=templates] .phead h1{font-size:36px;margin:0}
+body.desk main[data-v=templates] .phead .sub{font-size:17px;margin:8px 0 0}
+body.desk main[data-v=templates]>.hint{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px;font-size:14.5px;line-height:2}
+body.desk main[data-v=templates]>.hint code{background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:3px 10px;font-weight:700}
+body.desk main[data-v=templates]>.list{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 22px}
+body.desk main[data-v=templates] .list>.card{display:flex;flex-direction:column;gap:12px;border-radius:20px;padding:22px 24px}
+body.desk main[data-v=templates] .list>.card>div:first-child{min-height:34px}
+body.desk main[data-v=templates] .tped{display:flex;flex-direction:column;gap:10px}
+body.desk main[data-v=templates] .tprev{display:flex;flex-direction:column;gap:8px}
+body.desk main[data-v=templates] .tprev .msg{background:var(--accent-soft);border-radius:14px;padding:16px 18px}
+body.desk main[data-v=templates] textarea{min-height:190px}
+body.desk main[data-v=templates]>#tAdd{width:auto;justify-self:start;padding-inline:28px}
 body.desk main[data-v=add]{max-width:1240px}
 body.desk main[data-v=add] .addgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px 24px;align-items:start}
 body.desk main[data-v=add] .ahead{display:block;grid-column:1/-1}
@@ -1019,7 +1036,7 @@ body.desk main[data-v=add] .abar #saveOrder{width:auto;padding-inline:44px}
   <button type="button" data-tab="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Orders</button>
   <button type="button" data-tab="add" class="add"><span class="pb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>New</button>
   <button type="button" data-tab="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Products<span class="dot" id="stockDot" hidden></span></button>
-  <button type="button" data-tab="cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>Cash</button><span class="xsep"></span><button type="button" class="xtra" data-tab="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports</button><button type="button" class="xtra" data-tab="customers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3 3 0 0 1 0 5.5M18 14.8c1.8.6 3 2.4 3 5.2"/></svg>Customers</button><button type="button" class="xtra" data-tab="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M17 8v6M14 11h6"/></svg>Team</button><button type="button" class="xtra" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
+  <button type="button" data-tab="cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>Cash</button><span class="xsep"></span><button type="button" class="xtra" data-tab="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports</button><button type="button" class="xtra" data-tab="customers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3 3 0 0 1 0 5.5M18 14.8c1.8.6 3 2.4 3 5.2"/></svg>Customers</button><button type="button" class="xtra" data-tab="templates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>Messages</button><button type="button" class="xtra" data-tab="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M17 8v6M14 11h6"/></svg>Team</button><button type="button" class="xtra" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
 </div></nav>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
@@ -2931,14 +2948,14 @@ function vCustomer(){
 const SAMPLE_ORDER={name:"Houda Bennani",qty:2,product:"Argan serum 30ml",price:298,city:"Tétouan",address:"Hay Lmandri n°7",phone:"0661234567"};
 function vTemplates(){
  const pro=proActive(),list=templates(),def=tplFor(null).id;
- return backBtn()+`<div><h1>Confirmation messages</h1><p class="sub">The text sent to customers to confirm an order.</p></div>
+ return backBtn()+`<div class="phead"><div class="tcr"><button type="button" data-tab="today">${LL({en:"Home",fr:"Accueil",ar:"الرئيسية"})}</button><span>/</span><b>${LL({en:"Messages",fr:"Messages",ar:"الرسائل"})}</b></div><h1>Confirmation messages</h1><p class="sub">The text sent to customers to confirm an order.</p></div>
  ${pro?"":`<div class="card"><div class="tzhead"><h2>Your own messages</h2><span class="tzchip">★ Pro</span></div><p class="hint" style="margin:0"><span>${TEASE.templates.d}</span> <span>Free plan uses the two ready-made messages below.</span></p><div class="tzmock" aria-hidden="true"><span class="ex">Example</span>${TEASE.templates.mock()}</div><button type="button" class="btn gbtn" data-tab="pro">★ Go Pro to unlock</button></div>`}
  <div class="hint">Words in braces are replaced for each order: <code>{name}</code> <code>{product}</code> <code>{qty}</code> <code>{total}</code> <code>{address}</code> <code>{city}</code> <code>{shop}</code></div>
  <div class="list">${list.map(t=>`<div class="card">
   <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>${esc(t.name)}</b>${t.id===def?`<span class="pill s-ok">Default</span>`:pro?`<button type="button" class="btn link sm" data-tdef="${esc(t.id)}">Make default</button>`:""}</div>
-  ${pro?`<input id="tn-${esc(t.id)}" value="${esc(t.name)}" aria-label="Message name"><textarea id="tt-${esc(t.id)}" rows="7" aria-label="Message text">${esc(t.text)}</textarea>
-   <div class="row2"><button type="button" class="btn" data-tsave="${esc(t.id)}">Save</button>${list.length>1?`<button type="button" class="btn ghost" data-tdel="${esc(t.id)}">Delete</button>`:""}</div>`:""}
-  <div class="label">Preview</div><div class="msg">${esc(fillTpl(t.text,SAMPLE_ORDER))}</div></div>`).join("")}</div>
+  ${pro?`<div class="tped"><input id="tn-${esc(t.id)}" value="${esc(t.name)}" aria-label="Message name"><textarea id="tt-${esc(t.id)}" rows="7" aria-label="Message text">${esc(t.text)}</textarea>
+   <div class="row2"><button type="button" class="btn" data-tsave="${esc(t.id)}">Save</button>${list.length>1?`<button type="button" class="btn ghost" data-tdel="${esc(t.id)}">Delete</button>`:""}</div></div>`:""}
+  <div class="tprev"><div class="label">Preview</div><div class="msg">${esc(fillTpl(t.text,SAMPLE_ORDER))}</div></div></div>`).join("")}</div>
  ${pro?`<button type="button" class="btn ghost" id="tAdd">+ Add a message</button>`:""}`}
 
 /* ---------- Team ---------- */
@@ -3556,6 +3573,6 @@ if(CLOUD){
 render();
 })();
 </script>
-<script>(function(){var a=document.getElementById("app");if(!a)return;var M={reports:"reports",customers:"customers",customer:"customers",account:"account",team:"team"};new MutationObserver(function(){var c=document.querySelector('nav [data-tab="cash"]');var h=!!(c&&c.hidden);document.querySelectorAll("nav .xtra,nav .xsep").forEach(function(x){x.hidden=h});var m=document.getElementById("view"),v=m&&m.getAttribute("data-v"),t=M[v];if(t){var b=document.querySelector('nav .xtra[data-tab="'+t+'"]');if(b){document.querySelectorAll("nav button").forEach(function(x){x.removeAttribute("aria-current")});b.setAttribute("aria-current","page")}}}).observe(a,{childList:true})})()</script>
+<script>(function(){var a=document.getElementById("app");if(!a)return;var M={reports:"reports",customers:"customers",customer:"customers",account:"account",team:"team",templates:"templates"};new MutationObserver(function(){var c=document.querySelector('nav [data-tab="cash"]');var h=!!(c&&c.hidden);document.querySelectorAll("nav .xtra,nav .xsep").forEach(function(x){x.hidden=h});var m=document.getElementById("view"),v=m&&m.getAttribute("data-v"),t=M[v];if(t){var b=document.querySelector('nav .xtra[data-tab="'+t+'"]');if(b){document.querySelectorAll("nav button").forEach(function(x){x.removeAttribute("aria-current")});b.setAttribute("aria-current","page")}}}).observe(a,{childList:true})})()</script>
 </body>
 </html>
