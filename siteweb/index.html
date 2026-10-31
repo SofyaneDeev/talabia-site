@@ -611,7 +611,8 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 .cdhead h2{display:none}
 .cukp,.cu-av,.cu-city,.cu-n,.cu-view{display:none}
 .cucard,.cu-id{display:contents}
-.tcr,.tmlab,.tmd,.tmsend,.tmnote,.hjw{display:none}
+.addgrid,.ahead,.acol-side,.acol-main,.ocard,.cady,.abar{display:contents}
+.acr,.otitle,.osum,.abar-n,.abar-x,.tcr,.tmlab,.tmd,.tmsend,.tmnote,.hjw{display:none}
 .ph-brand .crown{font-size:.9em}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
@@ -942,7 +943,7 @@ body.desk main[data-v=team] .hj b{font-size:16.5px}
 body.desk main[data-v=team] .hj p{margin:6px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
 body.desk main[data-v=team] .hjf{grid-column:1/-1;display:flex;justify-content:center;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:14.5px}
 body.desk main[data-v=team] .hjf svg{width:20px;height:20px}
-body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
+body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
 body.desk .toast{left:calc(50% + 126px)}
@@ -973,6 +974,35 @@ body.desk.gate .dh-l h2 span{color:var(--accent)}
 body.desk.gate .dh-l .sub{margin:16px 0 0;font-size:21px;line-height:1.4;color:var(--muted)}
 body.desk.gate .dh-l .foot{margin:14px 0 0;display:inline-block;font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:7px 14px;border-radius:999px}
 body.desk.gate .dh-art{display:block;width:100%;height:auto;margin-top:18px;-webkit-mask-image:radial-gradient(ellipse 62% 64% at 50% 50%,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 62% 64% at 50% 50%,#000 70%,transparent 100%)}
+/* New order */
+body.desk main[data-v=add]{max-width:1240px}
+body.desk main[data-v=add] .addgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px 24px;align-items:start}
+body.desk main[data-v=add] .ahead{display:block;grid-column:1/-1}
+body.desk main[data-v=add] .acr{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:12px}
+body.desk main[data-v=add] .acr button{background:none;border:0;padding:0;color:var(--muted);font-size:13.5px}
+body.desk main[data-v=add] .acr b{color:var(--accent)}
+body.desk main[data-v=add] .ahead h1{font-size:36px;margin:0}
+body.desk main[data-v=add] .psdesk{display:block;font-size:17px;margin:8px 0 0}
+body.desk main[data-v=add] .acol-main{display:flex;flex-direction:column;gap:20px;grid-column:1;grid-row:2;min-width:0}
+body.desk main[data-v=add] .acol-side{display:flex;flex-direction:column;gap:20px;grid-column:2;grid-row:2;min-width:0}
+body.desk main[data-v=add] .ocard,body.desk main[data-v=add] .osum,body.desk main[data-v=add] .sfcard{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px}
+body.desk main[data-v=add] .osum{display:flex}
+body.desk main[data-v=add] .otitle{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:800}
+body.desk main[data-v=add] .ocard .otitle svg,body.desk main[data-v=add] .osum .otitle svg{width:40px;height:40px;padding:9px;border-radius:50%;background:var(--accent-soft);color:var(--accent);box-sizing:border-box}
+body.desk main[data-v=add] .sfcard{background:#f6f3ff;border-color:#e4dcfb}
+body.desk main[data-v=add] .sft{color:#5b3fd0;font-size:19px}
+body.desk main[data-v=add] .sft svg{width:24px;height:24px}
+body.desk main[data-v=add] .cady{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:14px}
+body.desk main[data-v=add] .ocard .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+body.desk main[data-v=add] .osr{display:flex;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid var(--line);font-size:15px}
+body.desk main[data-v=add] .osr span{color:var(--muted)}
+body.desk main[data-v=add] .ostot{border:0;background:var(--accent-soft);border-radius:12px;padding:14px 16px;margin-top:4px}
+body.desk main[data-v=add] .ostot span,body.desk main[data-v=add] .ostot b{color:var(--accent);font-weight:800;font-size:16px}
+body.desk main[data-v=add] .abar{display:flex;grid-column:1/-1;grid-row:3;position:sticky;bottom:0;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 20px;box-shadow:0 -6px 20px rgba(0,0,0,.04);z-index:5}
+body.desk main[data-v=add] .abar-n{display:flex;align-items:center;gap:8px;margin-inline-end:auto;color:var(--muted);font-size:14px}
+body.desk main[data-v=add] .abar-n svg{width:18px;height:18px}
+body.desk main[data-v=add] .abar-x{display:inline-flex;width:auto;padding-inline:30px}
+body.desk main[data-v=add] .abar #saveOrder{width:auto;padding-inline:44px}
 }
 </style>
 </head>
@@ -1972,8 +2002,8 @@ function vDetail(){
 function vAdd(){
  if(!proActive()&&ordersThisMonth()>=FREE_ORDERS)return `<h1>New order</h1>${proLock("Unlimited orders",`You used your ${FREE_ORDERS} free orders this month. Go Pro for unlimited orders, or wait until next month.`)}`;
  if(!SH_().products.length)return `<h1>New order</h1><div class="empty"><b>Add a product first</b><span>Smart fill needs your products to recognise them and set the price.</span><button type="button" class="btn" data-tab="products" style="width:auto">Add a product</button></div>`;
- return `<h1>New order</h1>
- <div class="card">
+ return `<div class="addgrid"><div class="ahead"><div class="acr"><button type="button" data-tab="orders">${LL({en:"Orders",fr:"Commandes",ar:"الطلبات"})}</button><span>/</span><b>${LL({en:"New order",fr:"Nouvelle commande",ar:"طلبية جديدة"})}</b></div><h1>New order</h1><p class="sub psdesk">${LL({en:"Add an order easily or let Smart fill read the details",fr:"Ajoutez une commande facilement ou laissez Smart fill lire les détails",ar:"زيد طلبية بسهولة ولا خلي Smart fill يقرا المعلومات"})}</p></div>
+ <div class="acol-side"><div class="card sfcard"><div class="otitle sft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg><span>Smart fill</span></div>
   <div class="field"><span class="label">Where did the order come from?</span><div class="chips" id="srcPick">${[["ig","Instagram"],["wa","WhatsApp"],["other","Other"]].map(([k,l])=>`<button type="button" class="chip" data-src="${k}" aria-pressed="${newSrc===k}">${l}</button>`).join("")}</div></div>
   <div class="field"><label class="label" for="paste">Customer's message</label>
    <textarea id="paste" placeholder="Paste a DM: Salam bghit joj argan serum, ana Houda, Tetouan hay Lmandri n°7, 0661234567"></textarea></div>
@@ -1985,17 +2015,18 @@ function vAdd(){
   <p class="hint" style="margin:0">Paste the customer's message, or add a screenshot of the chat.${window.TalabiaAndroid?" Faster: in WhatsApp, long-press the picture → Share → Talabia.":""}</p>
   <p class="hint" style="margin:0">Smart fill sends the message or screenshot to an AI provider to read it. Don't add ID numbers or payment details, and tell your customers.</p>
  </div>
- <div class="row2"><div class="field"><label class="label" for="fName">Customer name</label><input id="fName" autocomplete="off"></div>
+ <div class="card osum"><div class="otitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg><span>${LL({en:"Order summary",fr:"Résumé de la commande",ar:"ملخص الطلبية"})}</span></div><div class="osr"><span>${LL({en:"Products",fr:"Produits",ar:"المنتجات"})}</span><b id="osCount">0</b></div><div class="osr"><span>${LL({en:"Delivery company",fr:"Société de livraison",ar:"شركة التوصيل"})}</span><b id="osCar">–</b></div><div class="osr"><span>${LL({en:"Delivery fee",fr:"Frais de livraison",ar:"ثمن التوصيل"})}</span><b id="osFee" dir="ltr">–</b></div><div class="osr ostot"><span>${LL({en:"Total price",fr:"Prix total",ar:"الثمن الإجمالي"})}</span><b id="osTot" dir="ltr">–</b></div></div></div>
+ <div class="acol-main"><div class="ocard"><div class="otitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>${LL({en:"Customer information",fr:"Informations du client",ar:"معلومات الزبون"})}</span></div><div class="row2"><div class="field"><label class="label" for="fName">Customer name</label><input id="fName" autocomplete="off"></div>
  <div class="field"><label class="label" for="fPhone">Phone</label><input id="fPhone" inputmode="tel" placeholder="06…"></div></div>
- <div class="field"><label class="label" for="fCity">City</label><input id="fCity" list="cityList"><datalist id="cityList">${CITIES.map(([c])=>`<option value="${c}">`).join("")}</datalist></div>
- <div class="field"><label class="label" for="fAddress">Address</label><textarea id="fAddress" style="min-height:56px" placeholder="Neighborhood, street, building, apartment"></textarea></div>
- <div class="field"><span class="label">Products</span><div id="itemsBox" class="items"></div></div>
+ <div class="cady"><div class="field"><label class="label" for="fCity">City</label><input id="fCity" list="cityList"><datalist id="cityList">${CITIES.map(([c])=>`<option value="${c}">`).join("")}</datalist></div>
+ <div class="field"><label class="label" for="fAddress">Address</label><textarea id="fAddress" style="min-height:56px" placeholder="Neighborhood, street, building, apartment"></textarea></div></div></div>
+ <div class="ocard"><div class="otitle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg><span>${LL({en:"Products and delivery",fr:"Produits et livraison",ar:"المنتجات والتوصيل"})}</span></div><div class="field"><span class="label">Products</span><div id="itemsBox" class="items"></div></div>
  <div id="stockNote"></div>
  <div class="row2"><div class="field"><label class="label" for="fPrice">Total price (DH)</label><input id="fPrice" inputmode="numeric"></div>
  <div class="field"><label class="label" for="fCarrier">Delivery company</label><select id="fCarrier">${carriers().map(c=>`<option value="${esc(c.name)}">${esc(c.name)} · ${c.fee} DH</option>`).join("")}</select></div></div>
  <div class="field"><label class="label" for="fNote">Note (size, color, delivery time…)</label><input id="fNote" autocomplete="off"></div>
- <div id="dupWarn"></div>
- <button type="button" class="btn" id="saveOrder">Save order</button>`}
+ </div><div id="dupWarn"></div></div>
+ <div class="abar"><span class="abar-n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.5M12 11v5"/></svg><span>${LL({en:"Check the details before saving",fr:"Vérifiez les informations avant d'enregistrer",ar:"تأكد من المعلومات قبل الحفظ"})}</span></span><button type="button" class="btn ghost abar-x" data-tab="orders">${LL({en:"Cancel",fr:"Annuler",ar:"إلغاء"})}</button><button type="button" class="btn" id="saveOrder">Save order</button></div></div>`}
 
 /* ---------- product photos ---------- */
 let prodImg; // undefined = unchanged, "" = removed, data URL = new photo (not saved yet)
@@ -3023,7 +3054,9 @@ function drawItems(flash){const box=$("itemsBox");if(!box)return;
  <button type="button" class="btn ghost" id="itemAdd">${formItems.length?"+ Add another product":"+ Choose a product"}</button>
  ${pickOpen?`<div class="plist" id="pList">${SH_().products.length>6?`<input id="pSearch" placeholder="Search a product…" autocomplete="off">`:""}${pickRows()}</div>`:""}`;
  recalc()}
-function recalc(){
+function osUpd(){var g=function(i){return document.getElementById(i)};if(!g("osTot"))return;var q=0;formItems.forEach(function(it){if(prod(it.id))q+=Math.max(1,it.qty)});g("osCount").textContent=q;var s=g("fCarrier"),o=s&&s.options[s.selectedIndex];var nm=o?o.value:"–";g("osCar").textContent=nm;var c=carriers().find(function(x){return x.name===nm});g("osFee").textContent=c?c.fee+" DH":"–";var p=g("fPrice");g("osTot").textContent=p&&p.value?p.value+" DH":"–"}
+document.addEventListener("input",function(){osUpd()});document.addEventListener("change",function(){osUpd()});
+function recalc(){setTimeout(osUpd,0);
  const its=formItems.map(it=>({p:prod(it.id),q:Math.max(1,it.qty)})).filter(x=>x.p);
  if(!priceTouched&&$("fPrice"))$("fPrice").value=its.length?its.reduce((a,x)=>a+x.p.price*x.q,0):"";
  const n=$("stockNote");if(!n)return;
