@@ -606,7 +606,9 @@ header{padding-top:12px;padding-bottom:12px}main{padding-top:16px;padding-bottom
 .deskbrand,.xsep,.xtra,.deskhero,.lhead,.sdesk,.sk-head,.sk-th,.sk-no,.sk-cu,.sk-ci,.sk-pr,.shiprow .pill,.ski,.sd-ic,.sd-note{display:none}
 .shipcard{display:contents}
 .pcard,.catbar{display:contents}
-.pth,.psdesk,.pst{display:none}
+.pth,.psdesk,.pst,.cmanage,.cth,.cnote,.cr-av,.cr-n,.cr-fee,.ksub,.cmock,.tmtitle,.tmempty{display:none}
+.duecard,.cdhead,.tmf,.tmcol{display:contents}
+.cdhead h2{display:none}
 .ph-brand .crown{font-size:.9em}
 @media(min-width:1000px){
 body.desk{background:var(--bg)}
@@ -803,6 +805,78 @@ body.desk main[data-v=products] .plr .chev{grid-column:6;justify-self:end;width:
 body.desk main[data-v=products] .pli:hover{background:var(--bg)}
 body.desk main[data-v=products] .plx{padding:6px 18px 18px 88px}
 html[dir=rtl] body.desk main[data-v=products] .plx{padding:6px 88px 18px 18px}
+/* Cash */
+body.desk main[data-v=cash]{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+body.desk main[data-v=cash] .phead h1{font-size:34px}
+body.desk main[data-v=cash] .psold{display:none}
+body.desk main[data-v=cash] .psdesk{display:block;font-size:16px;margin-top:6px}
+body.desk main[data-v=cash] .ckp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+body.desk main[data-v=cash] .ckp .kpi{display:flex;align-items:center;gap:20px;padding:26px 28px;border-radius:18px;grid-column:auto!important;min-height:120px}
+body.desk main[data-v=cash] .ckp .kpi strong{font-size:34px;display:block}
+body.desk main[data-v=cash] .ckp .ski{display:grid;place-items:center;width:68px;height:68px;border-radius:18px;background:var(--accent-soft);color:var(--accent);flex:none}
+body.desk main[data-v=cash] .ckp .ski svg{width:32px;height:32px}
+body.desk main[data-v=cash] .ckp .kpi.big .ski{background:rgba(255,255,255,.14);color:#fff}
+body.desk main[data-v=cash] .ksub{display:block;font-size:13.5px;opacity:.85;margin-top:2px}
+body.desk main[data-v=cash] .duecard{display:block;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px 26px}
+body.desk main[data-v=cash] .cdhead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+body.desk main[data-v=cash] .cdhead h2{display:block;margin:0;font-size:21px}
+body.desk main[data-v=cash] .cmanage{display:inline-flex;align-items:center;gap:8px;width:auto;padding-inline:18px;color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+body.desk main[data-v=cash] .cmanage svg{width:20px;height:20px}
+body.desk main[data-v=cash] .cmanage-b{display:none}
+body.desk main[data-v=cash] .cth,body.desk main[data-v=cash] .carrier{display:grid;grid-template-columns:52px minmax(0,2fr) minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) 190px;gap:0 16px;align-items:center}
+body.desk main[data-v=cash] .cth{background:var(--bg);border:1px solid var(--line);border-bottom:0;border-radius:14px 14px 0 0;padding:13px 18px;font-size:13.5px;font-weight:700;color:var(--muted)}
+body.desk main[data-v=cash] .duecard .list{display:block;border:1px solid var(--line);border-radius:0 0 14px 14px;overflow:hidden}
+body.desk main[data-v=cash] .carrier{border:0;border-radius:0;border-top:1px solid var(--line);box-shadow:none;padding:12px 18px;min-height:68px}
+body.desk main[data-v=cash] .carrier:first-child{border-top:0}
+body.desk main[data-v=cash] .carrier>*{grid-row:1}
+body.desk main[data-v=cash] .carrier .hint{display:none}
+body.desk main[data-v=cash] .cr-av{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--bg);font-weight:800;font-size:14px;grid-column:1}
+body.desk main[data-v=cash] .carrier>div{grid-column:2}
+body.desk main[data-v=cash] .carrier b{font-size:16px}
+body.desk main[data-v=cash] .cr-n{display:block;grid-column:3}
+body.desk main[data-v=cash] .cr-fee{display:block;grid-column:4}
+body.desk main[data-v=cash] .carrier>strong{grid-column:5;font-size:16px}
+body.desk main[data-v=cash] .carrier>.btn{grid-column:6!important;grid-row:1;justify-self:end;width:auto;min-height:40px;padding-inline:16px}
+body.desk main[data-v=cash] .cnote{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px;background:var(--accent-soft);border-radius:14px;padding:16px;color:var(--accent);font-weight:600}
+body.desk main[data-v=cash] .cnote.cn-off{display:none}
+body.desk main[data-v=cash] .cn-ic{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff}
+body.desk main[data-v=cash] .cn-ic svg{width:18px;height:18px}
+body.desk main[data-v=cash] .cashrep{padding:24px 26px;border-radius:20px}
+body.desk main[data-v=cash] .cashrep .tzmock{display:none}
+body.desk main[data-v=cash] .cmock{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;margin:6px 0 4px}
+body.desk main[data-v=cash] .cm-k{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+body.desk main[data-v=cash] .cm-k>div{background:var(--bg);border-radius:14px;padding:14px 18px}
+body.desk main[data-v=cash] .cm-k span{display:block;font-size:13.5px;color:var(--muted)}
+body.desk main[data-v=cash] .cm-k b{font-size:24px}
+body.desk main[data-v=cash] .cm-bars{display:flex;align-items:flex-end;gap:14px;height:170px;border:1px solid var(--line);border-radius:14px;padding:16px 18px 8px}
+body.desk main[data-v=cash] .cm-bars>div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+body.desk main[data-v=cash] .cm-bars i{display:block;width:100%;background:var(--accent);border-radius:6px 6px 0 0;opacity:.9}
+body.desk main[data-v=cash] .cm-bars small{font-size:12px;color:var(--muted)}
+body.desk main[data-v=cash] .cm-r{border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+body.desk main[data-v=cash] .cm-p{display:grid;grid-template-columns:minmax(80px,auto) 1fr auto;align-items:center;gap:12px;font-size:14.5px}
+body.desk main[data-v=cash] .cm-bar{height:8px;border-radius:99px;background:var(--bg);overflow:hidden}
+body.desk main[data-v=cash] .cm-bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+body.desk main[data-v=cash] .cm-p em{font-style:normal;font-weight:700}
+body.desk main[data-v=cash] .cashrep>.btn{margin-top:14px}
+/* Team */
+body.desk main[data-v=team]{max-width:1200px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px 24px;align-items:start}
+body.desk main[data-v=team]>*{grid-column:1/-1;min-width:0}
+body.desk main[data-v=team]>.phead{grid-column:1/-1}
+body.desk main[data-v=team] .phead h1{font-size:34px}
+body.desk main[data-v=team] .psold{display:none}
+body.desk main[data-v=team] .psdesk{display:block;font-size:16px;margin-top:6px}
+body.desk main[data-v=team]>.tmcard{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;padding:24px 26px;border-radius:20px}
+body.desk main[data-v=team] .tmcol{display:flex;flex-direction:column;gap:14px;min-width:0}
+body.desk main[data-v=team] .tmf{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--bg);align-self:start}
+body.desk main[data-v=team] .tmtitle{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800}
+body.desk main[data-v=team] .tmcount{background:var(--accent-soft);color:var(--accent);border-radius:99px;font-size:13.5px;padding:2px 11px}
+body.desk main[data-v=team] .tmempty{display:block;border:1px dashed var(--line);border-radius:14px;padding:34px 20px;text-align:center;color:var(--muted)}
+body.desk main[data-v=team] .tmcol .clist{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+body.desk main[data-v=team] .tmrow{grid-template-columns:minmax(0,1.3fr) auto auto auto;padding:14px 18px;gap:0 14px}
+body.desk main[data-v=team] .tmrow .tmroles{grid-column:auto;flex-wrap:nowrap}
+body.desk main[data-v=team] .tmrow .btn.link{grid-column:auto;justify-self:end}
+body.desk main[data-v=team] .row2{display:grid;grid-template-columns:1fr;gap:10px}
+body.desk main[data-v=team] .tmf .btn{width:100%}
 body.desk main[data-v=add],body.desk main[data-v=detail],body.desk main[data-v=settings]{max-width:760px}
 body.desk main[data-v]>.back{justify-self:start;grid-column:1/-1}
 body.desk main:not([data-v=today]):not([data-v=orders]):not([data-v=products]):not([data-v=cash]):not([data-v=reports]):not([data-v=account])>.back{align-self:flex-start}
@@ -850,7 +924,7 @@ body.desk.gate .dh-art{display:block;width:100%;height:auto;margin-top:18px;-web
   <button type="button" data-tab="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Orders</button>
   <button type="button" data-tab="add" class="add"><span class="pb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>New</button>
   <button type="button" data-tab="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></svg>Products<span class="dot" id="stockDot" hidden></span></button>
-  <button type="button" data-tab="cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>Cash</button><span class="xsep"></span><button type="button" class="xtra" data-tab="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports</button><button type="button" class="xtra" data-tab="customers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3 3 0 0 1 0 5.5M18 14.8c1.8.6 3 2.4 3 5.2"/></svg>Customers</button><button type="button" class="xtra" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
+  <button type="button" data-tab="cash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>Cash</button><span class="xsep"></span><button type="button" class="xtra" data-tab="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Reports</button><button type="button" class="xtra" data-tab="customers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 5.5a3 3 0 0 1 0 5.5M18 14.8c1.8.6 3 2.4 3 5.2"/></svg>Customers</button><button type="button" class="xtra" data-tab="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M17 8v6M14 11h6"/></svg>Team</button><button type="button" class="xtra" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>My account</button>
 </div></nav>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
@@ -2167,15 +2241,19 @@ function vCash(){
  const rows=names.map(c=>{const d=ords.filter(o=>o.carrier===c&&o.status==="delivered");return{c,n:d.length,sum:d.reduce((a,o)=>a+Math.max(0,o.price-orderFee(o)),0),fee:feeOf(c)}});
  const total=rows.reduce((a,r)=>a+r.sum,0),paid=ords.filter(o=>o.status==="paid").reduce((a,o)=>a+Math.max(0,o.price-orderFee(o)),0);
  const lost=ords.reduce((a,o)=>a+lostOf(o),0);
- return `<div><h1>Cash</h1><p class="sub">Money collected by delivery companies that hasn't reached you yet, after their delivery fee.</p></div>
- <div class="kpis"><div class="kpi big"><span>Total owed to you</span><strong>${dh(total)}</strong></div>
- <div class="kpi" style="grid-column:1/-1"><span>Already received</span><strong>${dh(paid)}</strong></div></div>
- <div class="list">${rows.map(r=>`<div class="card carrier"><div><b>${esc(r.c)}</b><div class="hint">${r.n} delivered order${r.n===1?"":"s"} unpaid · ${r.fee} DH per delivery</div></div><strong>${dh(r.sum)}</strong>
+ return `<div class="phead"><h1>Cash</h1><p class="sub psold">Money collected by delivery companies that hasn't reached you yet, after their delivery fee.</p><p class="sub psdesk">${LL({en:"Track what delivery companies owe you and what has reached you",fr:"Suivez ce que les sociétés de livraison vous doivent et ce qui vous est parvenu",ar:"تبع مستحقاتك عند شركات التوصيل والمبالغ اللي توصلتي بها"})}</p></div>
+ <div class="kpis ckp"><div class="kpi big"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M16 14.5h2"/></svg></span><div><span>Total owed to you</span><strong dir="ltr">${dh(total)}</strong><small class="ksub">${LL({en:"After deducting delivery fees",fr:"Après déduction des frais de livraison",ar:"من بعد خصم مصاريف التوصيل"})}</small></div></div>
+ <div class="kpi" style="grid-column:1/-1"><span class="ski"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/></svg></span><div><span>Already received</span><strong dir="ltr">${dh(paid)}</strong></div></div></div>
+ <div class="duecard"><div class="cdhead"><button type="button" class="btn ghost cmanage" data-tab="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>${LL({en:"Manage companies and prices",fr:"Gérer les sociétés et les prix",ar:"إدارة الشركات والأثمنة"})}</span></button><h2>${LL({en:"Delivery company dues",fr:"Montants dus par les sociétés de livraison",ar:"مستحقات شركات التوصيل"})}</h2></div>
+ <div class="cth"><span></span><span>${LL({en:"Delivery company",fr:"Société de livraison",ar:"شركة التوصيل"})}</span><span>${LL({en:"Delivered, unpaid orders",fr:"Commandes livrées non payées",ar:"طلبات مسلّمة غير مدفوعة"})}</span><span>${LL({en:"Delivery fee",fr:"Frais de livraison",ar:"ثمن التوصيل"})}</span><span>${LL({en:"Amount due",fr:"Montant dû",ar:"المبلغ المستحق"})}</span><span></span></div>
+ <div class="list">${rows.map(r=>`<div class="card carrier"><span class="cr-av">${esc(r.c.replace(/[^A-Za-z]/g,"").slice(0,2).toUpperCase()||r.c.slice(0,2))}</span><div><b>${esc(r.c)}</b><div class="hint">${r.n} delivered order${r.n===1?"":"s"} unpaid · ${r.fee} DH per delivery</div></div><span class="cr-n">${r.n}</span><span class="cr-fee" dir="ltr">${r.fee} DH</span><strong dir="ltr">${dh(r.sum)}</strong>
   ${r.n?`<button type="button" class="btn ghost" style="grid-column:1/-1" data-payout="${esc(r.c)}">Mark payout received</button>`:""}</div>`).join("")}</div>
- <button type="button" class="btn ghost" data-tab="account">Change delivery companies and prices</button>
+ <div class="cnote ${total>0?"cn-off":""}"><span class="cn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>${LL({en:"No amount is pending at the delivery companies",fr:"Aucun montant en attente chez les sociétés de livraison",ar:"ما كاين حتى مبلغ معلّق عند شركة التوصيل"})}</div></div>
+ <button type="button" class="btn ghost cmanage-b" data-tab="account">Change delivery companies and prices</button>
  <div class="card cashrep"><div class="tzhead"><h2 style="margin:0">Reports</h2>${proActive()?"":`<span class="tzchip">★ Pro</span>`}</div>
   <p class="hint" style="margin:0">Sales, real profit, best products and refusals by city.</p>
   <div class="tzmock" aria-hidden="true"><span class="ex">Example</span>${TEASE.reports.mock()}</div>
+  <div class="cmock" aria-hidden="true"><div class="cm-l"><div class="cm-k"><div><span>${LL({en:"Sales",fr:"Ventes",ar:"المبيعات"})}</span><b dir="ltr">12 480 DH</b></div><div><span>${LL({en:"Profit",fr:"Bénéfice",ar:"الربح"})}</span><b dir="ltr">4 920 DH</b></div></div><div class="cm-bars">${[38,55,42,70,62,88,76].map((v,i)=>`<div><i style="height:${v}%"></i><small>${LL({en:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],fr:["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"],ar:["الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت","الأحد"]})[i]}</small></div>`).join("")}</div></div><div class="cm-r"><b>${LL({en:"Best products — example",fr:"Meilleurs produits — exemple",ar:"أفضل المنتجات — مثال"})}</b>${[["Argan serum",38],["Hair mask",21],["Lipstick",17]].map(([n,q])=>`<div class="cm-p"><span>${n}</span><div class="cm-bar"><i style="width:${q*2.2}%"></i></div><em>${q}</em></div>`).join("")}</div></div>
   <button type="button" class="btn ${proActive()?"":"gbtn"}" data-tab="reports">${proActive()?"Open reports":"★ Unlock reports with Pro"}</button></div>`}
 
 let confirmDelete=false,confirmAcct=false;
@@ -2773,21 +2851,21 @@ function vTeam(){
  if(!proActive())return proTeaser("team");
  const how=`<div class="card"><h2>How a helper joins</h2><ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px"><li>Add their name and email, and choose what they can do.</li><li>They install Talabia and create an account (or log in) with that email.</li><li>Talabia asks them to join your team. Once they accept, they work on your shop and you see who did what on each order.</li></ol></div>`;
  if(!CLOUD){const list=SH_().teamPreview||[];
-  return backBtn()+`<div><h1>Team</h1><p class="sub">Preview: in the Android app your helpers are saved on your server.</p></div>${teamForm(list)}${how}`}
+  return backBtn()+`<div class="phead"><h1>Team</h1><p class="sub">Preview: in the Android app your helpers are saved on your server.</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(list)}${how}`}
  if(teamList===null){loadTeam();return backBtn()+`<h1>Team</h1><div class="empty">Loading your team…</div>`}
- return backBtn()+`<div><h1>Team</h1><p class="sub">${teamList.length} helper${teamList.length===1?"":"s"}</p></div>${teamForm(teamList)}${how}`}
+ return backBtn()+`<div class="phead"><h1>Team</h1><p class="sub psold">${teamList.length} helper${teamList.length===1?"":"s"}</p><p class="sub psdesk">${LL({en:"Add helpers to your shop and choose what each one can do",fr:"Ajoutez des aides à votre boutique et choisissez ce que chacun peut faire",ar:"زيد مساعدين فمتجرك وحدد شنو يقدر يدير كل واحد"})}</p></div>${teamForm(teamList)}${how}`}
 var tmRole="orders";
 const ROLE_TXT={orders:"Orders only",full:"Full access"};
 function teamForm(list){
- return `<div class="card">${list.length?`<div class="clist">${list.map(m=>{const st=m.status||"active";return `<div class="tmrow"><div class="grow"><b>${esc(m.name||"Helper")}</b><div class="hint" dir="ltr">${esc(idShow(m.member_phone))}</div></div>
+ return `<div class="card tmcard"><div class="tmcol"><div class="tmtitle">${LL({en:"Your helpers",fr:"Vos aides",ar:"المساعدين ديالك"})}<span class="tmcount">${list.length}</span></div>${list.length?`<div class="clist">${list.map(m=>{const st=m.status||"active";return `<div class="tmrow"><div class="grow"><b>${esc(m.name||"Helper")}</b><div class="hint" dir="ltr">${esc(idShow(m.member_phone))}</div></div>
    <span class="pill ${st==="active"?"s-ok":st==="invited"?"s-low":"s-out"}">${st==="active"?"Joined":st==="invited"?"Invited":"Declined"}</span>
    <div class="chips tmroles">${["orders","full"].map(r=>`<button type="button" class="chip" data-trole="${esc(m.member_phone)}" data-r="${r}" aria-pressed="${(m.role||"full")===r}">${ROLE_TXT[r]}</button>`).join("")}</div>
-   <button type="button" class="btn link sm" style="color:var(--red)" data-tdelm="${esc(m.member_phone)}">Remove</button></div>`}).join("")}</div>`:""}
-  <div class="row2"><input id="tmName" placeholder="Name, e.g. Sara" autocomplete="off"><input id="tmPhone" inputmode="email" placeholder="Helper's email" autocomplete="off"></div>
+   <button type="button" class="btn link sm" style="color:var(--red)" data-tdelm="${esc(m.member_phone)}">Remove</button></div>`}).join("")}</div>`:`<div class="tmempty">${LL({en:"No helpers yet. Invite the first one with the form.",fr:"Pas encore d'aide. Invitez le premier avec le formulaire.",ar:"باقي ما زدتي حتى مساعد. دعو الأول بالاستمارة."})}</div>`}</div>
+  <div class="tmf"><div class="tmtitle">${LL({en:"Invite a helper",fr:"Inviter une aide",ar:"دعو مساعد"})}</div><div class="row2"><input id="tmName" placeholder="Name, e.g. Sara" autocomplete="off"><input id="tmPhone" inputmode="email" placeholder="Helper's email" autocomplete="off"></div>
   <div class="field"><span class="label">What can this helper do?</span><div class="chips">${["orders","full"].map(r=>`<button type="button" class="chip" data-tmrole="${r}" aria-pressed="${tmRole===r}">${ROLE_TXT[r]}</button>`).join("")}</div>
   <span class="hint">${tmRole==="orders"?"Add, confirm and ship orders, see products and stock. No money, reports, prices or deleting.":"Everything except your plan, your catalogue and deleting the shop."}</span></div>
   ${teamErr?`<div class="err">${esc(teamErr)}</div>`:""}
-  <button type="button" class="btn" id="tmAdd">Send the invitation</button></div>`}
+  <button type="button" class="btn" id="tmAdd">Send the invitation</button></div></div>`}
 async function setRole(ph,r){if(!CLOUD){const m=(SH_().teamPreview||[]).find(x=>x.member_phone===ph);if(m){m.role=r;save();render()}return}
  try{await api(`/rest/v1/team_members?owner_id=eq.${session.uid}&member_phone=eq.${encodeURIComponent(ph)}`,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({role:r})});const m=(teamList||[]).find(x=>x.member_phone===ph);if(m)m.role=r;render();toast("Access updated")}
  catch(e){toast("Couldn't save. Check your internet.")}}
@@ -3379,6 +3457,6 @@ if(CLOUD){
 render();
 })();
 </script>
-<script>(function(){var a=document.getElementById("app");if(!a)return;var M={reports:"reports",customers:"customers",customer:"customers",account:"account"};new MutationObserver(function(){var c=document.querySelector('nav [data-tab="cash"]');var h=!!(c&&c.hidden);document.querySelectorAll("nav .xtra,nav .xsep").forEach(function(x){x.hidden=h});var m=document.getElementById("view"),v=m&&m.getAttribute("data-v"),t=M[v];if(t){var b=document.querySelector('nav .xtra[data-tab="'+t+'"]');if(b){document.querySelectorAll("nav button").forEach(function(x){x.removeAttribute("aria-current")});b.setAttribute("aria-current","page")}}}).observe(a,{childList:true})})()</script>
+<script>(function(){var a=document.getElementById("app");if(!a)return;var M={reports:"reports",customers:"customers",customer:"customers",account:"account",team:"team"};new MutationObserver(function(){var c=document.querySelector('nav [data-tab="cash"]');var h=!!(c&&c.hidden);document.querySelectorAll("nav .xtra,nav .xsep").forEach(function(x){x.hidden=h});var m=document.getElementById("view"),v=m&&m.getAttribute("data-v"),t=M[v];if(t){var b=document.querySelector('nav .xtra[data-tab="'+t+'"]');if(b){document.querySelectorAll("nav button").forEach(function(x){x.removeAttribute("aria-current")});b.setAttribute("aria-current","page")}}}).observe(a,{childList:true})})()</script>
 </body>
 </html>
